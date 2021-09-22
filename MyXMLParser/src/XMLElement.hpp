@@ -1,5 +1,5 @@
 #include "define.h"
-#include "XMLNode.hpp"
+#include "XMLNonterminalNode.h"
 #include "XMLAttribute.hpp"
 #include "StringProxy.h"
 
@@ -9,10 +9,9 @@ namespace MyXMLParser{
 using std::vector;
 using std::string;
 
-class XMLElement : public XMLNode{
+class XMLElement : public XMLNonterminalNode{
     public:
-        string getTagName();
-        void setTagName(const string& name);
+        XMLElement() = default;
 
         XMLAttribute* getAttribute();
         XMLAttribute* getAttribute(const string& name);
@@ -39,7 +38,16 @@ class XMLElement : public XMLNode{
         int setAttribute(const string& name, char value);
         int setAttribute(const string& name, bool value);
         int deleteAttribute(const string& name);
+
+        const string& getTagName() const { return _tag_name.getString(); }
+        void setTagName(const string& tag_name) { _tag_name.setString(tag_name); }
+        void setTagName(string&& tag_name) { _tag_name.setString(tag_name); }
+        const string& getValue() const override { return getTagName(); }
+        void setValue(const string& value) override { setTagName(value); }
+        void setValue(string&& value) override { setTagName(value); }
     private:
+        const char* parse(const char* beg,const char* end, size_t& line_num) override;
+
         StringProxy _tag_name;
         vector<XMLAttribute*> _attributes;
 };

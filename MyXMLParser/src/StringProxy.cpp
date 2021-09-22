@@ -8,6 +8,11 @@ namespace MyXMLParser{
         _str = translateEntityToChar(p, len);
     }
 
+    bool StringProxy::isAllWhitespace()
+    {
+        return false;
+    }
+
     string StringProxy::translateEntityToChar(const char* p, unsigned int len)
     {
         using EntityCharPair = std::pair<string, char>;

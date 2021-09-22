@@ -38,12 +38,45 @@
     <ClInclude Include="src\define.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\XMLTerminalNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XMLNonterminalNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\StringProxy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLDocument.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="define.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLTerminalNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLNonterminalNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLComment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLDeclaration.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLElement.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLText.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
