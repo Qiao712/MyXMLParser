@@ -26,10 +26,10 @@ int main(){
     dcl.parse(declaration_test, declaration_test + sizeof(declaration_test), line_num);
     cout << dcl.getValue() << endl;*/
 
-    char xml[] = "<?xml sssss?>\n<!--commmmmmmment--->";
+    char xml[] = "<?xml sssss?>\n\t\t\t\  <!--commmmmmmment--->";
     XMLDocument doc;
     doc.parse(xml,sizeof(xml)-1);
     cout<<doc.firstChild()->getValue()<<endl;
     cout << doc.firstChild()->nextSibling()->getValue() << endl;
-    cout << doc.firstChild()->nextSibling()->nextSibling()->getValue() << endl;
+//    cout << doc.firstChild()->nextSibling()->nextSibling()->getValue() << endl;
 }

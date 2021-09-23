@@ -39,16 +39,17 @@ class XMLElement : public XMLNonterminalNode{
         int setAttribute(const string& name, bool value);
         int deleteAttribute(const string& name);
 
-        const string& getTagName() const { return _tag_name.getString(); }
-        void setTagName(const string& tag_name) { _tag_name.setString(tag_name); }
-        void setTagName(string&& tag_name) { _tag_name.setString(tag_name); }
+        const string& getTagName() const { return _tag_name; }
+        void setTagName(const string& tag_name) { _tag_name = tag_name; }
+        void setTagName(string&& tag_name) { _tag_name = tag_name; }
         const string& getValue() const override { return getTagName(); }
         void setValue(const string& value) override { setTagName(value); }
         void setValue(string&& value) override { setTagName(value); }
     private:
+        static bool checkTagName(const char* beg, const char* end);
         const char* parse(const char* beg,const char* end, size_t& line_num) override;
 
-        StringProxy _tag_name;
+        string _tag_name;
         vector<XMLAttribute*> _attributes;
 };
 }

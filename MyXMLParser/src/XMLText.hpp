@@ -6,6 +6,9 @@
 namespace MyXMLParser {
 using std::string;
 class XMLText : public XMLTerminalNode{
+	//allow them to access _content to check weather it is white
+	friend class XMLDocument;
+	friend class XMLElement;
 public:
 	XMLText() = default;
 	XMLText(const string & content);
@@ -17,8 +20,6 @@ public:
 
 	const char* parse(const char* beg, const char* end, size_t & line_num) override;
 private:
-	
-
 	StringProxy _content;
 };
 }

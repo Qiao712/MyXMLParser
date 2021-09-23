@@ -50,4 +50,9 @@ namespace MyXMLParser{
 		for (const char* p = beg; p != end; p++) count += (*p == chr);
 		return count;
 	}
+	bool isAllWhitespace(const char* beg, const char* end)
+	{
+
+		return false;
+	}
 }

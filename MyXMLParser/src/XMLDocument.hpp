@@ -30,5 +30,7 @@ private:
 
     XMLError _parsing_error = XML_SUCCESS;
     size_t   _error_line    = 0;
+
+    string _content;
 };
 }

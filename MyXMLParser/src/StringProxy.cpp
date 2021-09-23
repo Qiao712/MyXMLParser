@@ -1,4 +1,5 @@
 #include "StringProxy.h"
+#include "define.h"
 
 #include <cstring>
 #include <map>
@@ -9,8 +10,11 @@ namespace MyXMLParser{
     }
 
     bool StringProxy::isAllWhitespace()
-    {
-        return false;
+    { 
+        if (_str.empty()) return true;
+        size_t holder;
+        const char* p = skipWhitespace(&_str.front(), &_str.back() + 1, holder);
+        return p == &_str.back() + 1;
     }
 
     string StringProxy::translateEntityToChar(const char* p, unsigned int len)

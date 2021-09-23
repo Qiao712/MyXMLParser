@@ -2,6 +2,7 @@
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
 #include "XMLElement.hpp"
+#include "XMLText.hpp"
 
 namespace MyXMLParser {
 	bool XMLDocument::parse(const char* xml, size_t len)
@@ -23,7 +24,12 @@ namespace MyXMLParser {
 					return nullptr;
 				}
 				else {
-					addLastChild(new_node);
+					//discard text node of whitespace
+					XMLText* text_node = dynamic_cast<XMLText*>(new_node);
+					if (text_node != nullptr && text_node->_content.isAllWhitespace())
+						delete new_node;
+					else
+						addLastChild(new_node);
 				}
 			}
 			else {
