@@ -21,7 +21,10 @@ public:
     XMLError removeChild(XMLNode* child) override;
 
     ~XMLNonterminalNode();
+protected:
+    const char* parse(const char* beg, const char* end, size_t& line_num) override;
 private:
+
     XMLNode* _first_child = nullptr;
     XMLNode* _last_child = nullptr;
 };

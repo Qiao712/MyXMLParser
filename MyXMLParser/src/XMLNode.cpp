@@ -6,31 +6,34 @@
 #include "XMLText.hpp"
 
 namespace MyXMLParser {
-	NodeType XMLNode::checkStart(const char* beg, const char* end)
+	Token XMLNode::checkStart(const char* beg, const char* end)
 	{
 		if (beg != end) {
 			if (*beg == '<') {
-				if (beg + 1 != end && beg[1] == '?') return NodeType::DECLARATION;				//<?
-				if (end - beg >= 4 && beg[1] == '!' && beg[2] ==  '-' && beg[3] == '-') return NodeType::COMMENT;	//<!--
-				return NodeType::ELEMENT;
+				if (beg + 1 != end && beg[1] == '?') return Token::DECLARATION;				//<?
+				if (end - beg >= 4 && beg[1] == '!' && beg[2] ==  '-' && beg[3] == '-') return Token::COMMENT;	//<!--
+				return Token::ELEMENT_START;
 			}
-			return NodeType::TEXT;
+			else if (*beg == '/' && beg + 1 != end && beg[1] == '>') {
+				return Token::ELEMENT_END;
+			}
+			return Token::TEXT;
 		}
-		return NodeType::UNKNOWN;
+		return Token::UNKNOWN;
 	}
 	XMLNode* XMLNode::createNodeByStartChar(const char* beg, const char* end)
 	{
 		XMLNode* new_node = nullptr;
 		switch (XMLNode::checkStart(beg, end)) {
-		case NodeType::COMMENT: {
+		case Token::COMMENT: {
 			new_node = new XMLComment;
 			break;
 		}
-		case NodeType::DECLARATION: {
+		case Token::DECLARATION: {
 			new_node = new XMLDeclaration;
 			break;
 		}
-		case NodeType::ELEMENT: {
+		case Token::ELEMENT: {
 			new_node = new XMLElement;
 			break;
 		}

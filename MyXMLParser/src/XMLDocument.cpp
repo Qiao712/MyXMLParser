@@ -13,30 +13,8 @@ namespace MyXMLParser {
 	const char* XMLDocument::parse(const char * beg, const char * end, size_t & line_num)
 	{
 		const char* p = skipWhitespace(beg, end, line_num);
-		XMLNode* new_node;
-		while (p != end) {
-			new_node = createNodeByStartChar(p, end);
-			
-			if (new_node != nullptr) {
-				p = new_node->parse(p, end, line_num);
-				if (p == nullptr) {
-					
-					return nullptr;
-				}
-				else {
-					//discard text node of whitespace
-					XMLText* text_node = dynamic_cast<XMLText*>(new_node);
-					if (text_node != nullptr && text_node->_content.isAllWhitespace())
-						delete new_node;
-					else
-						addLastChild(new_node);
-				}
-			}
-			else {
-				return nullptr;
-			}
-		}
-
-		return end;
+		
+		//parse its sub node
+		return XMLNonterminalNode::parse(p, end, line_num);
 	}
 }

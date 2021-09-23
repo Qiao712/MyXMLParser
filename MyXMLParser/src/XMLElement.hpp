@@ -46,7 +46,9 @@ class XMLElement : public XMLNonterminalNode{
         void setValue(const string& value) override { setTagName(value); }
         void setValue(string&& value) override { setTagName(value); }
     private:
-        static bool checkTagName(const char* beg, const char* end);
+        bool checkTagName(const char* beg, const char* end);
+        const char* findEndTag(const char* beg, const char* end);
+
         const char* parse(const char* beg,const char* end, size_t& line_num) override;
 
         string _tag_name;

@@ -4,8 +4,21 @@
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
 #include "XMLDocument.hpp"
+
+#include <fstream>
+#include <iostream>
 using namespace std;
 using namespace MyXMLParser;
+
+void travelAll(XMLNode* node) {
+    if (node != nullptr) {
+        cout << node->getValue() << endl;
+        
+        for (XMLNode* p = node->firstChild(); p != nullptr; p = p->nextSibling()) {
+            travelAll(p);
+        }
+    }
+}
 
 int main(){
     char sub[] = "123";
@@ -26,10 +39,15 @@ int main(){
     dcl.parse(declaration_test, declaration_test + sizeof(declaration_test), line_num);
     cout << dcl.getValue() << endl;*/
 
-    char xml[] = "<?xml sssss?>\n\t\t\t\  <!--commmmmmmment--->";
+    ifstream f("test.xml");
+    if (!f.good()) cout << "can't open file."<<endl;
+    char xml[1000];
+    memset(xml, 0, sizeof(xml));
+    f.read(xml, 1000);
+    cout << "read " << strlen(xml) << "bytes" << endl;
+    cout << xml << endl << "----------------------\n";
+
     XMLDocument doc;
-    doc.parse(xml,sizeof(xml)-1);
-    cout<<doc.firstChild()->getValue()<<endl;
-    cout << doc.firstChild()->nextSibling()->getValue() << endl;
-//    cout << doc.firstChild()->nextSibling()->nextSibling()->getValue() << endl;
+    doc.parse(xml,strlen(xml));
+    travelAll(&doc);
 }

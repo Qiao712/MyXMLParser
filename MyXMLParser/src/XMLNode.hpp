@@ -8,11 +8,10 @@ using std::vector;
 
 namespace MyXMLParser{
 
-enum class NodeType {
-    NODE, ELEMENT, DECLARATION, DOCUMENT, TEXT, COMMENT, UNKNOWN
+enum class Token {
+    ELEMENT_START, ELEMENT_END,
+    DECLARATION, DOCUMENT, TEXT, COMMENT, UNKNOWN
 };
-
-
 
 class XMLElement;
 class XMLDocument;
@@ -51,7 +50,7 @@ public:
     virtual void setValue(const string& value) = 0;
     virtual void setValue(string&& value) = 0;
 protected:
-    static NodeType checkStart(const char* beg, const char* end);
+    static Token checkStart(const char* beg, const char* end);
     static XMLNode* createNodeByStartChar(const char* beg, const char* end);
 
     virtual const char* parse(const char * beg, const char * end, size_t & line_num) = 0;

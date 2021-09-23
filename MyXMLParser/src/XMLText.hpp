@@ -7,8 +7,7 @@ namespace MyXMLParser {
 using std::string;
 class XMLText : public XMLTerminalNode{
 	//allow them to access _content to check weather it is white
-	friend class XMLDocument;
-	friend class XMLElement;
+	friend class XMLNonterminalNode;
 public:
 	XMLText() = default;
 	XMLText(const string & content);
