@@ -1,6 +1,8 @@
 #include "XMLNonterminalNode.h"
 #include "XMLElement.hpp"
 #include "XMLText.hpp"
+#include "XMLComment.hpp"
+#include "XMLDeclaration.hpp"
 
 #include <algorithm>
 
@@ -104,33 +106,120 @@ namespace MyXMLParser {
     {
 
     }
-    const char* XMLNonterminalNode::parse(const char* beg, const char* end, size_t& line_num)
+    const char* XMLNonterminalNode::parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
     {
         const char* p = beg;
         XMLNode* new_node;
-        while (p != end) {
-            new_node = createNodeByStartChar(p, end);
-
-            if (new_node != nullptr) {
-                p = new_node->parse(p, end, line_num);
-                if (p == nullptr) {
+        while (p < end) {
+            Token token = checkStart(p, end);
+            if (token == Token::ELEMENT_END) {
+                p = matchTag(p, end, parent_tag_name);
+                if (p != nullptr) {
                     
-                    return nullptr;
+                    return p;
                 }
                 else {
-                    //discard text node of whitespace
-                    XMLText* text_node = dynamic_cast<XMLText*>(new_node);
-                    if (text_node != nullptr && text_node->_content.isAllWhitespace())
-                        delete new_node;
-                    else
-                        addLastChild(new_node);
+                    //error: wrong end tag
+
+                    return nullptr;
                 }
+            }
+            else {
+                new_node = createNode(token);
+            }
+            
+
+            if (new_node != nullptr) {
+                //elements' getValue() return tag name; docments' getValue() return empty string;
+                p = new_node->parse(p, end, parent_tag_name, line_num);
+                if (p == nullptr) {
+
+                    return nullptr;
+                }
+
+                ////check end tag of the parent node
+                //XMLElement* element_node = dynamic_cast<XMLElement*>(new_node);
+                //if (element_node != nullptr && element_node->_is_closing_tag) {
+                //    if (element_node->getTagName() == parent_tag_name) {
+                //        delete new_node;
+                //        return p;
+                //    }
+                //    else {
+                //        //error
+
+                //        delete new_node;
+                //        return nullptr;
+                //    }
+                //}
+
+                //discard text node of whitespace
+                XMLText* text_node = dynamic_cast<XMLText*>(new_node);
+                if (text_node != nullptr && text_node->_content.isAllWhitespace()) {
+                    delete new_node;
+                    continue;
+                }
+
+                //success
+                addLastChild(new_node);
             }
             else {
                 return nullptr;
             }
         }
+
+        return p;
+    }
+    Token XMLNonterminalNode::checkStart(const char* beg, const char* end)
+    {
+        if (beg != end) {
+            if (*beg == '<') {
+                if (beg + 1 != end && beg[1] == '?') return Token::DECLARATION;				//<?
+                if (end - beg >= 4 && beg[1] == '!' && beg[2] == '-' && beg[3] == '-') return Token::COMMENT;	//<!--
+                if (beg + 1 != end && beg[1] == '/') return Token::ELEMENT_BEG;
+                return Token::ELEMENT_END;		   //<
+            }
+            return Token::TEXT;
+        }
+        return Token::UNKNOWN;
+    }
+    XMLNode* XMLNonterminalNode::createNode(Token type)
+    {
+        XMLNode* new_node = nullptr;
+        switch (type) {
+        case Token::COMMENT: {
+            new_node = new XMLComment;
+            break;
+        }
+        case Token::DECLARATION: {
+            new_node = new XMLDeclaration;
+            break;
+        }
+        case Token::ELEMENT_BEG: {
+            new_node = new XMLElement;
+            break;
+        }
+        case Token::TEXT: {
+            new_node = new XMLText;
+            break;
+        }
+        default: {
+
+        }
+        }
+        return new_node;
+    }
+    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name)
+    {
+        const char* tag_name_beg = beg + 2;
+        const char* tag_name_end = findChar('>', beg, end);
+
+        size_t len = tag_name_end - tag_name_beg;
+        if (len != parent_tag_name.length()) return nullptr;
         
-        return end;
+        for (size_t i = 0; i < len; i++) {
+            if (tag_name_beg[i] != parent_tag_name[i]) return nullptr;
+        }
+        
+        return tag_name_end + 1;
     }
 }

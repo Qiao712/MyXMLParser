@@ -2,11 +2,23 @@
 #include "define.h"
 
 #include <cstring>
+
 #include <map>
+#include <cstdint>
 
 namespace MyXMLParser{
-    StringProxy::StringProxy(char* p, unsigned int len) {
-        _str = translateEntityToChar(p, len);
+    void StringProxy::setString(const char* beg, const char* end, int processing_flag)
+    {
+        _processing_flag = processing_flag;
+        _str.reserve(end - beg);
+        processAndStore(beg, end);
+    }
+
+    size_t StringProxy::countChar(char x)
+    {
+        size_t n = 0;
+        for (char c : _str) n += (x == c);
+        return n;
     }
 
     bool StringProxy::isAllWhitespace()
@@ -17,70 +29,94 @@ namespace MyXMLParser{
         return p == &_str.back() + 1;
     }
 
-    string StringProxy::translateEntityToChar(const char* p, unsigned int len)
-    {
-        using EntityCharPair = std::pair<string, char>;
-        static const std::map<string, char> entity_to_char{
-            EntityCharPair("&lt", '<'),
-            EntityCharPair("&gt", '>'),
-            EntityCharPair("&amp", '&'),
-            EntityCharPair("&apos", '\''),
-            EntityCharPair("&quot", '\"'),
-        };
-        static auto not_found = entity_to_char.cend();
-
-        string new_str, entity;
-        new_str.reserve(len);
-        entity.reserve(7);
-
-        bool checking_entity = false;
-        char c;
-        for (size_t i = 0; i < len; i++) {
-            c = p[i];
-            if (checking_entity) {
-                if (c == '&') {
-                    new_str.append(entity);
-                    entity.clear();
-                    entity.push_back('&');
-                }
-                else if (c == ';') {
-                    auto it = entity_to_char.find(entity);
-                    if (it == not_found) {
-                        new_str.append(entity);
-                        new_str.push_back(';');
-                    }
-                    else {
-                        new_str.push_back(it->second);
-                    }
-                    entity.clear();
-                    checking_entity = false;
-                }
-                else if (entity.size() > 5) {
-                    new_str.append(entity);
-                    new_str.push_back(c);
-                    entity.clear();
-                    checking_entity = false;
+    void StringProxy::processAndStore(const char* beg, const char* end)
+    {        
+        bool entity_translation = _processing_flag & STR_PROCESSING::TRANSLATE_ENTITY;
+        bool newline_normalization = _processing_flag & STR_PROCESSING::NORMALIZE_NEWLINE;
+        const char* p = beg;
+        while(p < end) {
+            if (entity_translation && *p == '&') {
+                static string substitute(6,'\0');
+                //longest : "&#1114111" 1114111 is the max code in Unicode
+                const char* q;
+                for (q = p; q < end && q - p <= 9 && *q != ';'; q++);
+                
+                if (*q == ';' && parseReference(p + 1, q, substitute)) {
+                    _str.append(substitute);
+                    p = q + 1;
                 }
                 else {
-                    entity.push_back(c);
+                    _str.push_back(*p);
+                    p++;
+                }
+            }
+            else if (newline_normalization) {
+                if (*p == '\n') {
+                    if (p + 1 != end && p[1] == '\r') p += 2;
+                    else p++;
+                    _str.push_back('\n');
+                }
+                else if (*p == '\r') {
+                    if (p + 1 != end && p[1] == '\n') p += 2;
+                    else p++;
+                    _str.push_back('\n');
+                }
+                else {
+                    _str.push_back(*p);
+                    p++;
                 }
             }
             else {
-                if (c == '&') {
-                    checking_entity = true;
-                    entity.push_back('&');
-                }
-                else {
-                    new_str.push_back(c);
-                }
+                _str.push_back(*p);
+                p++;
             }
         }
 
-        return new_str;
     }
 
-    string StringProxy::translateEntityToChar(const string& str){
-        return translateEntityToChar(&str.front(), str.size());
+    bool StringProxy::parseReference(const char* beg, const char* end, string& substitute) 
+    {
+        struct Entity {
+            const char* entity;
+            int length;
+            char chr;
+        };
+        static const Entity ENTITIES[] = {
+            Entity{"lt", 2, '<'},
+            Entity{"gt", 2, '>'},
+            Entity{"amp", 3, '&'},
+            Entity{"apos", 4, '\''},
+            Entity{"quot", 4, '\"'}
+        };
+
+        if (beg >= end) return false;
+
+        if (beg[0] == '#') {
+            //char reference, convert to utf-8
+            uint32_t unicode;
+            if (beg + 1 < end && beg[1] == 'x') unicode = strToIntHex(beg + 2, end);
+            else unicode = strToIntDec(beg, end);
+            
+            return unicodeToUtf8(unicode, substitute);
+        }
+        else {
+            //entity reference
+            int length = end - beg;
+            for (int i = 0; i < sizeof(ENTITIES) / sizeof(Entity); i++) {
+                if (ENTITIES[i].length != length) continue;
+                const char* j,* k;
+                for (j = beg, k = ENTITIES[i].entity; j < end; j++, k++) {
+                    if (*j != *k) break;
+                }
+                if (j == end) {
+                    substitute.clear();
+                    substitute.push_back(ENTITIES[i].chr);
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     string StringProxy::translateCharToEntity(const string& str){

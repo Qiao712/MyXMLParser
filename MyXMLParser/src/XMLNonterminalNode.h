@@ -22,9 +22,14 @@ public:
 
     ~XMLNonterminalNode();
 protected:
-    const char* parse(const char* beg, const char* end, size_t& line_num) override;
-private:
+    const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) override;
+    Token checkStart(const char* beg, const char* end);
+    XMLNode* createNode(Token type);
+    const char* matchTag(const char* beg, const char* end, const string& parent_tag_name);
 
+    //<a>....</a> closing; <a>.... unclosing.
+    bool _is_closing = false;
+private:
     XMLNode* _first_child = nullptr;
     XMLNode* _last_child = nullptr;
 };

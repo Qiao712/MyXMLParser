@@ -9,8 +9,9 @@ using std::vector;
 namespace MyXMLParser{
 
 enum class Token {
-    ELEMENT_START, ELEMENT_END,
-    DECLARATION, DOCUMENT, TEXT, COMMENT, UNKNOWN
+    ELEMENT_BEG,
+    ELEMENT_END,
+    DECLARATION, TEXT, COMMENT, UNKNOWN
 };
 
 class XMLElement;
@@ -50,10 +51,7 @@ public:
     virtual void setValue(const string& value) = 0;
     virtual void setValue(string&& value) = 0;
 protected:
-    static Token checkStart(const char* beg, const char* end);
-    static XMLNode* createNodeByStartChar(const char* beg, const char* end);
-
-    virtual const char* parse(const char * beg, const char * end, size_t & line_num) = 0;
+    virtual const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) = 0;
 private:
     XMLDocument* _root = nullptr;
     XMLNonterminalNode* _parent = nullptr;

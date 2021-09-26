@@ -12,7 +12,7 @@ public:
 	virtual void setValue(const string& value) { _content.setString(value); }
 	virtual void setValue(string&& value) { _content.setString(value); };
 
-	const char* parse(const char* beg, const char* end, size_t& line_num) override;
+	const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) override;
 private:
 	StringProxy _content;
 };

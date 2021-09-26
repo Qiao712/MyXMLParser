@@ -6,44 +6,6 @@
 #include "XMLText.hpp"
 
 namespace MyXMLParser {
-	Token XMLNode::checkStart(const char* beg, const char* end)
-	{
-		if (beg != end) {
-			if (*beg == '<') {
-				if (beg + 1 != end && beg[1] == '?') return Token::DECLARATION;				//<?
-				if (end - beg >= 4 && beg[1] == '!' && beg[2] ==  '-' && beg[3] == '-') return Token::COMMENT;	//<!--
-				return Token::ELEMENT_START;
-			}
-			else if (*beg == '/' && beg + 1 != end && beg[1] == '>') {
-				return Token::ELEMENT_END;
-			}
-			return Token::TEXT;
-		}
-		return Token::UNKNOWN;
-	}
-	XMLNode* XMLNode::createNodeByStartChar(const char* beg, const char* end)
-	{
-		XMLNode* new_node = nullptr;
-		switch (XMLNode::checkStart(beg, end)) {
-		case Token::COMMENT: {
-			new_node = new XMLComment;
-			break;
-		}
-		case Token::DECLARATION: {
-			new_node = new XMLDeclaration;
-			break;
-		}
-		case Token::ELEMENT: {
-			new_node = new XMLElement;
-			break;
-		}
-		default: {
-			new_node = new XMLText;
-		}
-		}
-
-		return new_node;
-	}
 	XMLNode::~XMLNode()
 	{
 		if (_parent != nullptr) { 

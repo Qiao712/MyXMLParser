@@ -10,20 +10,25 @@
 using namespace std;
 using namespace MyXMLParser;
 
-void travelAll(XMLNode* node) {
+void travelAll(XMLNode* node, int level = 0) {
     if (node != nullptr) {
+        for (int i = 0; i < level; i++) cout << "  ";
         cout << node->getValue() << endl;
         
         for (XMLNode* p = node->firstChild(); p != nullptr; p = p->nextSibling()) {
-            travelAll(p);
+            travelAll(p, level + 1);
         }
     }
 }
 
 int main(){
-    char sub[] = "123";
-    char s[] = "asdfsadf123sddfgfdggafg";
-    cout << findSubstr(s + 3, s + 16, sub)<<endl;
+    //-----------------------------
+    //test reference translation
+    /*char s[] = "&#x2C66;\n&#x2C67;\n&#x2C68;\r\n\r\n&dfghjklasdasd;&#1114111;";
+    StringProxy sp(s, s + sizeof(s) - 1, STR_PROCESSING::NORMALIZE_NEWLINE | STR_PROCESSING::TRANSLATE_ENTITY);
+    fstream f("test.txt", ios::out);
+    f << sp.getString();*/
+    //-----------------------------
 
     //---------------------------------------------------
     /*char comment_test[] = "<!--I'm a\n comment-->";
@@ -43,7 +48,8 @@ int main(){
     if (!f.good()) cout << "can't open file."<<endl;
     char xml[1000];
     memset(xml, 0, sizeof(xml));
-    f.read(xml, 1000);
+    xml[999] = 0;
+    f.read(xml, 999);
     cout << "read " << strlen(xml) << "bytes" << endl;
     cout << xml << endl << "----------------------\n";
 
@@ -51,3 +57,16 @@ int main(){
     doc.parse(xml,strlen(xml));
     travelAll(&doc);
 }
+
+
+//&#x2C66\n ⱦ 在拉丁字母“t”上加一条对角斜线“ / ”
+//&#x2C67\n Ⱨ 在拉丁字母“H”下加一条尾巴
+//&#x2C68\n ⱨ 在拉丁字母“h”下加一条尾巴
+//&#x2C69\n Ⱪ 在拉丁字母“K”下加一条尾巴
+//&#x2C6A\n ⱪ 在拉丁字母“k”下加一条尾巴
+//&#x2C6B\n Ⱬ 在拉丁字母“Z”下加一条尾巴
+//&#x2C6C\n ⱬ 在拉丁字母“z”下加一条尾巴
+//&#x2C74\n ⱴ 在拉丁字母“v”的起笔加一个弯勾
+//&#x2C75\n Ⱶ 拉丁字母“H”的左半部
+//&#x2C76\n ⱶ 拉丁字母“h”的左半部
+//&#x2C77\n ⱷ 希腊字母“φ”
