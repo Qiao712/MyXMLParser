@@ -106,16 +106,17 @@ namespace MyXMLParser {
     {
 
     }
-    const char* XMLNonterminalNode::parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
+    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
     {
         const char* p = beg;
         XMLNode* new_node;
         while (p < end) {
             Token token = checkStart(p, end);
             if (token == Token::ELEMENT_END) {
-                p = matchTag(p, end, parent_tag_name);
+                p = matchTag(p, end, parent->getValue());
                 if (p != nullptr) {
-                    
+                    //succeed to close it's parents
+                    parent->_is_closing = true;
                     return p;
                 }
                 else {
@@ -127,30 +128,16 @@ namespace MyXMLParser {
             else {
                 new_node = createNode(token);
             }
-            
+
 
             if (new_node != nullptr) {
-                //elements' getValue() return tag name; docments' getValue() return empty string;
-                p = new_node->parse(p, end, parent_tag_name, line_num);
+                p = new_node->parse(p, end, this, line_num);
+                
+                //propagate error 
                 if (p == nullptr) {
-
+                    delete new_node;
                     return nullptr;
                 }
-
-                ////check end tag of the parent node
-                //XMLElement* element_node = dynamic_cast<XMLElement*>(new_node);
-                //if (element_node != nullptr && element_node->_is_closing_tag) {
-                //    if (element_node->getTagName() == parent_tag_name) {
-                //        delete new_node;
-                //        return p;
-                //    }
-                //    else {
-                //        //error
-
-                //        delete new_node;
-                //        return nullptr;
-                //    }
-                //}
 
                 //discard text node of whitespace
                 XMLText* text_node = dynamic_cast<XMLText*>(new_node);
@@ -175,8 +162,8 @@ namespace MyXMLParser {
             if (*beg == '<') {
                 if (beg + 1 != end && beg[1] == '?') return Token::DECLARATION;				//<?
                 if (end - beg >= 4 && beg[1] == '!' && beg[2] == '-' && beg[3] == '-') return Token::COMMENT;	//<!--
-                if (beg + 1 != end && beg[1] == '/') return Token::ELEMENT_BEG;
-                return Token::ELEMENT_END;		   //<
+                if (beg + 1 != end && beg[1] == '/') return Token::ELEMENT_END;
+                return Token::ELEMENT_BEG;		   //<
             }
             return Token::TEXT;
         }

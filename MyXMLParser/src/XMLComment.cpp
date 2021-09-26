@@ -2,7 +2,7 @@
 
 #include <cstring>
 namespace MyXMLParser {
-	const char* XMLComment::parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
+	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
 	{
 		const char* comment_end = findSubstr(beg, end, COMMENT_END);
 		line_num += countChar('\n', beg, comment_end);

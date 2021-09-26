@@ -13,7 +13,7 @@ namespace MyXMLParser{
 		}
 		return true;
 	}
-	const char* XMLElement::parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
+	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
 	{
 		const char* tag_name_beg = beg + 1;
 		const char* tag_name_end = findChar('>', beg + 1, end);
@@ -23,20 +23,15 @@ namespace MyXMLParser{
 			return nullptr;
 		}
 
-		//Is end tag? "</...>
-		if (*tag_name_beg == '/') {
-			_is_closing_tag = true;
-			tag_name_beg++;
-		}
-
 		//check <.../>
 		if (*(tag_name_end - 1) == '/') {
-			if (_is_closing_tag || !checkTagName(tag_name_beg, tag_name_end - 1)) {
+			if (!checkTagName(tag_name_beg, tag_name_end - 1)) {
 				//error: bad tag name
 				
 				return nullptr;
 			}
 
+			_is_closing = true;
 			_tag_name.assign(tag_name_beg, tag_name_end - 1);
 			return tag_name_end + 1;
 		}
@@ -47,10 +42,16 @@ namespace MyXMLParser{
 			return nullptr;
 		}
 		_tag_name.assign(tag_name_beg, tag_name_end);
-		
-		if (_is_closing_tag) return tag_name_end + 1;
 
 		//parse xml in the element
-		return XMLNonterminalNode::parse(tag_name_end + 1, end, _tag_name, line_num);
+		const char* p = parseChildren(tag_name_end + 1, end, this, line_num);
+		
+		if (p == end && _is_closing == false) {
+			//error: not be closed
+
+			return nullptr;
+		}
+
+		return p;
 	}
 }

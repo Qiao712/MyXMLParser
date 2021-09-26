@@ -47,13 +47,10 @@ public:
     void setValue(const string& value) override { setTagName(value); }
     void setValue(string&& value) override { setTagName(value); }
 private:
-    const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) override;
+    const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num) override;
     bool checkTagName(const char* beg, const char* end);
 
     string _tag_name;
     vector<XMLAttribute*> _attributes;
-        
-    //used to parsing processing
-    bool _is_closing_tag = false;
 };
 }

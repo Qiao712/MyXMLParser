@@ -22,7 +22,7 @@ public:
 
     ~XMLNonterminalNode();
 protected:
-    const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) override;
+    const char* parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num);
     Token checkStart(const char* beg, const char* end);
     XMLNode* createNode(Token type);
     const char* matchTag(const char* beg, const char* end, const string& parent_tag_name);

@@ -3,7 +3,7 @@
 #include "StringProxy.h"
 
 namespace MyXMLParser {
-    const char* XMLDeclaration::parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
+    const char* XMLDeclaration::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
     {
         const char* gt = findChar('>', beg, end);
         if (gt == end || *(gt - 1) != '?') {

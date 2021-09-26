@@ -26,7 +26,7 @@ public:
 private:
     void setError(XMLError error, size_t line_num) { _parsing_error = error; _error_line = line_num; }
 
-    const char* parse(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num) override;
+    const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num) override;
 
     XMLError _parsing_error = XML_SUCCESS;
     size_t   _error_line    = 0;
