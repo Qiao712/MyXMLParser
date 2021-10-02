@@ -1,19 +1,36 @@
 #include <iostream>
 #include "define.h"
-#include "StringProxy.h"
+#include "StringUtility.hpp"
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
 #include "XMLDocument.hpp"
+#include "XMLElement.hpp"
+#include "XMLAttribute.hpp"
 
 #include <fstream>
 #include <iostream>
+#include <set>
+#include <cstdio>
+#include <sstream>
+#include <map>
 using namespace std;
 using namespace MyXMLParser;
 
 void travelAll(XMLNode* node, int level = 0) {
     if (node != nullptr) {
         for (int i = 0; i < level; i++) cout << "  ";
-        cout << node->getValue() << endl;
+        auto ele = dynamic_cast<XMLElement*>(node);
+        if (ele) {
+            cout<<"Element: "<< node->getValue() << '(';
+            for (auto& attr : ele->getAllAttributes()) {
+                cout << attr.first << " = " << attr.second << ' ';
+            }
+            cout << ')'<<endl;
+        }
+        else {
+            cout << node->getValue() << endl;
+        }
+        
         
         for (XMLNode* p = node->firstChild(); p != nullptr; p = p->nextSibling()) {
             travelAll(p, level + 1);
@@ -44,19 +61,33 @@ int main(){
     dcl.parse(declaration_test, declaration_test + sizeof(declaration_test), line_num);
     cout << dcl.getValue() << endl;*/
 
-    ifstream f("test.xml");
+    ifstream f("test.xml", ios_base::binary);
     if (!f.good()) cout << "can't open file."<<endl;
     char xml[1000];
     memset(xml, 0, sizeof(xml));
     xml[999] = 0;
     f.read(xml, 999);
     cout << "read " << strlen(xml) << "bytes" << endl;
-    cout << xml << endl << "----------------------\n";
+    
+    /*for (int i = 0; i < strlen(xml); i++) {
+        if (xml[i] == '\r') cout << "\\r";
+        else cout << xml[i];
+    }*/
+    
+    //cout << xml << endl << "----------------------\n";
 
     XMLDocument doc;
-    doc.parse(xml,strlen(xml));
+    doc.parse(xml, strlen(xml));
+    cout<<"error code: "<<doc.getError()<<" in line:"<<doc.getErrorLine()<<endl;
     travelAll(&doc);
-}
+    
+    /*XMLAttribute x("sds", "123.00");
+    double d;
+    x.getValue(d);
+    cout << d<<endl;
+    x.setValue(15548);
+    cout << x.getValueString();*/
+};
 
 
 //&#x2C66\n ⱦ 在拉丁字母“t”上加一条对角斜线“ / ”

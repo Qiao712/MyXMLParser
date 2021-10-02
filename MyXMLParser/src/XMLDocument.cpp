@@ -3,6 +3,7 @@
 #include "XMLDeclaration.hpp"
 #include "XMLElement.hpp"
 #include "XMLText.hpp"
+#include "StringUtility.hpp"
 
 namespace MyXMLParser {
 	bool XMLDocument::parse(const char* xml, size_t len)
@@ -12,7 +13,7 @@ namespace MyXMLParser {
 	}
 	const char* XMLDocument::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
 	{
-		const char* p = skipWhitespace(beg, end, line_num);
+		const char* p = StringUtility::skipWhitespace(beg, end, line_num);
 		parseChildren(p, end, parent, line_num);
         return p;
 	}

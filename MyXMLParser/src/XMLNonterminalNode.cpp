@@ -3,6 +3,7 @@
 #include "XMLText.hpp"
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
+#include "StringUtility.hpp"
 
 #include <algorithm>
 
@@ -113,15 +114,15 @@ namespace MyXMLParser {
         while (p < end) {
             Token token = checkStart(p, end);
             if (token == Token::ELEMENT_END) {
-                p = matchTag(p, end, parent->getValue());
+                p = matchTag(p, end, parent->getValue(), line_num);
                 if (p != nullptr) {
                     //succeed to close it's parents
                     parent->_is_closing = true;
                     return p;
                 }
                 else {
-                    //error: wrong end tag
-
+                    //error: unpaired tags <- wrong tag name
+                    setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, line_num);
                     return nullptr;
                 }
             }
@@ -131,9 +132,9 @@ namespace MyXMLParser {
 
 
             if (new_node != nullptr) {
+                new_node->_root = this->_root;
                 p = new_node->parse(p, end, this, line_num);
                 
-                //propagate error 
                 if (p == nullptr) {
                     delete new_node;
                     return nullptr;
@@ -141,7 +142,7 @@ namespace MyXMLParser {
 
                 //discard text node of whitespace
                 XMLText* text_node = dynamic_cast<XMLText*>(new_node);
-                if (text_node != nullptr && text_node->_content.isAllWhitespace()) {
+                if (text_node != nullptr && StringUtility::isAllWhitespace(text_node->_content)) {
                     delete new_node;
                     continue;
                 }
@@ -189,16 +190,18 @@ namespace MyXMLParser {
             new_node = new XMLText;
             break;
         }
-        default: {
-
-        }
         }
         return new_node;
     }
-    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name)
+    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
     {
         const char* tag_name_beg = beg + 2;
-        const char* tag_name_end = findChar('>', beg, end);
+        const char* tag_name_end = StringUtility::findChar('>', beg, end);
+
+        if (tag_name_end == end) {
+            //error: </....
+            setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, line_num);
+        }
 
         size_t len = tag_name_end - tag_name_beg;
         if (len != parent_tag_name.length()) return nullptr;

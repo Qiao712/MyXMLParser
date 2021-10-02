@@ -11,9 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\XMLAttribute.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\XMLComment.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -32,9 +29,6 @@
     <ClInclude Include="src\XMLText.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\StringProxy.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\define.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -44,11 +38,11 @@
     <ClInclude Include="src\XMLNonterminalNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\StringUtility.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\StringProxy.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -77,6 +71,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\XMLText.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringUtility.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

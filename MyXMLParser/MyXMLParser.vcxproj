@@ -144,8 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\define.h" />
-    <ClInclude Include="src\StringProxy.h" />
-    <ClInclude Include="src\XMLAttribute.hpp" />
+    <ClInclude Include="src\StringUtility.hpp" />
     <ClInclude Include="src\XMLComment.hpp" />
     <ClInclude Include="src\XMLDeclaration.hpp" />
     <ClInclude Include="src\XMLDocument.hpp" />
@@ -158,7 +157,7 @@
   <ItemGroup>
     <ClCompile Include="define.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\StringProxy.cpp" />
+    <ClCompile Include="src\StringUtility.cpp" />
     <ClCompile Include="src\XMLComment.cpp" />
     <ClCompile Include="src\XMLDeclaration.cpp" />
     <ClCompile Include="src\XMLDocument.cpp" />

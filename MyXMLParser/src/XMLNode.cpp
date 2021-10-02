@@ -4,6 +4,7 @@
 #include "XMLComment.hpp"
 #include "XMLElement.hpp"
 #include "XMLText.hpp"
+#include "XMLDocument.hpp"
 
 namespace MyXMLParser {
 	XMLNode::~XMLNode()
@@ -22,5 +23,9 @@ namespace MyXMLParser {
 				_next_sibling->_previous_sibling = _previous_sibling;
 			}
 		}
+	}
+	void XMLNode::setParsingError(XMLError error, size_t& line_num)
+	{
+		_root->setParsingError(error, line_num);
 	}
 }

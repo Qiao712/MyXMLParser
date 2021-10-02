@@ -1,17 +1,19 @@
 #include "XMLDocument.hpp"
 #include "XMLDeclaration.hpp"
-#include "StringProxy.h"
+#include "StringUtility.hpp"
 
 namespace MyXMLParser {
     const char* XMLDeclaration::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
     {
-        const char* gt = findChar('>', beg, end);
+        const char* gt = StringUtility::findChar('>', beg, end);
         if (gt == end || *(gt - 1) != '?') {
-            _root->setError(XML_PARSING_ERROR_DECLARATION, line_num);
+            //error: unclosed declaration
+            setParsingError(XML_PARSING_ERROR_DECLARATION, line_num);
             return nullptr;
         }
 
-        _content.setString(string(beg + LENGTH_DECLARATION_START, gt - 1));
+        _content.assign(StringUtility::processText(beg + 2, gt - 1, StringUtility::NORMALIZE_NEWLINE | StringUtility::TRANSLATE_ENTITY));
+        line_num += StringUtility::countChar('\n', _content);
 
         return gt + 1;
     }

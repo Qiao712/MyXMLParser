@@ -52,6 +52,7 @@ public:
     virtual void setValue(string&& value) = 0;
 protected:
     virtual const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num) = 0;
+    void setParsingError(XMLError error, size_t& line_num);
 private:
     XMLDocument* _root = nullptr;
     XMLNonterminalNode* _parent = nullptr;
