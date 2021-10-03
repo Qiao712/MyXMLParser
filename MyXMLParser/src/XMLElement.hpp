@@ -54,8 +54,8 @@ public:
     void setValue(const string& value) override { setTagName(value); }
     void setValue(string&& value) override { setTagName(value); }
 private:
-    const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num) override;
-    XMLError parseAttribute(const char* beg, const char* end, size_t& line_num);
+    const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent) override;
+    XMLError parseAttribute(const char* beg, const char* end);
     bool checkName(const char* beg, const char* end);
 
     string _tag_name;

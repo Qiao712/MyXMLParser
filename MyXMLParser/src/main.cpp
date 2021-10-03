@@ -79,6 +79,7 @@ int main(){
     XMLDocument doc;
     doc.parse(xml, strlen(xml));
     cout<<"error code: "<<doc.getError()<<" in line:"<<doc.getErrorLine()<<endl;
+    cout << "error :" << doc.getErrorDetail() << endl;
     travelAll(&doc);
     
     /*XMLAttribute x("sds", "123.00");

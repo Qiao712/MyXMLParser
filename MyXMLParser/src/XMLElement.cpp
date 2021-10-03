@@ -22,13 +22,13 @@ namespace MyXMLParser{
 		if (_attributes.erase(name) == 0) return XML_ERROR_ATTRIBUTE_NOT_FOUND;
 		return XML_SUCCESS;
 	}
-	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
+	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
 	{
 		const char* tag_beg = beg + 1;
 		const char* tag_end = StringUtility::findChar('>', beg + 1, end);
 		if (tag_end == end) {
 			//<tag_name... ....
-			setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, line_num);
+			setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
 			return nullptr;
 		}
 
@@ -40,29 +40,30 @@ namespace MyXMLParser{
 		
 		if (!checkName(tag_name_beg, tag_name_end)) {
 			//error: bad tag name
-			setParsingError(XML_PARSING_ERROR_INVALID_TAG_NAME, line_num);
+			setParsingError(XML_PARSING_ERROR_INVALID_TAG_NAME, tag_name_beg);
 			return nullptr;
 		}
 		_tag_name.assign(tag_name_beg, tag_name_end);
 
-		XMLError attr_error = parseAttribute(tag_name_end, _is_closing ? tag_end - 1 : tag_end, line_num);
+		//parse attributes
+		XMLError attr_error = parseAttribute(tag_name_end, _is_closing ? tag_end - 1 : tag_end);
 		if (attr_error != XML_SUCCESS) {
-			setParsingError(attr_error, line_num);
+			setParsingError(attr_error, beg);
 		}
 
 		if (_is_closing) return tag_end + 1;
 
 		//parse xml in the element
-		const char* p = parseChildren(tag_end + 1, end, this, line_num);
+		const char* p = parseChildren(tag_end + 1, end, this);
 		if (p == end && _is_closing == false) {
 			//error: wrong end tag
-			setParsingError(XML_PARSING_ERROR_WRONG_END_TAG, line_num);
+			setParsingError(XML_PARSING_ERROR_WRONG_END_TAG, beg);
 			return nullptr;
 		}
 
 		return p;
 	}
-	XMLError XMLElement::parseAttribute(const char* beg, const char* end, size_t& line_num)
+	XMLError XMLElement::parseAttribute(const char* beg, const char* end)
 	{
 		const char* p = beg;
 		const char* q;
@@ -70,17 +71,17 @@ namespace MyXMLParser{
 
 		while (p < end) {
 			//name
-			p = StringUtility::skipWhitespace(p, end, line_num);
+			p = StringUtility::skipWhitespace(p, end);
 			if (p == end) return XML_SUCCESS;
-			q = StringUtility::findChar('=', p, end, line_num);
+			q = StringUtility::findChar('=', p, end);
 			if (q == end) return XML_PARSING_ERROR_ATTR;
-			r = StringUtility::skipBackWhitespace(p, q, line_num);
+			r = StringUtility::skipBackWhitespace(p, q);
 			if (!checkName(p, r)) return XML_PARSING_ERROR_ATTR;
 			string name(p, r);
 			p = q;
 			
 			// "
-			p = StringUtility::skipWhitespace(q + 1, end, line_num);
+			p = StringUtility::skipWhitespace(q + 1, end);
 			if (p == end || *p != '\"') return XML_PARSING_ERROR_ATTR;
 			p++;
 

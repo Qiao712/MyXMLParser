@@ -2,7 +2,7 @@
 
 #include <cstring>
 namespace MyXMLParser {
-	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
+	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
 	{
 		constexpr char COMMENT_START[] = "<!--";
 		constexpr char COMMENT_END[] = "-->";
@@ -12,7 +12,6 @@ namespace MyXMLParser {
 		const char* comment_end = StringUtility::findSubstr(beg, end, COMMENT_END);
 		
 		_content = StringUtility::processText(beg + LENGTH_COMMENT_START, comment_end, StringUtility::NORMALIZE_NEWLINE);
-		line_num += StringUtility::countChar('\n', _content);
 
 		if (comment_end == end) return end;
 		else return comment_end + LENGTH_COMMENT_END;

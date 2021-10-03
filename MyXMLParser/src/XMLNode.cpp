@@ -24,8 +24,8 @@ namespace MyXMLParser {
 			}
 		}
 	}
-	void XMLNode::setParsingError(XMLError error, size_t& line_num)
+	void XMLNode::setParsingError(XMLError error, const char* where_error)
 	{
-		_root->setParsingError(error, line_num);
+		_root->setParsingError(error, where_error);
 	}
 }

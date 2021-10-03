@@ -105,16 +105,16 @@ namespace MyXMLParser {
     }
     XMLNonterminalNode::~XMLNonterminalNode()
     {
-
+        //TODO
     }
-    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, size_t& line_num)
+    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent)
     {
         const char* p = beg;
         XMLNode* new_node;
         while (p < end) {
             Token token = checkStart(p, end);
             if (token == Token::ELEMENT_END) {
-                p = matchTag(p, end, parent->getValue(), line_num);
+                p = matchTag(p, end, parent->getValue());
                 if (p != nullptr) {
                     //succeed to close it's parents
                     parent->_is_closing = true;
@@ -122,7 +122,7 @@ namespace MyXMLParser {
                 }
                 else {
                     //error: unpaired tags <- wrong tag name
-                    setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, line_num);
+                    setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, beg);
                     return nullptr;
                 }
             }
@@ -133,7 +133,7 @@ namespace MyXMLParser {
 
             if (new_node != nullptr) {
                 new_node->_root = this->_root;
-                p = new_node->parse(p, end, this, line_num);
+                p = new_node->parse(p, end, this);
                 
                 if (p == nullptr) {
                     delete new_node;
@@ -193,14 +193,14 @@ namespace MyXMLParser {
         }
         return new_node;
     }
-    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name, size_t& line_num)
+    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name)
     {
         const char* tag_name_beg = beg + 2;
         const char* tag_name_end = StringUtility::findChar('>', beg, end);
 
         if (tag_name_end == end) {
             //error: </....
-            setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, line_num);
+            setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
         }
 
         size_t len = tag_name_end - tag_name_beg;

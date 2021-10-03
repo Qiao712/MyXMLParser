@@ -8,15 +8,16 @@ class StringUtility
 public:
 	inline static bool isWhitespace(char x);
     inline static bool isAllWhitespace(const std::string& str);                     //is all char is whitespace
-	inline static const char* skipWhitespace(const char* beg, const char* end, size_t& line_num);
-	inline static const char* skipBackWhitespace(const char* beg, const char* end, size_t& line_num);
+	inline static const char* skipWhitespace(const char* beg, const char* end);
+	inline static const char* skipBackWhitespace(const char* beg, const char* end);
 	inline static const char* findWhitespace(const char* beg, const char* end);
     inline static const char* findChar(const char chr, const char* beg, const char* end);
-	inline static const char* findChar(const char chr, const char* beg, const char* end, size_t& line_num);
+	inline static const char* findNewline(const char* beg, const char* end);
     inline static const char* findSubstr(const char* beg, const char* end, const char* substr);
     inline static size_t countChar(const char chr, const char* beg, const char* end);
     inline static size_t countChar(const char chr, const std::string& str);
-	inline static size_t countNewline(const char* beg, const char* end);
+	//count num of new line and return the last line's head
+	inline static const char* countNewline(const char* beg, const char* end, size_t& num_new_line);
 
     //translate entity and normalize newline, then store in _str in constructor
     //newline normalization: "\r\n", "\r" and "\n\r" -> "\n"
@@ -42,70 +43,36 @@ private:
 	{
 		if (str.empty()) return true;
 		size_t holder;
-		const char* p = skipWhitespace(&str.front(), &str.back() + 1, holder);
+		const char* p = skipWhitespace(&str.front(), &str.back() + 1);
 		return p == &str.back() + 1;
 	}
 
-	inline const char* StringUtility::skipWhitespace(const char* beg, const char* end, size_t& line_num)
+	inline const char* StringUtility::skipWhitespace(const char* beg, const char* end)
 	{
-		/*tread "\n\r" "\r\n" "\r" "\n" as new line*/
-		const char* p = beg;
-		char pre = 0;
-		while (p < end && isWhitespace(*p)) {
-			if (*p == '\n') {
-				if (pre != '\r') line_num++;
-			}
-			else if (*p == '\r') {
-				if (pre != '\n') line_num++;
-			}
-			pre = *p;
-			p++;
-		}
-		return p;
+		for (; beg < end && isWhitespace(*beg); beg++);
+		return beg;
 	}
-	inline const char* StringUtility::skipBackWhitespace(const char* beg, const char* end, size_t& line_num)
+	inline const char* StringUtility::skipBackWhitespace(const char* beg, const char* end)
 	{
-		/*tread "\n\r" "\r\n" "\r" "\n" as new line*/
-		const char* q = end - 1;
-		char pre = 0;
-		while (q >= beg && isWhitespace(*q)) {
-			if (*q == '\n') {
-				if (pre != '\r') line_num++;
-			}
-			else if (*q == '\r') {
-				if (pre != '\n') line_num++;
-			}
-			q--;
-		}
-		return q+1;
+		for (end--; end >= beg && isWhitespace(*end); end--);
+		return end + 1;
 	}
 	inline const char* StringUtility::findWhitespace(const char* beg, const char* end)
 	{
-		const char* p;
-		for (p = beg; p < end && !isWhitespace(*p); p++);
-		return p;
+		for (; beg < end && !isWhitespace(*beg); beg++);
+		return beg;
 	}
 	inline const char* StringUtility::findChar(const char chr, const char* beg, const char* end)
 	{
 		while (beg < end && *beg != chr) beg++;
 		return beg;
 	}
-
-	inline const char* StringUtility::findChar(const char chr, const char* beg, const char* end, size_t& line_num)
+	inline const char* StringUtility::findNewline(const char* beg, const char* end)
 	{
-		const char* p;
-		char pre = 0;
-		for (p = beg; p < end && *p != chr; p++) {
-			if (*p == '\n') {
-				if (pre != '\r') line_num++;
-			}
-			else if (*p == '\r') {
-				if (pre != '\n') line_num++;
-			}
-		}
-		return p;
+		const char* p1 = findChar('\n', beg, end);
+		const char* p2 = findChar('\r', beg, end);
+		return p1 < p2 ? p1 : p2;
 	}
-
 	inline const char* StringUtility::findSubstr(const char* beg, const char* end, const char* substr)
 	{
 		//TODO: unsafe (end will be writen)
@@ -199,26 +166,22 @@ private:
 		return countChar(chr, &str.front(), &str.back() + 1);
 	}
 
-	inline size_t StringUtility::countNewline(const char* beg, const char* end)
+	inline const char* StringUtility::countNewline(const char* beg, const char* end, size_t& num_new_line)
 	{
-		size_t num;
-		const char* p = beg;
-		while(p < end) {
+		char pre = 0;
+		const char* last_line = beg;
+		for (const char* p = beg; p < end; p++) {
 			if (*p == '\n') {
-				if (p + 1 != end && p[1] == '\r') p += 2;
-				else p++;
-				num++;
+				if (pre != '\r') num_new_line++;
+				last_line = p + 1;
 			}
 			else if (*p == '\r') {
-				if (p + 1 != end && p[1] == '\n') p += 2;
-				num++;
-			}
-			else {
-				p++;
+				if (pre != '\n') num_new_line++;
+				last_line = p + 1;
 			}
 		}
-		return num;
-	}
 
+		return last_line;
+	}
 }
 
