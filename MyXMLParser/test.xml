@@ -1,5 +1,22 @@
+<?xml version="1.0"?>
+
 <e1>
-  <aaaa at1="123"
-        at2 ="sdf"
-        at3="sss=" / >
+  <e2 a ="    " />
+  aaaaaa
+  <e2 f =" fff"/>
+  bbbbbb
+  <e3 s="sdf" b="123" c="dsf" d="3344"></e3>
+  <![CDATA[123456\<>\;./][]\][]]]][][][]]<><><]]>
+  <e4>
+    <e5>
+      <e65666>
+        <eeee7777 a="sadf"></eeee7777>
+      </e65666>
+      <!--123456-->
+      <?asdfxxx asdf fds?>
+      <e6>
+        <sss a ="1" b.b.b.="2" />
+      </e6>
+    </e5>
+  </e4>
 </e1>

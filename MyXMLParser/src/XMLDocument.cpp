@@ -23,10 +23,6 @@ namespace MyXMLParser {
 		_raw_xml_beg = nullptr;
 		_raw_xml_end = nullptr;
 	}
-	string XMLDocument::getErrorDetail() const
-	{
-		return _error_detail;
-	}
 	void XMLDocument::setParsingError(XMLError error, const char* where_error)
 	{
 		_parsing_error = error;

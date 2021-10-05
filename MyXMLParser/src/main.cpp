@@ -6,6 +6,8 @@
 #include "XMLDocument.hpp"
 #include "XMLElement.hpp"
 #include "XMLAttribute.hpp"
+#include "XMLText.hpp"
+#include "XMLCDATA.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -20,15 +22,24 @@ void travelAll(XMLNode* node, int level = 0) {
     if (node != nullptr) {
         for (int i = 0; i < level; i++) cout << "  ";
         auto ele = dynamic_cast<XMLElement*>(node);
+        auto text = dynamic_cast<XMLText*>(node);
+        auto comment = dynamic_cast<XMLComment*>(node);
+        auto decl = dynamic_cast<XMLDeclaration*>(node);
+        auto cdata = dynamic_cast<XMLCDATA*>(node);
+        auto doc = dynamic_cast<XMLDocument*>(node);
         if (ele) {
             cout<<"Element: "<< node->getValue() << '(';
             for (auto& attr : ele->getAllAttributes()) {
-                cout << attr.first << " = " << attr.second << ' ';
+                cout << attr.first << "=\"" << attr.second <<"\" ";
             }
             cout << ')'<<endl;
         }
-        else {
-            cout << node->getValue() << endl;
+        else if(!doc){
+            if (cdata) cout << "CDATA: ";
+            else if (text) cout << "TEXT: ";
+            if (comment) cout << "Comment: ";
+            if (decl) cout << "Declaration: ";
+            cout <<'\"'<< node->getValue() <<'\"'<<endl;
         }
         
         
@@ -81,7 +92,10 @@ int main(){
     cout<<"error code: "<<doc.getError()<<" in line:"<<doc.getErrorLine()<<endl;
     cout << "error :" << doc.getErrorDetail() << endl;
     travelAll(&doc);
-    
+    cout << "--------------------------" << endl;
+    travelAll(&doc);
+    cout << "----------------------" << endl;
+
     /*XMLAttribute x("sds", "123.00");
     double d;
     x.getValue(d);

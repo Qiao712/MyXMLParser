@@ -11,7 +11,7 @@ namespace MyXMLParser{
 enum class Token {
     ELEMENT_BEG,
     ELEMENT_END,
-    DECLARATION, TEXT, COMMENT, UNKNOWN
+    DECLARATION, TEXT, COMMENT, CDATA, UNKNOWN
 };
 
 class XMLElement;

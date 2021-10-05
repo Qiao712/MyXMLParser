@@ -20,7 +20,9 @@ namespace MyXMLParser{
 
         XML_PARSING_ERROR_ATTR,
         XML_PARSING_ERROR_DUPLICATE_ATTR_NAME,   //重复的属性名
-        XML_PARSING_ERROR_INVALID_ATTR_NAME      //无效的属性名
+        XML_PARSING_ERROR_INVALID_ATTR_NAME,      //无效的属性名
+
+        XML_PARSING_ERROR_UNCLOSED_CDATA
     };
 
     extern const char* ERROR_DESCRIPTION[];

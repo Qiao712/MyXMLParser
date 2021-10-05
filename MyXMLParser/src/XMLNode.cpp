@@ -6,9 +6,12 @@
 #include "XMLText.hpp"
 #include "XMLDocument.hpp"
 
+#include <iostream>
+
 namespace MyXMLParser {
 	XMLNode::~XMLNode()
 	{
+		//cancel link with its siblings
 		if (_parent != nullptr) { 
 			if (_parent->_first_child == this) {
 				_parent->_first_child = this->_next_sibling;

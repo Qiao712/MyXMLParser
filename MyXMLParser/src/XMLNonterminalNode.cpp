@@ -3,6 +3,7 @@
 #include "XMLText.hpp"
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
+#include "XMLCDATA.hpp"
 #include "StringUtility.hpp"
 
 #include <algorithm>
@@ -99,13 +100,20 @@ namespace MyXMLParser {
     XMLError XMLNonterminalNode::removeChild(XMLNode* child)
     {
         if (child == nullptr || child->_parent != this) return XML_ERROR_REMOVE_FAIL;
-        //child's destructor will cancel the link with other nodes
+        //child's destructor (Node::~Node) will cancel the link with other nodes.
         delete child;
         return XML_SUCCESS;
     }
     XMLNonterminalNode::~XMLNonterminalNode()
     {
-        //TODO
+        //delete all children
+        XMLNode* p = _first_child;
+        XMLNode* next;
+        for (XMLNode* p = _first_child; p != nullptr; p = next) {
+            p->_parent = nullptr;       //is p->_parent is nullptr, Node::~Node will not do the redundant operation which cancel the links bewteen p and its siblings.
+            next = p->_next_sibling;
+            delete p;
+        }
     }
     const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent)
     {
@@ -159,11 +167,14 @@ namespace MyXMLParser {
     }
     Token XMLNonterminalNode::checkStart(const char* beg, const char* end)
     {
+        constexpr char CDATA_BEG[] = "![CDATA[";
+        constexpr int LEN_CDATA_BEG = 8;
         if (beg != end) {
             if (*beg == '<') {
                 if (beg + 1 != end && beg[1] == '?') return Token::DECLARATION;				//<?
+                if (beg + 1 != end && beg[1] == '/') return Token::ELEMENT_END;             //</
                 if (end - beg >= 4 && beg[1] == '!' && beg[2] == '-' && beg[3] == '-') return Token::COMMENT;	//<!--
-                if (beg + 1 != end && beg[1] == '/') return Token::ELEMENT_END;
+                if (end - beg >= LEN_CDATA_BEG + 1 && StringUtility::compareStr(beg + 1, beg + 1 + LEN_CDATA_BEG, CDATA_BEG)) return Token::CDATA;      //<![CDATA[
                 return Token::ELEMENT_BEG;		   //<
             }
             return Token::TEXT;
@@ -172,26 +183,24 @@ namespace MyXMLParser {
     }
     XMLNode* XMLNonterminalNode::createNode(Token type)
     {
-        XMLNode* new_node = nullptr;
         switch (type) {
         case Token::COMMENT: {
-            new_node = new XMLComment;
-            break;
+            return new XMLComment;
         }
         case Token::DECLARATION: {
-            new_node = new XMLDeclaration;
-            break;
+            return new XMLDeclaration;
         }
         case Token::ELEMENT_BEG: {
-            new_node = new XMLElement;
-            break;
+            return new XMLElement;
         }
         case Token::TEXT: {
-            new_node = new XMLText;
-            break;
+            return new XMLText;
+        }
+        case Token::CDATA: {
+            return new XMLCDATA;
         }
         }
-        return new_node;
+        return nullptr;
     }
     const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name)
     {

@@ -20,7 +20,6 @@ public:
 	virtual void setValue(string && value) { _content.assign(value); };
 
 	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent) override;
-private:
 	std::string _content;
 };
 }

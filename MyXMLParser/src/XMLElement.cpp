@@ -36,7 +36,8 @@ namespace MyXMLParser{
 		_is_closing = (*(tag_end - 1) == '/');
 		
 		const char* tag_name_beg = tag_beg;
-		const char* tag_name_end = StringUtility::findWhitespace(tag_beg, tag_end);
+		const char* tag_name_end = _is_closing ? StringUtility::findChaOrWhitespace('/', tag_name_beg, tag_end) : 
+												 StringUtility::findChaOrWhitespace('>', tag_name_beg, tag_end);
 		
 		if (!checkName(tag_name_beg, tag_name_end)) {
 			//error: bad tag name
@@ -47,7 +48,7 @@ namespace MyXMLParser{
 
 		//parse attributes
 		XMLError attr_error = parseAttribute(tag_name_end, _is_closing ? tag_end - 1 : tag_end);
-		if (attr_error != XML_SUCCESS) {
+ 		if (attr_error != XML_SUCCESS) {
 			setParsingError(attr_error, beg);
 		}
 
