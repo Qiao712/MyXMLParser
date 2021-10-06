@@ -46,10 +46,13 @@ public:
     virtual XMLNode* lastChild() = 0;
     virtual XMLElement* fisrtElementChild() = 0;
     virtual XMLElement* lastElementChild() = 0;
-    virtual XMLElement* findElementByTagName(string tag_name, XMLNode* start) = 0;
+    virtual XMLElement* findElementByTagName(const string& tag_name, XMLNode* start = nullptr) = 0;
     virtual XMLNode* nextSibling() { return _next_sibling; }
     virtual XMLNode* previousSibling() { return _previous_sibling; }
     virtual XMLNode* getParent() { return reinterpret_cast<XMLNode*>(_parent); }
+    //If it is the root(has no parent), return nullptr.
+    XMLNode* getRoot();
+    XMLDocument* getDocument();
     
     //if the child already has a parent, return error code
     virtual XMLError addFirstChild(XMLNode* child) = 0;

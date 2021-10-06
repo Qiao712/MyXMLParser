@@ -52,4 +52,16 @@ namespace MyXMLParser {
 		raw_xml_beg = nullptr;
 		raw_xml_end = nullptr;
 	}
+	XMLNode* XMLNode::getRoot()
+	{
+		XMLNode* p;
+		if (_parent == nullptr) return nullptr;
+		for (p = _parent; p->_parent != nullptr; p = p->_parent);
+		return p;
+	}
+	XMLDocument* XMLNode::getDocument()
+	{
+		XMLNode* root = getRoot();
+		return dynamic_cast<XMLDocument*>(root);
+	}
 }

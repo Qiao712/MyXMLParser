@@ -28,11 +28,18 @@ namespace MyXMLParser {
         }
         return nullptr;
     }
-    XMLElement* XMLNonterminalNode::findElementByTagName(string tag_name, XMLNode* start)
+    XMLElement* XMLNonterminalNode::findElementByTagName(const string& tag_name, XMLNode* start)
     {
+        XMLNode* p;
+        if (start == nullptr) {
+            p = _first_child;
+        }
+        else {
+            if (start->_parent != this) return nullptr;
+            else p = start;
+        }
+
         XMLElement* element;
-        XMLNode* p = _first_child;
-        while (p != start && p != nullptr) p = p->_next_sibling;
         for (; p != nullptr; p = p->_next_sibling) {
             element = dynamic_cast<XMLElement*>(p);
             if (element != nullptr && element->getValue() == tag_name) {

@@ -10,7 +10,7 @@ public:
     XMLNode* lastChild() override { return _last_child; }
     XMLElement* fisrtElementChild() override;
     XMLElement* lastElementChild() override;
-    XMLElement* findElementByTagName(string tag_name, XMLNode* start) override;
+    XMLElement* findElementByTagName(const string& tag_name, XMLNode* start = nullptr) override;
 
     XMLError addFirstChild(XMLNode* child) override;
     XMLError addLastChild(XMLNode* child) override;

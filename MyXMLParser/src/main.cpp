@@ -93,9 +93,14 @@ int main(){
     cout << "error :" << doc.getErrorDetail() << endl;
     travelAll(&doc);
     cout << "--------------------------" << endl;
-    travelAll(&doc);
+    XMLNode* e4 = doc.findElementByTagName("e1")->findElementByTagName("e4");
+    travelAll(e4);
+    e4->unlink();
     cout << "----------------------" << endl;
-
+    travelAll(&doc);
+    cout << "-----------------------------------" << endl;
+    cout << e4->getParent()<<endl;
+    cout << e4->getValue();
     /*XMLAttribute x("sds", "123.00");
     double d;
     x.getValue(d);
