@@ -22,13 +22,13 @@ namespace MyXMLParser{
 		if (_attributes.erase(name) == 0) return XML_ERROR_ATTRIBUTE_NOT_FOUND;
 		return XML_SUCCESS;
 	}
-	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
+	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
 		const char* tag_beg = beg + 1;
 		const char* tag_end = StringUtility::findChar('>', beg + 1, end);
 		if (tag_end == end) {
 			//<tag_name... ....
-			setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
+			parsing_error.setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
 			return nullptr;
 		}
 
@@ -41,7 +41,7 @@ namespace MyXMLParser{
 		
 		if (!checkName(tag_name_beg, tag_name_end)) {
 			//error: bad tag name
-			setParsingError(XML_PARSING_ERROR_INVALID_TAG_NAME, tag_name_beg);
+			parsing_error.setParsingError(XML_PARSING_ERROR_INVALID_TAG_NAME, tag_name_beg);
 			return nullptr;
 		}
 		_tag_name.assign(tag_name_beg, tag_name_end);
@@ -49,16 +49,16 @@ namespace MyXMLParser{
 		//parse attributes
 		XMLError attr_error = parseAttribute(tag_name_end, _is_closing ? tag_end - 1 : tag_end);
  		if (attr_error != XML_SUCCESS) {
-			setParsingError(attr_error, beg);
+			parsing_error.setParsingError(attr_error, beg);
 		}
 
 		if (_is_closing) return tag_end + 1;
 
 		//parse xml in the element
-		const char* p = parseChildren(tag_end + 1, end, this);
+		const char* p = parseChildren(tag_end + 1, end, this, parsing_error);
 		if (p == end && _is_closing == false) {
 			//error: wrong end tag
-			setParsingError(XML_PARSING_ERROR_WRONG_END_TAG, beg);
+			parsing_error.setParsingError(XML_PARSING_ERROR_WRONG_END_TAG, beg);
 			return nullptr;
 		}
 

@@ -2,7 +2,7 @@
 #include "StringUtility.hpp"
 
 namespace MyXMLParser {
-	const char* MyXMLParser::XMLCDATA::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
+	const char* XMLCDATA::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
         //CDATA <![CDATA[ .... ]]>
         constexpr char CDATA_END[] = "]]>";
@@ -14,7 +14,7 @@ namespace MyXMLParser {
 
         if (data_end == end) {
             //error unclosed cdata
-            setParsingError(XML_PARSING_ERROR_UNCLOSED_CDATA, beg);
+            parsing_error.setParsingError(XML_PARSING_ERROR_UNCLOSED_CDATA, beg);
             return nullptr;
         }
 

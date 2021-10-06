@@ -8,36 +8,19 @@
 namespace MyXMLParser {
 	bool XMLDocument::parse(const char* xml, size_t len)
 	{
-		_raw_xml_beg = xml;
-		_raw_xml_end = xml + len;
-		return parse(_raw_xml_beg, _raw_xml_end, this);
-		_raw_xml_beg = nullptr;
-		_raw_xml_end = nullptr;
+		_parsing_error.raw_xml_beg = xml;
+		_parsing_error.raw_xml_end = xml + len;
+		return parse(_parsing_error.raw_xml_beg, _parsing_error.raw_xml_end, this, _parsing_error);
 	}
 	void XMLDocument::clear()
 	{
 		//clear error
-		_parsing_error = XML_SUCCESS;
-		_error_line = 0;
-		_error_detail.clear();
-		_raw_xml_beg = nullptr;
-		_raw_xml_end = nullptr;
+		_parsing_error.clear();
 	}
-	void XMLDocument::setParsingError(XMLError error, const char* where_error)
-	{
-		_parsing_error = error;
-
-		//find error line
-		const char* line_beg = StringUtility::countNewline(_raw_xml_beg, where_error, _error_line);
-		const char* line_end = StringUtility::findNewline(line_beg, _raw_xml_end);
-		_error_detail.assign(line_beg, line_end);
-
-		_error_line++;
-	}
-	const char* XMLDocument::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
+	const char* XMLDocument::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
 		const char* p = StringUtility::skipWhitespace(beg, end);
-		parseChildren(p, end, parent);
+		parseChildren(p, end, parent, parsing_error);
         return p;
 	}
 }

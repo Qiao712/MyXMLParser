@@ -1,3 +1,4 @@
+#pragma once
 #include "XMLNonterminalNode.h"
 #include "XMLElement.hpp"
 #include "XMLText.hpp"
@@ -50,7 +51,6 @@ namespace MyXMLParser {
             _last_child = child;
         _first_child = child;
         child->_parent = this;
-        child->_root = _root;
         return XML_SUCCESS;
     }
     XMLError XMLNonterminalNode::addLastChild(XMLNode* child)
@@ -63,7 +63,6 @@ namespace MyXMLParser {
             _first_child = child;
         _last_child = child;
         child->_parent = this;
-        child->_root = _root;
         return XML_SUCCESS;
     }
     XMLError XMLNonterminalNode::addSibling(XMLNode* child)
@@ -74,7 +73,6 @@ namespace MyXMLParser {
             _next_sibling->_previous_sibling = child;
         _next_sibling = child;
         child->_parent = _parent;
-        child->_root = _parent->_root;
         return XML_SUCCESS;
     }
     XMLError XMLNonterminalNode::removeFirstChild()
@@ -115,14 +113,14 @@ namespace MyXMLParser {
             delete p;
         }
     }
-    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent)
+    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
     {
         const char* p = beg;
         XMLNode* new_node;
         while (p < end) {
             Token token = checkStart(p, end);
             if (token == Token::ELEMENT_END) {
-                p = matchTag(p, end, parent->getValue());
+                p = matchTag(p, end, parent->getValue(), parsing_error);
                 if (p != nullptr) {
                     //succeed to close it's parents
                     parent->_is_closing = true;
@@ -130,7 +128,7 @@ namespace MyXMLParser {
                 }
                 else {
                     //error: unpaired tags <- wrong tag name
-                    setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, beg);
+                    parsing_error.setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, beg);
                     return nullptr;
                 }
             }
@@ -140,8 +138,7 @@ namespace MyXMLParser {
 
 
             if (new_node != nullptr) {
-                new_node->_root = this->_root;
-                p = new_node->parse(p, end, this);
+                p = new_node->parse(p, end, this, parsing_error);
                 
                 if (p == nullptr) {
                     delete new_node;
@@ -202,14 +199,14 @@ namespace MyXMLParser {
         }
         return nullptr;
     }
-    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name)
+    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name, ParsingError& parsing_error)
     {
         const char* tag_name_beg = beg + 2;
         const char* tag_name_end = StringUtility::findChar('>', beg, end);
 
         if (tag_name_end == end) {
             //error: </....
-            setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
+            parsing_error.setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
         }
 
         size_t len = tag_name_end - tag_name_beg;

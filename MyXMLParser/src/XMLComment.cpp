@@ -2,7 +2,7 @@
 
 #include <cstring>
 namespace MyXMLParser {
-	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent)
+	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
 		constexpr char COMMENT_START[] = "<!--";
 		constexpr char COMMENT_END[] = "-->";

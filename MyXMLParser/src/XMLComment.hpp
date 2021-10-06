@@ -15,7 +15,7 @@ public:
 	void setValue(const string& value) { _content.assign(value); }
 	void setValue(string&& value) { _content.assign(value); }
 protected:
-	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent) override;
+	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 private:
 	string _content;
 };

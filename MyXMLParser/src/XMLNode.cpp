@@ -11,8 +11,11 @@
 namespace MyXMLParser {
 	XMLNode::~XMLNode()
 	{
-		//cancel link with its siblings
-		if (_parent != nullptr) { 
+		unlink();
+	}
+	void XMLNode::unlink()
+	{
+		if (_parent != nullptr) {
 			if (_parent->_first_child == this) {
 				_parent->_first_child = this->_next_sibling;
 				if (this->_next_sibling != nullptr) this->_next_sibling->_previous_sibling = nullptr;
@@ -26,9 +29,27 @@ namespace MyXMLParser {
 				_next_sibling->_previous_sibling = _previous_sibling;
 			}
 		}
+
+		_parent = nullptr;
 	}
-	void XMLNode::setParsingError(XMLError error, const char* where_error)
+
+	void ParsingError::setParsingError(XMLError error, const char* where_error)
 	{
-		_root->setParsingError(error, where_error);
+		ParsingError::error = error;
+
+		//find error line
+		const char* line_beg = StringUtility::countNewline(raw_xml_beg, where_error, error_line);
+		const char* line_end = StringUtility::findNewline(line_beg, raw_xml_end);
+		error_detail.assign(line_beg, line_end);
+		error_line++;
+	}
+
+	void ParsingError::clear()
+	{
+		error = XML_SUCCESS;
+		error_line = 0;
+		error_detail.clear();
+		raw_xml_beg = nullptr;
+		raw_xml_end = nullptr;
 	}
 }
