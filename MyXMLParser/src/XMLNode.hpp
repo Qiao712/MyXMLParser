@@ -29,6 +29,7 @@ struct ParsingError {
 class XMLElement;
 class XMLDocument;
 class XMLNonterminalNode;
+class XMLVisitor;
 
 class XMLNode{
     friend class XMLTerminalNode;
@@ -53,6 +54,9 @@ public:
     //If it is the root(has no parent), return nullptr.
     XMLNode* getRoot();
     XMLDocument* getDocument();
+
+    //accept a visitor - Visitor Pattern
+    virtual void accept(XMLVisitor& visitor) = 0;
     
     //if the child already has a parent, return error code
     virtual XMLError addFirstChild(XMLNode* child) = 0;

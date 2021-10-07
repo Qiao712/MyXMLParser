@@ -1,6 +1,7 @@
 #pragma once
 #include "XMLTerminalNode.h"
 #include "StringUtility.hpp"
+#include "XMLVisitor.hpp"
 
 #include <string>
 
@@ -17,6 +18,8 @@ public:
 	
 	XMLComment* clone() override { return new XMLComment(_content); }
 	XMLComment* deepClone() override { return clone(); }
+
+	void accept(XMLVisitor& visitor) override { visitor.visit(this); }
 private:
 	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 	string _content;

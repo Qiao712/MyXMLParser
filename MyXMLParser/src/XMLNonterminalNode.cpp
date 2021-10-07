@@ -240,4 +240,10 @@ namespace MyXMLParser {
         }
         return new_node;
     }
+    void XMLNonterminalNode::visitChildern(XMLVisitor& visitor)
+    {
+        for (XMLNode* p = _first_child; p != nullptr; p = p->_next_sibling) {
+            p->accept(visitor);
+        }
+    }
 }

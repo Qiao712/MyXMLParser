@@ -30,6 +30,8 @@ public:
     
     XMLDocument* clone() override { return new XMLDocument(); }
     XMLDocument* deepClone() override { return reinterpret_cast<XMLDocument*>(doDeepClone()); }
+
+    void accept(XMLVisitor& visitor) override;
 private:
     const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
     ParsingError _parsing_error;

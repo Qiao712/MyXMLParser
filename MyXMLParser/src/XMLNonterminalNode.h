@@ -1,5 +1,6 @@
 #pragma once
 #include "XMLNode.hpp"
+#include "XMLVisitor.hpp"
 
 namespace MyXMLParser {
 class XMLNonterminalNode : public XMLNode
@@ -31,6 +32,8 @@ protected:
     bool _is_closing = false;
 
     XMLNode* doDeepClone();
+    
+    void visitChildern(XMLVisitor& visitor);
 protected:
     XMLNode* _first_child = nullptr;
     XMLNode* _last_child = nullptr;

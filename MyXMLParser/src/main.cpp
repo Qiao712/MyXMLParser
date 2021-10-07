@@ -8,6 +8,7 @@
 #include "XMLAttribute.hpp"
 #include "XMLText.hpp"
 #include "XMLCDATA.hpp"
+#include "XMLVisitor.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -17,6 +18,65 @@
 #include <map>
 using namespace std;
 using namespace MyXMLParser;
+
+class PrintVisitor : public XMLVisitor {
+    void controlByDeep() {
+        for (int i = 0; i < deep; i++) cout << "   ";
+    }
+    
+    void visit(XMLText* text) override {
+        controlByDeep();
+        cout << "TEXT:" << text->getValue() << endl;
+    }
+    void visit(XMLDeclaration* dec) override {
+        controlByDeep();
+        cout << "DECLARATION:" << dec->getValue() << endl;
+    }
+    void visit(XMLComment* com) override {
+        controlByDeep();
+        cout << "COMMENT:" << com->getValue() << endl;
+    }
+    void visit(XMLCDATA* cd) override {
+        controlByDeep();
+        cout << "CDATA:" << cd->getValue() << endl;
+    }
+
+    //document
+    bool visitEntry(XMLDocument* doc) {
+        controlByDeep();
+        cout << "DOCUMENT:"<<endl;
+        deep++;
+        return true;
+    }
+    bool visitExit(XMLDocument* doc) {
+        deep--;
+        controlByDeep();
+        cout << "DOCUMENT END;"<<endl;
+        return true;
+    }
+
+    //element
+    bool visitEntry(XMLElement* ele) {
+        controlByDeep();
+        cout << "ELEMENT:" << ele->getValue() << " ATTRIBUTES( ";
+        auto attributes = ele->getAllAttributes();
+        for (auto i : attributes) {
+            cout << i.first << "=\"" << i.second << "\" ";
+        }
+        cout << ")"<<endl;
+        deep++;
+        return false;
+    }
+    bool visitExit(XMLElement* ele) {
+        deep--;
+        controlByDeep();
+        cout << "ELEMENT:" << ele->getValue() << " END;" << endl;
+        return false;
+    }
+
+
+    int deep = 0;
+};
 
 void travelAll(XMLNode* node, int level = 0) {
     if (node != nullptr) {
@@ -103,6 +163,8 @@ int main(){
     cout << e4->getParent()<<endl;
     cout << e4->getValue();*/
     cout << "----------------------------------" << endl;
+    PrintVisitor p;
+    doc.accept(p);
     //travelAll(&doc);
     /*XMLAttribute x("sds", "123.00");
     double d;

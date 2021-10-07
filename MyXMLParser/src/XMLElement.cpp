@@ -29,6 +29,12 @@ namespace MyXMLParser{
 		new_element->_attributes = _attributes;
 		return new_element;
 	}
+	void XMLElement::accept(XMLVisitor& visitor)
+	{
+		visitor.visitEntry(this);
+		XMLNonterminalNode::visitChildern(visitor);
+		visitor.visitExit(this);
+	}
 	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
 		const char* tag_beg = beg + 1;

@@ -154,6 +154,7 @@
     <ClInclude Include="src\XMLNonterminalNode.h" />
     <ClInclude Include="src\XMLTerminalNode.h" />
     <ClInclude Include="src\XMLText.hpp" />
+    <ClInclude Include="src\XMLVisitor.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="define.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="src\XMLNonterminalNode.cpp" />
     <ClCompile Include="src\XMLTerminalNode.cpp" />
     <ClCompile Include="src\XMLText.cpp" />
+    <ClCompile Include="src\XMLVisitor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
