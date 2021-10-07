@@ -14,8 +14,10 @@ public:
 	virtual void setValue(const string& value) { _content.assign(value); }
 	virtual void setValue(string&& value) { _content.assign(value); }
 
-	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
+	XMLDeclaration* clone() override { return new XMLDeclaration(_content); }
+	XMLDeclaration* deepClone() override { return clone(); }
 private:
+	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 	string _content;
 };
 }

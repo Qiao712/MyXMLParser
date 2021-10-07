@@ -14,7 +14,7 @@ public:
 
     XMLError addFirstChild(XMLNode* child) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
     XMLError addLastChild(XMLNode* child) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
-    XMLError addSibling(XMLNode* child) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
+    XMLError insertChild(XMLNode* child, XMLNode* after_this) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
 
     XMLError removeFirstChild() override { return  XML_ERROR_TERMINAL_NODE; }
     XMLError removeLastChild() override { return  XML_ERROR_TERMINAL_NODE; }

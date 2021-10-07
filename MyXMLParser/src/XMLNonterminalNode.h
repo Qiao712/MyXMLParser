@@ -14,12 +14,12 @@ public:
 
     XMLError addFirstChild(XMLNode* child) override;
     XMLError addLastChild(XMLNode* child) override;
-    XMLError addSibling(XMLNode* child) override;
+    XMLError insertChild(XMLNode* child, XMLNode* after_this = nullptr) override;
 
     XMLError removeFirstChild() override;
     XMLError removeLastChild() override;
     XMLError removeChild(XMLNode* child) override;
-
+    
     ~XMLNonterminalNode();
 protected:
     const char* parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error);
@@ -29,7 +29,9 @@ protected:
 
     //<a>....</a> closing; <a>.... unclosing.
     bool _is_closing = false;
-private:
+
+    XMLNode* doDeepClone();
+protected:
     XMLNode* _first_child = nullptr;
     XMLNode* _last_child = nullptr;
 };

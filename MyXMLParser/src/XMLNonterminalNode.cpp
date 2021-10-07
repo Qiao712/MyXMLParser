@@ -1,14 +1,12 @@
 #pragma once
 #include "XMLNonterminalNode.h"
 #include "XMLElement.hpp"
+#include "XMLDocument.hpp"
 #include "XMLText.hpp"
 #include "XMLComment.hpp"
 #include "XMLDeclaration.hpp"
 #include "XMLCDATA.hpp"
 #include "StringUtility.hpp"
-
-#include <algorithm>
-
 namespace MyXMLParser {
     XMLElement* XMLNonterminalNode::fisrtElementChild()
     {
@@ -50,6 +48,8 @@ namespace MyXMLParser {
     }
     XMLError XMLNonterminalNode::addFirstChild(XMLNode* child)
     {
+        if (dynamic_cast<XMLDocument*>(child) != nullptr) return XML_ERROR_DOCUMENT_CAN_NOT_BE_CHILD;
+
         child->_next_sibling = _first_child;
         child->_previous_sibling = nullptr;
         if (_first_child != nullptr)
@@ -62,6 +62,8 @@ namespace MyXMLParser {
     }
     XMLError XMLNonterminalNode::addLastChild(XMLNode* child)
     {
+        if (dynamic_cast<XMLDocument*>(child) != nullptr) return XML_ERROR_DOCUMENT_CAN_NOT_BE_CHILD;
+
         child->_next_sibling = nullptr;
         child->_previous_sibling = _last_child;
         if (_last_child != nullptr)
@@ -72,14 +74,19 @@ namespace MyXMLParser {
         child->_parent = this;
         return XML_SUCCESS;
     }
-    XMLError XMLNonterminalNode::addSibling(XMLNode* child)
+    XMLError XMLNonterminalNode::insertChild(XMLNode* child, XMLNode* after_this)
     {
-        child->_next_sibling = _next_sibling;
-        child->_previous_sibling = this;
-        if(_next_sibling != nullptr)
-            _next_sibling->_previous_sibling = child;
-        _next_sibling = child;
-        child->_parent = _parent;
+        if (after_this == nullptr) return addLastChild(child);
+        if (after_this->_parent != this) return XML_ERROR_ADD_CHILD_FAIL;
+        child->_next_sibling = after_this->_next_sibling;
+        if (after_this == _last_child) {
+            _last_child = after_this;
+        }
+        else {
+            after_this->_next_sibling->_previous_sibling = child;
+        }
+        after_this->_next_sibling = child;
+        child->_previous_sibling = after_this;
         return XML_SUCCESS;
     }
     XMLError XMLNonterminalNode::removeFirstChild()
@@ -224,5 +231,13 @@ namespace MyXMLParser {
         }
         
         return tag_name_end + 1;
+    }
+    XMLNode* XMLNonterminalNode::doDeepClone()
+    {
+        XMLNode* new_node = clone();
+        for (XMLNode* p = _first_child; p != nullptr; p = p->_next_sibling) {
+            new_node->addLastChild(p->deepClone());
+        }
+        return new_node;
     }
 }

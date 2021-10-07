@@ -10,6 +10,7 @@ class XMLText : public XMLTerminalNode{
 	friend class XMLNonterminalNode;
 	friend class XMLDocument;
 	friend class XMLElement;
+	friend class XMLCDATA;
 public:
 	XMLText() = default;
 	XMLText(const string & content) : _content(content) {}
@@ -19,6 +20,9 @@ public:
 	virtual void setValue(const string & value) { _content.assign(value); }
 	virtual void setValue(string && value) { _content.assign(value); };
 
+	XMLText* clone() override { return new XMLText(_content); }
+	XMLText* deepClone() override { return clone(); }
+private:
 	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 	std::string _content;
 };

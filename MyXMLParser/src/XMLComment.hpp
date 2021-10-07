@@ -14,9 +14,11 @@ public:
 	const string& getValue() const override { return _content; }
 	void setValue(const string& value) { _content.assign(value); }
 	void setValue(string&& value) { _content.assign(value); }
-protected:
-	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
+	
+	XMLComment* clone() override { return new XMLComment(_content); }
+	XMLComment* deepClone() override { return clone(); }
 private:
+	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 	string _content;
 };
 }

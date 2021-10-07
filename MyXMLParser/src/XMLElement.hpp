@@ -15,6 +15,8 @@ class XMLElement : public XMLNonterminalNode {
     friend class XMLNonterminalNode;
 public:
     XMLElement() = default;
+    //XMLElement(const string& tag_name);
+    //XMLElement(string&& tag_name);
 
     bool containAttribute(const string& name) { return _attributes.find(name) != _attributes.end(); }
     
@@ -53,6 +55,9 @@ public:
     const string& getValue() const override { return getTagName(); }
     void setValue(const string& value) override { setTagName(value); }
     void setValue(string&& value) override { setTagName(value); }
+
+    XMLElement* clone() override;
+    XMLElement* deepClone() override { return reinterpret_cast<XMLElement*>(doDeepClone()); }
 private:
     const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
     XMLError parseAttribute(const char* beg, const char* end);

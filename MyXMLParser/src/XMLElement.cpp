@@ -22,6 +22,13 @@ namespace MyXMLParser{
 		if (_attributes.erase(name) == 0) return XML_ERROR_ATTRIBUTE_NOT_FOUND;
 		return XML_SUCCESS;
 	}
+	XMLElement* XMLElement::clone()
+	{
+		XMLElement* new_element = new XMLElement;
+		new_element->_tag_name = _tag_name;
+		new_element->_attributes = _attributes;
+		return new_element;
+	}
 	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{
 		const char* tag_beg = beg + 1;

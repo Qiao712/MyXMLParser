@@ -28,6 +28,8 @@ public:
     void setValue(const string& value) override { }
     void setValue(string&& value) override { }
     
+    XMLDocument* clone() override { return new XMLDocument(); }
+    XMLDocument* deepClone() override { return reinterpret_cast<XMLDocument*>(doDeepClone()); }
 private:
     const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
     ParsingError _parsing_error;

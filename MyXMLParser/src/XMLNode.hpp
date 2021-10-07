@@ -57,7 +57,7 @@ public:
     //if the child already has a parent, return error code
     virtual XMLError addFirstChild(XMLNode* child) = 0;
     virtual XMLError addLastChild(XMLNode* child) = 0;
-    virtual XMLError addSibling(XMLNode* child) = 0;
+    virtual XMLError insertChild(XMLNode* child, XMLNode* after_this) = 0;
 
     virtual XMLError removeFirstChild() = 0;
     virtual XMLError removeLastChild() = 0;
@@ -70,13 +70,19 @@ public:
     virtual void setValue(const string& value) = 0;
     virtual void setValue(string&& value) = 0;
 
+    
+    virtual XMLNode* clone() = 0;
     //build a new tree that is same as this subtree.
-    //virtual XMLNode* clone() = 0;
+    virtual XMLNode* deepClone() = 0;
 protected:
     virtual const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) = 0;
 private:
     XMLNonterminalNode* _parent = nullptr;
     XMLNode* _next_sibling = nullptr;
     XMLNode* _previous_sibling = nullptr;
+
+    //delete copy operator
+    XMLNode& operator=(const XMLNode&) = delete;
+    XMLNode(const XMLNode&) = delete;
 };
 }
