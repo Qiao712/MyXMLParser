@@ -56,7 +56,7 @@ public:
     XMLDocument* getDocument();
 
     //accept a visitor - Visitor Pattern
-    virtual void accept(XMLVisitor& visitor) = 0;
+    virtual bool accept(XMLVisitor& visitor) = 0;
     
     //if the child already has a parent, return error code
     virtual XMLError addFirstChild(XMLNode* child) = 0;

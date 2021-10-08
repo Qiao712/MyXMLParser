@@ -24,21 +24,25 @@ class PrintVisitor : public XMLVisitor {
         for (int i = 0; i < deep; i++) cout << "   ";
     }
     
-    void visit(XMLText* text) override {
+    bool visit(XMLText* text) override {
         controlByDeep();
         cout << "TEXT:" << text->getValue() << endl;
+        return true;
     }
-    void visit(XMLDeclaration* dec) override {
+    bool visit(XMLDeclaration* dec) override {
         controlByDeep();
         cout << "DECLARATION:" << dec->getValue() << endl;
+        return true;
     }
-    void visit(XMLComment* com) override {
+    bool visit(XMLComment* com) override {
         controlByDeep();
         cout << "COMMENT:" << com->getValue() << endl;
+        return true;
     }
-    void visit(XMLCDATA* cd) override {
+    bool visit(XMLCDATA* cd) override {
         controlByDeep();
         cout << "CDATA:" << cd->getValue() << endl;
+        return true;
     }
 
     //document
@@ -65,13 +69,13 @@ class PrintVisitor : public XMLVisitor {
         }
         cout << ")"<<endl;
         deep++;
-        return false;
+        return true;
     }
     bool visitExit(XMLElement* ele) {
         deep--;
         controlByDeep();
         cout << "ELEMENT:" << ele->getValue() << " END;" << endl;
-        return false;
+        return true;
     }
 
 

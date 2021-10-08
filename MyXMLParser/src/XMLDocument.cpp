@@ -17,11 +17,12 @@ namespace MyXMLParser {
 		//clear error
 		_parsing_error.clear();
 	}
-	void XMLDocument::accept(XMLVisitor& visitor)
+	bool XMLDocument::accept(XMLVisitor& visitor)
 	{
-		visitor.visitEntry(this);
-		XMLNonterminalNode::visitChildern(visitor);
-		visitor.visitExit(this);
+		if (visitor.visitEntry(this)) {
+			XMLNonterminalNode::visitChildern(visitor);
+		}
+		return visitor.visitExit(this);
 	}
 	const char* XMLDocument::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{

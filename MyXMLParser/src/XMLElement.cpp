@@ -29,11 +29,12 @@ namespace MyXMLParser{
 		new_element->_attributes = _attributes;
 		return new_element;
 	}
-	void XMLElement::accept(XMLVisitor& visitor)
+	bool XMLElement::accept(XMLVisitor& visitor)
 	{
-		visitor.visitEntry(this);
-		XMLNonterminalNode::visitChildern(visitor);
-		visitor.visitExit(this);
+		if (visitor.visitEntry(this)) {
+			XMLNonterminalNode::visitChildern(visitor);
+		}
+		return visitor.visitExit(this);
 	}
 	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
 	{

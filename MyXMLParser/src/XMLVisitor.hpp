@@ -10,16 +10,17 @@ namespace MyXMLParser {
 	class XMLVisitor
 	{
 	public:
-		/*return false to abort downward recursion*/
+		/*return false: doesn't travel its childern.*/
 		virtual bool visitEntry(XMLDocument* node) { return true; }
-		virtual bool visitExit(XMLDocument* node) { return true; }
 		virtual bool visitEntry(XMLElement* node) { return true; }
-		virtual bool visitExit(XMLElement* node) { return true; }
 
-		virtual void visit(XMLText* node) { }
-		virtual void visit(XMLCDATA* node) { }
-		virtual void visit(XMLComment* node) { }
-		virtual void visit(XMLDeclaration* node) { }
+		/*return false: stop traveling its sibling.*/
+		virtual bool visitExit(XMLDocument* node) { return true; }
+		virtual bool visitExit(XMLElement* node) { return true; }
+		virtual bool visit(XMLText* node) { return true; }
+		virtual bool visit(XMLCDATA* node) { return true; }
+		virtual bool visit(XMLComment* node) { return true; }
+		virtual bool visit(XMLDeclaration* node) { return true; }
 	};
 }
 

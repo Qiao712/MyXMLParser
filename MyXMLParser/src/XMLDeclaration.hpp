@@ -18,7 +18,7 @@ public:
 	XMLDeclaration* clone() override { return new XMLDeclaration(_content); }
 	XMLDeclaration* deepClone() override { return clone(); }
 
-	void accept(XMLVisitor& visitor) override { visitor.visit(this); }
+	bool accept(XMLVisitor& visitor) override { return visitor.visit(this); }
 private:
 	const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
 	string _content;

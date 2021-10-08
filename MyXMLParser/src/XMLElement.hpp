@@ -59,7 +59,7 @@ public:
     XMLElement* clone() override;
     XMLElement* deepClone() override { return reinterpret_cast<XMLElement*>(doDeepClone()); }
 
-    void accept(XMLVisitor& visitor) override;
+    bool accept(XMLVisitor& visitor) override;
 private:
     const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
     XMLError parseAttribute(const char* beg, const char* end);
