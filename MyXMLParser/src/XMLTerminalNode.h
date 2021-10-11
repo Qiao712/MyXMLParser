@@ -1,5 +1,4 @@
 #pragma once
-#include "define.h"
 #include "XMLNode.hpp"
 
 namespace MyXMLParser {
@@ -12,13 +11,12 @@ public:
     XMLElement* lastElementChild()  override { return nullptr; }
     XMLElement* findElementByTagName(const string& tag_name, XMLNode* start = nullptr) override { return nullptr; }
 
-    XMLError addFirstChild(XMLNode* child) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
-    XMLError addLastChild(XMLNode* child) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
-    XMLError insertChild(XMLNode* child, XMLNode* after_this) override { return XML_ERROR_ADD_CHILD_TO_TERMINAL_NODE; }
-
-    XMLError removeFirstChild() override { return  XML_ERROR_TERMINAL_NODE; }
-    XMLError removeLastChild() override { return  XML_ERROR_TERMINAL_NODE; }
-    XMLError removeChild(XMLNode* child) override { return  XML_ERROR_TERMINAL_NODE; }
+    bool addFirstChild(XMLNode* child) override { return false; }
+    bool addLastChild(XMLNode* child) override { return false; }
+    bool insertChild(XMLNode* child, XMLNode* after_this) override { return false; }
+    bool removeFirstChild() override { return false; }
+    bool removeLastChild() override { return false; }
+    bool removeChild(XMLNode* child) override { return false; }
 };
 }
 

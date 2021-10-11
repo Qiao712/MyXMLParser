@@ -1,22 +1,17 @@
 <?xml version="1.0"?>
-
 <e1>
-  <e2 a ="    " />
-  aaaaaa
-  <e2 f =" fff"/>
-  bbbbbb
-  <e3 s="sdf" b="123" c="dsf" d="3344"></e3>
-  <![CDATA[123456\<>\;./][]\][]]]][][][]]<><><]]>
+  aaa
+  <e2/>
+  <e3>
+ asdf
+  </e3>abcsdf
   <e4>
     <e5>
-      <e65666>
-        <eeee7777 a="sadf"></eeee7777>
-      </e65666>
-      <!--123456-->
-      <?asdfxxx asdf fds?>
-      <e6>
-        <sss a ="1" b.b.b.="2" />
-      </e6>
+      sdfaasss
     </e5>
+    <ee6>asdf</ee6>
+    <![CDATA[asdfdddd 
+ asdfadsfanmfg]]>
+    end
   </e4>
 </e1>

@@ -1,6 +1,4 @@
 #pragma once
-#include "define.h"
-
 #include <string>
 #include <sstream>
 namespace MyXMLParser{

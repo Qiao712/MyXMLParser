@@ -6,6 +6,7 @@ namespace MyXMLParser {
 	class XMLCDATA;
 	class XMLDeclaration;
 	class XMLComment;
+	class XMLNode;
 
 	class XMLVisitor
 	{

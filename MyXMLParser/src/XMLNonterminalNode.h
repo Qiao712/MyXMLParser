@@ -13,13 +13,12 @@ public:
     XMLElement* lastElementChild() override;
     XMLElement* findElementByTagName(const string& tag_name, XMLNode* start = nullptr) override;
 
-    XMLError addFirstChild(XMLNode* child) override;
-    XMLError addLastChild(XMLNode* child) override;
-    XMLError insertChild(XMLNode* child, XMLNode* after_this = nullptr) override;
-
-    XMLError removeFirstChild() override;
-    XMLError removeLastChild() override;
-    XMLError removeChild(XMLNode* child) override;
+    bool addFirstChild(XMLNode* child) override;
+    bool addLastChild(XMLNode* child) override;
+    bool insertChild(XMLNode* child, XMLNode* after_this = nullptr) override;
+    bool removeFirstChild() override;
+    bool removeLastChild() override;
+    bool removeChild(XMLNode* child) override;
     
     ~XMLNonterminalNode();
 protected:

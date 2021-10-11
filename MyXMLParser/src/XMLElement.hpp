@@ -1,5 +1,4 @@
 #pragma once
-#include "define.h"
 #include "XMLNonterminalNode.h"
 #include "XMLAttribute.hpp"
 #include "StringUtility.hpp"
@@ -15,12 +14,12 @@ class XMLElement : public XMLNonterminalNode {
     friend class XMLNonterminalNode;
 public:
     XMLElement() = default;
-    //XMLElement(const string& tag_name);
-    //XMLElement(string&& tag_name);
+    XMLElement(const string& tag_name) : _tag_name(tag_name) {}
+    XMLElement(string&& tag_name):_tag_name(tag_name){ }
 
     bool containAttribute(const string& name) { return _attributes.find(name) != _attributes.end(); }
     
-    XMLError deleteAttribute(const string& name);
+    bool deleteAttribute(const string& name);
     
     const string& getAttribute(const string& name) const;
     bool getAttribute(const string& name, string& value) const { value = getAttribute(name); }
@@ -62,7 +61,7 @@ public:
     bool accept(XMLVisitor& visitor) override;
 private:
     const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
-    XMLError parseAttribute(const char* beg, const char* end);
+    XMLParseError parseAttribute(const char* beg, const char* end);
     bool checkName(const char* beg, const char* end);
 
     string _tag_name;

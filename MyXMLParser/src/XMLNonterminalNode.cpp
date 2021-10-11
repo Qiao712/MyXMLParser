@@ -46,9 +46,9 @@ namespace MyXMLParser {
         }
         return nullptr;
     }
-    XMLError XMLNonterminalNode::addFirstChild(XMLNode* child)
+    bool XMLNonterminalNode::addFirstChild(XMLNode* child)
     {
-        if (dynamic_cast<XMLDocument*>(child) != nullptr) return XML_ERROR_DOCUMENT_CAN_NOT_BE_CHILD;
+        if (dynamic_cast<XMLDocument*>(child) != nullptr) return false;
 
         child->_next_sibling = _first_child;
         child->_previous_sibling = nullptr;
@@ -58,11 +58,11 @@ namespace MyXMLParser {
             _last_child = child;
         _first_child = child;
         child->_parent = this;
-        return XML_SUCCESS;
+        return true;
     }
-    XMLError XMLNonterminalNode::addLastChild(XMLNode* child)
+    bool XMLNonterminalNode::addLastChild(XMLNode* child)
     {
-        if (dynamic_cast<XMLDocument*>(child) != nullptr) return XML_ERROR_DOCUMENT_CAN_NOT_BE_CHILD;
+        if (dynamic_cast<XMLDocument*>(child) != nullptr) return false;
 
         child->_next_sibling = nullptr;
         child->_previous_sibling = _last_child;
@@ -72,12 +72,12 @@ namespace MyXMLParser {
             _first_child = child;
         _last_child = child;
         child->_parent = this;
-        return XML_SUCCESS;
+        return true;
     }
-    XMLError XMLNonterminalNode::insertChild(XMLNode* child, XMLNode* after_this)
+    bool XMLNonterminalNode::insertChild(XMLNode* child, XMLNode* after_this)
     {
         if (after_this == nullptr) return addLastChild(child);
-        if (after_this->_parent != this) return XML_ERROR_ADD_CHILD_FAIL;
+        if (after_this->_parent != this) return false;
         child->_next_sibling = after_this->_next_sibling;
         if (after_this == _last_child) {
             _last_child = after_this;
@@ -87,34 +87,34 @@ namespace MyXMLParser {
         }
         after_this->_next_sibling = child;
         child->_previous_sibling = after_this;
-        return XML_SUCCESS;
+        return true;
     }
-    XMLError XMLNonterminalNode::removeFirstChild()
+    bool XMLNonterminalNode::removeFirstChild()
     {
-        if (_first_child == nullptr) return XML_ERROR_REMOVE_FAIL;
+        if (_first_child == nullptr) return false;
         XMLNode* x = _first_child;
         _first_child = _first_child->_next_sibling;
         if(_first_child != nullptr)
             _first_child->_previous_sibling = nullptr;
         delete x;
-        return XML_SUCCESS;
+        return true;
     }
-    XMLError XMLNonterminalNode::removeLastChild()
+    bool XMLNonterminalNode::removeLastChild()
     {
-        if (_last_child == nullptr) return XML_ERROR_REMOVE_FAIL;
+        if (_last_child == nullptr) return false;
         XMLNode* x = _last_child;
         _last_child = _last_child->_previous_sibling;
         if (_first_child != nullptr)
             _last_child->_next_sibling = nullptr;
         delete x;
-        return XML_SUCCESS;
+        return true;
     }
-    XMLError XMLNonterminalNode::removeChild(XMLNode* child)
+    bool XMLNonterminalNode::removeChild(XMLNode* child)
     {
-        if (child == nullptr || child->_parent != this) return XML_ERROR_REMOVE_FAIL;
+        if (child == nullptr || child->_parent != this) return false;
         //child's destructor (Node::~Node) will cancel the link with other nodes.
         delete child;
-        return XML_SUCCESS;
+        return true;
     }
     XMLNonterminalNode::~XMLNonterminalNode()
     {
@@ -142,7 +142,7 @@ namespace MyXMLParser {
                 }
                 else {
                     //error: unpaired tags <- wrong tag name
-                    parsing_error.setParsingError(XML_PARSING_ERROR_UNPAIRED_TAG, beg);
+                    parsing_error.setParsingError(XML_PARSE_ERROR_UNPAIRED_TAG, beg);
                     return nullptr;
                 }
             }
@@ -220,7 +220,7 @@ namespace MyXMLParser {
 
         if (tag_name_end == end) {
             //error: </....
-            parsing_error.setParsingError(XML_PARSING_ERROR_UNCLOSED_PARENTHESE, beg);
+            parsing_error.setParsingError(XML_PARSE_ERROR_UNCLOSED_PARENTHESE, beg);
         }
 
         size_t len = tag_name_end - tag_name_beg;

@@ -19,9 +19,9 @@ public:
     
     void clear();
     
-    bool good() const { return _parsing_error.error == XMLError::XML_SUCCESS; }
+    bool good() const { return _parsing_error.error == XMLParseError::XML_PARSE_SUCCESS; }
     string getErrorDetail() const { return _parsing_error.error_detail; }
-    XMLError getError() const { return _parsing_error.error; }
+    XMLParseError getError() const { return _parsing_error.error; }
     size_t getErrorLine() const { return _parsing_error.error_line; }
 
     const string& getValue() const override { static string empty_str; return empty_str; }

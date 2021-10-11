@@ -29,9 +29,6 @@
     <ClInclude Include="src\XMLText.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\define.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\XMLTerminalNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -47,18 +44,15 @@
     <ClInclude Include="src\XMLVisitor.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\XMLPrinter.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\XMLNode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\XMLDocument.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="define.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\XMLTerminalNode.cpp">
@@ -86,6 +80,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\XMLVisitor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLPrinter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

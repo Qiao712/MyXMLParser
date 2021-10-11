@@ -14,7 +14,7 @@ namespace MyXMLParser {
 
         if (data_end == end) {
             //error unclosed cdata
-            parsing_error.setParsingError(XML_PARSING_ERROR_UNCLOSED_CDATA, beg);
+            parsing_error.setParsingError(XML_PARSE_ERROR_UNCLOSED_CDATA, beg);
             return nullptr;
         }
 

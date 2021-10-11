@@ -33,7 +33,7 @@ namespace MyXMLParser {
 		_parent = nullptr;
 	}
 
-	void ParsingError::setParsingError(XMLError error, const char* where_error)
+	void ParsingError::setParsingError(XMLParseError error, const char* where_error)
 	{
 		ParsingError::error = error;
 
@@ -46,7 +46,7 @@ namespace MyXMLParser {
 
 	void ParsingError::clear()
 	{
-		error = XML_SUCCESS;
+		error = XML_PARSE_SUCCESS;
 		error_line = 0;
 		error_detail.clear();
 		raw_xml_beg = nullptr;

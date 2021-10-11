@@ -8,7 +8,7 @@ namespace MyXMLParser {
         const char* gt = StringUtility::findChar('>', beg, end);
         if (gt == end || *(gt - 1) != '?') {
             //error: unclosed declaration
-            parsing_error.setParsingError(XML_PARSING_ERROR_DECLARATION, beg);
+            parsing_error.setParsingError(XML_PARSE_ERROR_DECLARATION, beg);
             return nullptr;
         }
 
