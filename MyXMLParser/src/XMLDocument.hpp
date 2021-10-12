@@ -1,5 +1,5 @@
 #pragma once
-#include "XMLNonterminalNode.h"
+#include "XMLNonterminalNode.hpp"
 
 namespace MyXMLParser{
 class XMLDocument : public XMLNonterminalNode{

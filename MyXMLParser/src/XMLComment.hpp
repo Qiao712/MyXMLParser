@@ -1,5 +1,5 @@
 #pragma once
-#include "XMLTerminalNode.h"
+#include "XMLTerminalNode.hpp"
 #include "StringUtility.hpp"
 #include "XMLVisitor.hpp"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "XMLNonterminalNode.h"
+#include "XMLNonterminalNode.hpp"
 #include "XMLElement.hpp"
 #include "XMLDocument.hpp"
 #include "XMLText.hpp"

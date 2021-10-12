@@ -24,6 +24,7 @@
     <ProjectGuid>{810898dc-d20f-482d-81fb-f171a02e125d}</ProjectGuid>
     <RootNamespace>MyXMLParser</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MyXMLParser</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -150,9 +151,9 @@
     <ClInclude Include="src\XMLDocument.hpp" />
     <ClInclude Include="src\XMLElement.hpp" />
     <ClInclude Include="src\XMLNode.hpp" />
-    <ClInclude Include="src\XMLNonterminalNode.h" />
+    <ClInclude Include="src\XMLNonterminalNode.hpp" />
     <ClInclude Include="src\XMLPrinter.hpp" />
-    <ClInclude Include="src\XMLTerminalNode.h" />
+    <ClInclude Include="src\XMLTerminalNode.hpp" />
     <ClInclude Include="src\XMLText.hpp" />
     <ClInclude Include="src\XMLVisitor.hpp" />
   </ItemGroup>

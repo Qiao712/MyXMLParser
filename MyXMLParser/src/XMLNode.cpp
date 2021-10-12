@@ -1,5 +1,5 @@
 #include "XMLNode.hpp"
-#include "XMLNonterminalNode.h"
+#include "XMLNonterminalNode.hpp"
 #include "XMLDeclaration.hpp"
 #include "XMLComment.hpp"
 #include "XMLElement.hpp"

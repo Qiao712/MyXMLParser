@@ -42,6 +42,7 @@ enum class Token {
     ELEMENT_END,
     DECLARATION, TEXT, COMMENT, CDATA, UNKNOWN
 };
+
 class XMLNode{
     friend class XMLVisitor;
 
