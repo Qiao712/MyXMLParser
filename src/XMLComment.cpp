@@ -2,7 +2,7 @@
 
 #include <cstring>
 namespace QSimpleXMLParser {
-	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
+	const char* XMLComment::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error)
 	{
 		constexpr char COMMENT_START[] = "<!--";
 		constexpr char COMMENT_END[] = "-->";

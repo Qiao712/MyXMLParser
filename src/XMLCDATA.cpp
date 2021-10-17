@@ -2,7 +2,7 @@
 #include "StringUtility.hpp"
 
 namespace QSimpleXMLParser {
-	const char* XMLCDATA::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
+	const char* XMLCDATA::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error)
 	{
         //CDATA <![CDATA[ .... ]]>
         constexpr char CDATA_END[] = "]]>";
@@ -14,7 +14,7 @@ namespace QSimpleXMLParser {
 
         if (data_end == end) {
             //error unclosed cdata
-            parsing_error.setParsingError(XML_PARSE_ERROR_UNCLOSED_CDATA, beg);
+            parsing_error.setParseError(XML_PARSE_ERROR_UNCLOSED_CDATA, beg);
             return nullptr;
         }
 

@@ -3,12 +3,12 @@
 #include "StringUtility.hpp"
 
 namespace QSimpleXMLParser {
-    const char* XMLDeclaration::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
+    const char* XMLDeclaration::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error)
     {
         const char* gt = StringUtility::findChar('>', beg, end);
         if (gt == end || *(gt - 1) != '?') {
             //error: unclosed declaration
-            parsing_error.setParsingError(XML_PARSE_ERROR_DECLARATION, beg);
+            parsing_error.setParseError(XML_PARSE_ERROR_DECLARATION, beg);
             return nullptr;
         }
 

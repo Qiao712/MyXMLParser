@@ -3,6 +3,9 @@
 #include "XMLVisitor.hpp"
 
 namespace QSimpleXMLParser{
+	/**
+	* XML CDATA node class
+	*/
 	class XMLCDATA : public XMLText
 	{
 	public:
@@ -10,8 +13,8 @@ namespace QSimpleXMLParser{
 		XMLCDATA* clone() override { return new XMLCDATA(_content); }
 		XMLCDATA* deepClone() override { return clone(); }
 
-		bool accept(XMLVisitor& visitor) override { return visitor.visit(this); }
+		bool accept(XMLVisitor& visitor) override { return visitor.visit(*this); }
 	private:
-		const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
+		const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error) override;
 	};
 }

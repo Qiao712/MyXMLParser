@@ -3,45 +3,44 @@
 #include <cstdint>
 #include <string>
 namespace QSimpleXMLParser {
-class StringUtility
-{
-public:
-	inline static bool isWhitespace(char x);
-    inline static bool isAllWhitespace(const std::string& str);                     //is all char is whitespace
-	inline static const char* skipWhitespace(const char* beg, const char* end);
-	inline static const char* skipBackWhitespace(const char* beg, const char* end);
-	inline static const char* findWhitespace(const char* beg, const char* end);
-    inline static const char* findChar(const char chr, const char* beg, const char* end);
-	inline static const char* findChaOrWhitespace(const char chr, const char* beg, const char* end);
-	inline static const char* findNewline(const char* beg, const char* end);
-    inline static const char* findSubstr(const char* beg, const char* end, const char* substr);
-    inline static size_t countChar(const char chr, const char* beg, const char* end);
-    inline static size_t countChar(const char chr, const std::string& str);
-	inline static bool compareStr(const char* beg, const char* end, const char* c_str);
-	//count num of new line and return the last line's head
-	inline static const char* countNewline(const char* beg, const char* end, size_t& num_new_line);
+	class StringUtility
+	{
+	public:
+		inline static bool isWhitespace(char x);
+		inline static bool isAllWhitespace(const std::string& str);                     //is all char is whitespace
+		inline static const char* skipWhitespace(const char* beg, const char* end);
+		inline static const char* skipBackWhitespace(const char* beg, const char* end);
+		inline static const char* findWhitespace(const char* beg, const char* end);
+		inline static const char* findChar(const char chr, const char* beg, const char* end);
+		inline static const char* findChaOrWhitespace(const char chr, const char* beg, const char* end);
+		inline static const char* findNewline(const char* beg, const char* end);
+		inline static const char* findSubstr(const char* beg, const char* end, const char* substr);
+		inline static size_t countChar(const char chr, const char* beg, const char* end);
+		inline static size_t countChar(const char chr, const std::string& str);
+		inline static bool compareStr(const char* beg, const char* end, const char* c_str);
+		//count num of new line and return the last line's head
+		inline static const char* countNewline(const char* beg, const char* end, size_t& num_new_line);
 
-    //translate entity and normalize newline, then store in _str in constructor
-    //newline normalization: "\r\n", "\r" and "\n\r" -> "\n"
-    enum TEXT_PROCESS{ TRANSLATE_ENTITY = 1, NORMALIZE_NEWLINE = 2 };
-    static std::string processText(const char* beg, const char* end, unsigned int process);
+		//translate entity and normalize newline, then store in _str in constructor
+		//newline normalization: "\r\n", "\r" and "\n\r" -> "\n"
+		enum TEXT_PROCESS{ TRANSLATE_ENTITY = 1, NORMALIZE_NEWLINE = 2 };
+		static std::string processText(const char* beg, const char* end, unsigned int process);
 
-    static std::string translateCharToEntity(const std::string& str);
-private:
-    //serve for processText
-    static bool parseReference(const char* beg, const char* end, std::string& substitute);
-    inline static uint32_t strToIntHex(const char* beg, const char* end);
-    inline static uint32_t strToIntDec(const char* beg, const char* end);
-    inline static bool unicodeToUtf8(uint32_t unicode, std::string& utf8);
-};
+		static std::string translateCharToEntity(const std::string& str);
+	private:
+		//serve for processText
+		static bool parseReference(const char* beg, const char* end, std::string& substitute);
+		inline static uint32_t strToIntHex(const char* beg, const char* end);
+		inline static uint32_t strToIntDec(const char* beg, const char* end);
+		inline static bool unicodeToUtf8(uint32_t unicode, std::string& utf8);
+	};
 
-	using std::string;
 	inline bool QSimpleXMLParser::StringUtility::isWhitespace(char x)
 	{
 		//Characters outside the ASCII range are not considered
 		return !(x & 0x80) && isspace(x);
 	}
-	inline bool StringUtility::isAllWhitespace(const string& str)
+	inline bool StringUtility::isAllWhitespace(const std::string& str)
 	{
 		if (str.empty()) return true;
 		size_t holder;

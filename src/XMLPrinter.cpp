@@ -7,15 +7,15 @@
 #include "XMLNode.hpp"
 
 namespace QSimpleXMLParser {
-	bool XMLPrinter::visitEntry(XMLElement* node)
+	bool XMLPrinter::visitEntry(XMLElement& node)
 	{
-		if(!isText(node->previousSibling())) controlIndent();
+		if(!isText(node.previousSibling())) controlIndent();
 		_deep++;
 		
 		print("<");
-		print(node->getValue());	
+		print(node.getValue());	
 		
-		auto attributes = node->getAllAttributes();
+		auto attributes = node.getAllAttributes();
 		for (auto attr : attributes) {
 			print(' ');
 			print(attr.first);
@@ -24,9 +24,9 @@ namespace QSimpleXMLParser {
 			print('\"');
 		}
 
-		if (node->firstChild()) {
+		if (node.firstChild()) {
 			print(">");
-			if (!isText(node->firstChild())) print('\n');
+			if (!isText(node.firstChild())) print('\n');
 			return true;
 		}
 		else {
@@ -35,53 +35,53 @@ namespace QSimpleXMLParser {
 		}
 	}
 
-	bool XMLPrinter::visitExit(XMLElement* node)
+	bool XMLPrinter::visitExit(XMLElement& node)
 	{
 		_deep--;
-		if (node->firstChild()) {
-			if (!isText(node->lastChild())) controlIndent();
+		if (node.firstChild()) {
+			if (!isText(node.lastChild())) controlIndent();
 			print("</");
-			print(node->getValue());
+			print(node.getValue());
 			print(">");
 		}
-		if (!isText(node->nextSibling())) print('\n');
+		if (!isText(node.nextSibling())) print('\n');
 
 		return true;
 	}
 
-	bool XMLPrinter::visit(XMLText* node)
+	bool XMLPrinter::visit(XMLText& node)
 	{
-		print(node->getValue());
+		print(node.getValue());
 		return true;
 	}
 
-	bool XMLPrinter::visit(XMLCDATA* node)
+	bool XMLPrinter::visit(XMLCDATA& node)
 	{
-		if (!isText(node->previousSibling())) controlIndent();
+		if (!isText(node.previousSibling())) controlIndent();
 		print("<![");
-		print(node->getValue());
+		print(node.getValue());
 		print("]]>");
-		if (!isText(node->nextSibling())) print('\n');
+		if (!isText(node.nextSibling())) print('\n');
 		return true;
 	}
 
-	bool XMLPrinter::visit(XMLComment* node)
+	bool XMLPrinter::visit(XMLComment& node)
 	{
-		if (!isText(node->previousSibling())) controlIndent();
+		if (!isText(node.previousSibling())) controlIndent();
 		print("<!--");
-		print(node->getValue());
+		print(node.getValue());
 		print("-->");
-		if (!isText(node->nextSibling())) print('\n');
+		if (!isText(node.nextSibling())) print('\n');
 		return true;
 	}
 
-	bool XMLPrinter::visit(XMLDeclaration* node)
+	bool XMLPrinter::visit(XMLDeclaration& node)
 	{
-		if (!isText(node->previousSibling())) controlIndent();
+		if (!isText(node.previousSibling())) controlIndent();
 		print("<?");
-		print(node->getValue());
+		print(node.getValue());
 		print("?>");
-		if (!isText(node->nextSibling())) print('\n');
+		if (!isText(node.nextSibling())) print('\n');
 		return true;
 	}
 	

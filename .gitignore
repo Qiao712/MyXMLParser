@@ -1,1 +1,4 @@
 .vs/
+src/Doxyfile
+src/doc/
+x64/

@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\StringUtility.hpp" />
-    <ClInclude Include="src\XMLAttribute.hpp" />
     <ClInclude Include="src\XMLCDATA.hpp" />
     <ClInclude Include="src\XMLComment.hpp" />
     <ClInclude Include="src\XMLDeclaration.hpp" />
@@ -155,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\StringUtility.cpp" />
-    <ClCompile Include="src\XMLAttribute.cpp" />
     <ClCompile Include="src\XMLCDATA.cpp" />
     <ClCompile Include="src\XMLComment.cpp" />
     <ClCompile Include="src\XMLDeclaration.cpp" />
@@ -167,7 +165,6 @@
     <ClCompile Include="src\XMLTerminalNode.cpp" />
     <ClCompile Include="src\XMLText.cpp" />
     <ClCompile Include="src\XMLVisitor.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

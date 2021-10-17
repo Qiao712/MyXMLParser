@@ -8,6 +8,8 @@
 #include "XMLCDATA.hpp"
 #include "StringUtility.hpp"
 
+using std::string;
+
 namespace QSimpleXMLParser {
     XMLElement* XMLNonterminalNode::fisrtElementChild()
     {
@@ -117,6 +119,18 @@ namespace QSimpleXMLParser {
         delete child;
         return true;
     }
+    bool XMLNonterminalNode::removeAllChildren()
+    {
+        if (_first_child == nullptr) return false;
+        XMLNode* p = _first_child;
+        XMLNode* next;
+        while (p != nullptr) {
+            next = p->_next_sibling;
+            delete p;
+            p = next;
+        }
+        return true;
+    }
     XMLNonterminalNode::~XMLNonterminalNode()
     {
         //delete all children
@@ -128,7 +142,7 @@ namespace QSimpleXMLParser {
             delete p;
         }
     }
-    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
+    const char* XMLNonterminalNode::parseChildren(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error)
     {
         const char* p = beg;
         XMLNode* new_node;
@@ -143,7 +157,7 @@ namespace QSimpleXMLParser {
                 }
                 else {
                     //error: unpaired tags <- wrong tag name
-                    parsing_error.setParsingError(XML_PARSE_ERROR_UNPAIRED_TAG, beg);
+                    parsing_error.setParseError(XML_PARSE_ERROR_UNPAIRED_TAG, beg);
                     return nullptr;
                 }
             }
@@ -177,7 +191,7 @@ namespace QSimpleXMLParser {
 
         return p;
     }
-    Token XMLNonterminalNode::checkStart(const char* beg, const char* end)
+    XMLNonterminalNode::Token XMLNonterminalNode::checkStart(const char* beg, const char* end)
     {
         constexpr char CDATA_BEG[] = "![CDATA[";
         constexpr int LEN_CDATA_BEG = 8;
@@ -214,14 +228,14 @@ namespace QSimpleXMLParser {
         }
         return nullptr;
     }
-    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name, ParsingError& parsing_error)
+    const char* XMLNonterminalNode::matchTag(const char* beg, const char* end, const string& parent_tag_name, ParseError& parsing_error)
     {
         const char* tag_name_beg = beg + 2;
         const char* tag_name_end = StringUtility::findChar('>', beg, end);
 
         if (tag_name_end == end) {
             //error: </....
-            parsing_error.setParsingError(XML_PARSE_ERROR_UNCLOSED_PARENTHESE, beg);
+            parsing_error.setParseError(XML_PARSE_ERROR_UNCLOSED_PARENTHESE, beg);
         }
 
         size_t len = tag_name_end - tag_name_beg;

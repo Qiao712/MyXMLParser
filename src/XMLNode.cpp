@@ -33,9 +33,9 @@ namespace QSimpleXMLParser {
 		_parent = nullptr;
 	}
 
-	void ParsingError::setParsingError(XMLParseError error, const char* where_error)
+	void ParseError::setParseError(XMLParseError error, const char* where_error)
 	{
-		ParsingError::error = error;
+		ParseError::error = error;
 
 		//find error line
 		const char* line_beg = StringUtility::countNewline(raw_xml_beg, where_error, error_line);
@@ -44,7 +44,7 @@ namespace QSimpleXMLParser {
 		error_line++;
 	}
 
-	void ParsingError::clear()
+	void ParseError::clear()
 	{
 		error = XML_PARSE_SUCCESS;
 		error_line = 0;

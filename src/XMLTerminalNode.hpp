@@ -2,21 +2,28 @@
 #include "XMLNode.hpp"
 
 namespace QSimpleXMLParser {
-class XMLTerminalNode : public XMLNode
-{
-public:
-    XMLNode* firstChild() override { return nullptr; }
-    XMLNode* lastChild() override { return nullptr; }
-    XMLElement* fisrtElementChild() override { return nullptr; }
-    XMLElement* lastElementChild()  override { return nullptr; }
-    XMLElement* findElementByTagName(const string& tag_name, XMLNode* start = nullptr) override { return nullptr; }
+    /**
+    * Base class of terminal node(text, comment, declaration).
+    */
+    class XMLTerminalNode : public XMLNode
+    {
+    public:
+        /// Always return nullptr.
+        XMLNode* firstChild() override { return nullptr; } 
+        XMLNode* lastChild() override { return nullptr; }   ///< Always return nullptr.
+        XMLElement* fisrtElementChild() override { return nullptr; } ///< Always return nullptr.
+        XMLElement* lastElementChild()  override { return nullptr; } ///< Always return nullptr.
+        /// Always return nullptr.
+        XMLElement* findElementByTagName(const std::string& tag_name, XMLNode* start = nullptr) override { return nullptr; } 
 
-    bool addFirstChild(XMLNode* child) override { return false; }
-    bool addLastChild(XMLNode* child) override { return false; }
-    bool insertChild(XMLNode* child, XMLNode* after_this) override { return false; }
-    bool removeFirstChild() override { return false; }
-    bool removeLastChild() override { return false; }
-    bool removeChild(XMLNode* child) override { return false; }
+        /// Always return flase.
+        bool addFirstChild(XMLNode* node) override { return false; }
+        bool addLastChild(XMLNode* node) override { return false; } ///< Always return flase.
+        bool insertChild(XMLNode* node, XMLNode* after_this) override { return false; } ///< Always return flase.
+        bool removeFirstChild() override { return false; } ///< Always return flase.
+        bool removeLastChild() override { return false; } ///< Always return flase.
+        bool removeChild(XMLNode* node) override { return false; } ///< Always return flase.
+        bool removeAllChildren() override { return false; } ///< Always return flase.
 };
 }
 

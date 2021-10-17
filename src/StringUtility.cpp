@@ -2,8 +2,11 @@
 
 #include <cstring>
 #include <cctype>
+
+using std::string;
+
 namespace QSimpleXMLParser {
-	std::string StringUtility::processText(const char* beg, const char* end, unsigned int process)
+	string StringUtility::processText(const char* beg, const char* end, unsigned int process)
 	{
 		string result;
 		result.reserve(end - beg);

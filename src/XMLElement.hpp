@@ -1,70 +1,103 @@
 #pragma once
 #include "XMLNonterminalNode.hpp"
-#include "XMLAttribute.hpp"
 #include "StringUtility.hpp"
 
 #include <map>
 #include <string>
 
 namespace QSimpleXMLParser{
-using std::map;
-using std::string;
+    /**
+    * XML Element node class.
+    */
+    class XMLElement : public XMLNonterminalNode {
+        friend class XMLNonterminalNode;
+    public:
+        XMLElement() = default;
+        XMLElement(const std::string& tag_name) : _tag_name(tag_name) {}
+        XMLElement(std::string&& tag_name):_tag_name(tag_name){ }
 
-class XMLElement : public XMLNonterminalNode {
-    friend class XMLNonterminalNode;
-public:
-    XMLElement() = default;
-    XMLElement(const string& tag_name) : _tag_name(tag_name) {}
-    XMLElement(string&& tag_name):_tag_name(tag_name){ }
-
-    bool containAttribute(const string& name) { return _attributes.find(name) != _attributes.end(); }
+        /// Query whether the attribute exists.
+        bool containAttribute(const std::string& name) { return _attributes.find(name) != _attributes.end(); }
     
-    bool deleteAttribute(const string& name);
+        /// Delete the attribute. If not exist, return false.
+        bool deleteAttribute(const std::string& name);
     
-    const string& getAttribute(const string& name) const;
-    bool getAttribute(const string& name, string& value) const { value = getAttribute(name); }
-    bool getAttribute(const string& name, double& value) const;
-    bool getAttribute(const string& name, long double& value) const;
-    bool getAttribute(const string& name, float& value) const;
-    bool getAttribute(const string& name, int& value) const;
-    bool getAttribute(const string& name, long& value) const;
-    bool getAttribute(const string& name, long long& value) const;
-    bool getAttribute(const string& name, unsigned int& value) const;
-    bool getAttribute(const string& name, unsigned long& value) const;
-    bool getAttribute(const string& name, unsigned long long& value) const;
-    bool getAttribute(const string& name, bool& value) const;
-    const map<string, string> getAllAttributes() { return _attributes; }
+        /// Return the attribute's std::string value. If not exist, return empty std::string.
+        const std::string& getAttribute(const std::string& name) const;
+        /// Copy the attribute's value to 'value'. If not exist, return false.
+        bool getAttribute(const std::string& name, std::string& value) const { value = getAttribute(name); }
+        /// Put the attribute's value in 'value' as double. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, double& value) const;
+        /// Put the attribute's value in 'value' as long double. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, long double& value) const;
+        /// Put the attribute's value in 'value' as float. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, float& value) const;
+        /// Put the attribute's value in 'value' as int. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, int& value) const;
+        /// Put the attribute's value in 'value' as long. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, long& value) const;
+        /// Put the attribute's value in 'value' as long long. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, long long& value) const;
+        /// Put the attribute's value in 'value' as unsigned int. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, unsigned int& value) const;
+        /// Put the attribute's value in 'value' as unsigned long. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, unsigned long& value) const;
+        /// Put the attribute's value in 'value' as unsigned long long. If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, unsigned long long& value) const;
+        /// Put the attribute's value in 'value' as bool. Only "true" and "false" are legal(Case insensitive).If the conversion fails or the attribute doesn't exist, return false.
+        bool getAttribute(const std::string& name, bool& value) const;
+        /// Return the std::map contains all attributes.
+        const std::map<std::string, std::string> getAllAttributes() { return _attributes; }
 
-    void setAttribute(const string& name, const string& value) { _attributes[name].assign(value); }
-    void setAttribute(const string& name, string&& value) { _attributes[name].assign(value); }
-    void setAttribute(const string& name, double value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, long double value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, float value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, int value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, long value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, long long value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, unsigned int value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, unsigned long value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, unsigned long long value) { _attributes[name].assign(std::to_string(value)); }
-    void setAttribute(const string& name, bool value) { value ? _attributes[name].assign("true") : _attributes[name].assign("false"); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, const std::string& value) { _attributes[name].assign(value); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, std::string&& value) { _attributes[name].assign(value); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, double value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, long double value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, float value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, int value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, long value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, long long value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, unsigned int value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, unsigned long value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. If not exist, add it.
+        void setAttribute(const std::string& name, unsigned long long value) { _attributes[name].assign(std::to_string(value)); }
+        /// Set the attribute's value. ("true" or "false") If not exist, add it.
+        void setAttribute(const std::string& name, bool value) { value ? _attributes[name].assign("true") : _attributes[name].assign("false"); }
 
-    const string& getTagName() const { return _tag_name; }
-    void setTagName(const string& tag_name) { _tag_name = tag_name; }
-    void setTagName(string&& tag_name) { _tag_name = tag_name; }
-    const string& getValue() const override { return getTagName(); }
-    void setValue(const string& value) override { setTagName(value); }
-    void setValue(string&& value) override { setTagName(value); }
+        /// Get tag name.
+        const std::string& getTagName() const { return _tag_name; }
+        /// Set tag name.
+        void setTagName(const std::string& tag_name) { _tag_name = tag_name; }
+        /// Set tag name.
+        void setTagName(std::string&& tag_name) { _tag_name = tag_name; }
+    
+        /// Get tag name.
+        const std::string& getValue() const override { return getTagName(); }
+        /// Set tag name.
+        void setValue(const std::string& value) override { setTagName(value); }
+        /// Set tag name.
+        void setValue(std::string&& value) override { setTagName(value); }
 
-    XMLElement* clone() override;
-    XMLElement* deepClone() override { return reinterpret_cast<XMLElement*>(doDeepClone()); }
+        XMLElement* clone() override;
+        XMLElement* deepClone() override { return reinterpret_cast<XMLElement*>(doDeepClone()); }
 
-    bool accept(XMLVisitor& visitor) override;
-private:
-    const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error) override;
-    XMLParseError parseAttribute(const char* beg, const char* end);
-    bool checkName(const char* beg, const char* end);
+        bool accept(XMLVisitor& visitor) override;
+    private:
+        const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error) override;
+        XMLParseError parseAttribute(const char* beg, const char* end);
+        bool checkName(const char* beg, const char* end);
 
-    string _tag_name;
-    map<string, string> _attributes;
-};
+        std::string _tag_name;
+        std::map<std::string, std::string> _attributes;
+    };
 }

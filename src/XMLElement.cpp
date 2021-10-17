@@ -1,5 +1,4 @@
 #include "XMLElement.hpp"
-#include "XMLAttribute.hpp"
 #include "StringUtility.hpp"
 
 #include <cctype>
@@ -17,7 +16,7 @@ namespace QSimpleXMLParser{
 		}
 		return true;
 	}
-	bool XMLElement::deleteAttribute(const string& name)
+	bool XMLElement::deleteAttribute(const std::string& name)
 	{
 		if (_attributes.erase(name) == 0) return false;
 		return true;
@@ -31,18 +30,18 @@ namespace QSimpleXMLParser{
 	}
 	bool XMLElement::accept(XMLVisitor& visitor)
 	{
-		if (visitor.visitEntry(this)) {
+		if (visitor.visitEntry(*this)) {
 			XMLNonterminalNode::visitChildern(visitor);
 		}
-		return visitor.visitExit(this);
+		return visitor.visitExit(*this);
 	}
-	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParsingError& parsing_error)
+	const char* XMLElement::parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error)
 	{
 		const char* tag_beg = beg + 1;
 		const char* tag_end = StringUtility::findChar('>', beg + 1, end);
 		if (tag_end == end) {
 			//<tag_name... ....
-			parsing_error.setParsingError(XML_PARSE_ERROR_UNCLOSED_PARENTHESE, beg);
+			parsing_error.setParseError(XML_PARSE_ERROR_UNCLOSED_PARENTHESE, beg);
 			return nullptr;
 		}
 
@@ -55,7 +54,7 @@ namespace QSimpleXMLParser{
 		
 		if (!checkName(tag_name_beg, tag_name_end)) {
 			//error: bad tag name
-			parsing_error.setParsingError(XML_PARSE_ERROR_INVALID_TAG_NAME, tag_name_beg);
+			parsing_error.setParseError(XML_PARSE_ERROR_INVALID_TAG_NAME, tag_name_beg);
 			return nullptr;
 		}
 		_tag_name.assign(tag_name_beg, tag_name_end);
@@ -63,7 +62,7 @@ namespace QSimpleXMLParser{
 		//parse attributes
 		XMLParseError attr_error = parseAttribute(tag_name_end, _is_closing ? tag_end - 1 : tag_end);
  		if (attr_error != XML_PARSE_SUCCESS) {
-			parsing_error.setParsingError(attr_error, beg);
+			parsing_error.setParseError(attr_error, beg);
 		}
 
 		if (_is_closing) return tag_end + 1;
@@ -72,7 +71,7 @@ namespace QSimpleXMLParser{
 		const char* p = parseChildren(tag_end + 1, end, this, parsing_error);
 		if (p == end && _is_closing == false) {
 			//error: wrong end tag
-			parsing_error.setParsingError(XML_PARSE_ERROR_WRONG_END_TAG, beg);
+			parsing_error.setParseError(XML_PARSE_ERROR_WRONG_END_TAG, beg);
 			return nullptr;
 		}
 
@@ -92,7 +91,7 @@ namespace QSimpleXMLParser{
 			if (q == end) return XML_PARSE_ERROR_ATTR;
 			r = StringUtility::skipBackWhitespace(p, q);
 			if (!checkName(p, r)) return XML_PARSE_ERROR_ATTR;
-			string name(p, r);
+			std::string name(p, r);
 			p = q;
 			
 			// "
@@ -103,7 +102,7 @@ namespace QSimpleXMLParser{
 			// value
 			q = StringUtility::findChar('\"', p, end);
 			if (q == end) return XML_PARSE_ERROR_ATTR;
-			string value = StringUtility::processText(p, q, StringUtility::NORMALIZE_NEWLINE & StringUtility::TRANSLATE_ENTITY);
+			std::string value = StringUtility::processText(p, q, StringUtility::NORMALIZE_NEWLINE & StringUtility::TRANSLATE_ENTITY);
 			p = q + 1;
 
 			if (_attributes.count(name) != 0) return XML_PARSE_ERROR_DUPLICATE_ATTR_NAME;
@@ -112,50 +111,50 @@ namespace QSimpleXMLParser{
 
 		return XML_PARSE_SUCCESS;
 	}
-	const string& XMLElement::getAttribute(const string& name) const
+	const std::string& XMLElement::getAttribute(const std::string& name) const
 	{
-		static const string empty_str;
+		static const std::string empty_str;
 		auto it = _attributes.find(name);
 		if (it == _attributes.end()) return empty_str;
 		return it->second;
 	}	
-	bool XMLElement::getAttribute(const string& name, double& value) const
+	bool XMLElement::getAttribute(const std::string& name, double& value) const
 	{
 		try { value = std::stod(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, long double& value) const
+	bool XMLElement::getAttribute(const std::string& name, long double& value) const
 	{
 		try { value = std::stold(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, float& value) const
+	bool XMLElement::getAttribute(const std::string& name, float& value) const
 	{
 		try { value = std::stof(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, int& value) const
+	bool XMLElement::getAttribute(const std::string& name, int& value) const
 	{
 		try { value = std::stoi(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, long& value) const
+	bool XMLElement::getAttribute(const std::string& name, long& value) const
 	{
 		try { value = std::stol(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, long long& value) const
+	bool XMLElement::getAttribute(const std::string& name, long long& value) const
 	{
 		try { value = std::stoll(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, unsigned int& value) const
+	bool XMLElement::getAttribute(const std::string& name, unsigned int& value) const
 	{
 		try {
 			unsigned long t = std::stoul(getAttribute(name));
@@ -168,24 +167,24 @@ namespace QSimpleXMLParser{
 		}
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, unsigned long& value) const
+	bool XMLElement::getAttribute(const std::string& name, unsigned long& value) const
 	{
 		try { value = std::stoul(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, unsigned long long& value) const
+	bool XMLElement::getAttribute(const std::string& name, unsigned long long& value) const
 	{
 		try { value = std::stoull(getAttribute(name)); }
 		catch (std::exception& e) { return false; }
 		return true;
 	}
-	bool XMLElement::getAttribute(const string& name, bool& value) const
+	bool XMLElement::getAttribute(const std::string& name, bool& value) const
 	{
 		static const char* TRUES[] = { "true", "TRUE" };
 		static const char* FALSES[] = { "false", "FALSE" };
 
-		const string& attr_value = getAttribute(name);
+		const std::string& attr_value = getAttribute(name);
 		
 		int i;
 		if (attr_value.length() == 4) {
