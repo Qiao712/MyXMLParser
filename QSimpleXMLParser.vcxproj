@@ -165,6 +165,7 @@
     <ClCompile Include="src\XMLTerminalNode.cpp" />
     <ClCompile Include="src\XMLText.cpp" />
     <ClCompile Include="src\XMLVisitor.cpp" />
+    <ClCompile Include="test\test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

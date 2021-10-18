@@ -1,13 +1,13 @@
 #include <iostream>
-#include "src/StringUtility.hpp"
-#include "src/XMLComment.hpp"
-#include "src/XMLDeclaration.hpp"
-#include "src/XMLDocument.hpp"
-#include "src/XMLElement.hpp"
-#include "src/XMLText.hpp"
-#include "src/XMLCDATA.hpp"
-#include "src/XMLVisitor.hpp"
-#include "src/XMLPrinter.hpp"
+#include "../src/StringUtility.hpp"
+#include "../src/XMLComment.hpp"
+#include "../src/XMLDeclaration.hpp"
+#include "../src/XMLDocument.hpp"
+#include "../src/XMLElement.hpp"
+#include "../src/XMLText.hpp"
+#include "../src/XMLCDATA.hpp"
+#include "../src/XMLVisitor.hpp"
+#include "../src/XMLPrinter.hpp"
 
 #include <fstream>
 #include <iostream>
