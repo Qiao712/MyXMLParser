@@ -29,6 +29,11 @@
     
     node1.removeFirstChild();
 ```
+将DOM打印为XML文档
+```c++
+    XMLPrinter printer(std::cout);
+    doc.accept(printer);
+```
 
 # QSimpleXMLParser
 A simply, small, inefficient, and probably unusable XML parser. Borrowed many things from [TinyXML-2](https://github.com/leethomason/tinyxml2).  
@@ -60,4 +65,9 @@ Visit the DOM tree.
     delete node1.firstChild();
     
     node1.removeFirstChild();
+```
+Print DOM as XML document.
+```c++
+    XMLPrinter printer(std::cout);
+    doc.accept(printer);
 ```
