@@ -1,6 +1,5 @@
 # QSimpleXMLParser
 一个简单的、小的、并不高效、可能也不易用的XML解析器。大量借鉴了[TinyXML-2](https://github.com/leethomason/tinyxml2)。  
-它将XML文档解析为Document Object Model(DOM)。
 
 ## 特点与坑
 * 仅支持ASCII和UTF-8。
@@ -25,4 +24,40 @@
     }
 
     node1.addLastChild(new XMLText("Test"));
+
+    delete node1.firstChild();
+    
+    node1.removeFirstChild();
+```
+
+# QSimpleXMLParser
+A simply, small, inefficient, and probably unusable XML parser. Borrowed many things from [TinyXML-2](https://github.com/leethomason/tinyxml2).  
+
+## Feature and Flaws
+* Only support ASCII and UTF-8.
+* Parse xml recusively.
+* Memory management is not well. Every node object is newed standalone. Maybe implement memory pool like TinyXML-2.
+* Attributes of elements are not treaded treated as nodes.
+* Declaration will not be process. Only store its content.
+* Children of a node are originzed by a link list.
+* The interfaces may be not desirable.
+
+## Example Usages
+Read XML from file and parse it.
+```c++
+    XMLDocument doc;
+    doc.loadFile("test.xml");
+```
+Visit the DOM tree.
+```c++
+    XMLNode* node1 = doc.firstChild();
+    for(XMLNode* p = node1; p != nullptr; p = p->nextSibling()){
+        cout<<node1.getValue()<<endl;
+    }
+
+    node1.addLastChild(new XMLText("Test"));
+
+    delete node1.firstChild();
+    
+    node1.removeFirstChild();
 ```
