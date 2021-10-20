@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_DOCUMENT__
+#define __XML_DOCUMENT__
 #include "XMLNonterminalNode.hpp"
 
 namespace QSimpleXMLParser{
@@ -86,3 +87,5 @@ namespace QSimpleXMLParser{
         ParseError _parse_error;
     };
 }
+
+#endif

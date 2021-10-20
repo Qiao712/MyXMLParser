@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __STRING_UTILITY__
+#define __STRING_UTILITY__
+
 #include <cctype>
 #include <cstdint>
 #include <string>
@@ -200,3 +202,4 @@ namespace QSimpleXMLParser {
 	}
 }
 
+#endif

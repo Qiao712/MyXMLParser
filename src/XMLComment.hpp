@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_COMMENT__
+#define __XML_COMMENT__
 #include "XMLTerminalNode.hpp"
 #include "StringUtility.hpp"
 #include "XMLVisitor.hpp"
@@ -32,3 +33,5 @@ namespace QSimpleXMLParser {
 		std::string _content;
 	};
 }
+
+#endif

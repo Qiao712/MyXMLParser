@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_VISITOR__
+#define __XML_VISITOR__
 namespace QSimpleXMLParser {
 	class XMLDocument;
 	class XMLElement;
@@ -43,3 +44,4 @@ namespace QSimpleXMLParser {
 	};
 }
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_TERMINALNODE__
+#define __XML_TERMINALNODE__
 #include "XMLNode.hpp"
 
 namespace QSimpleXMLParser {
@@ -27,3 +28,4 @@ namespace QSimpleXMLParser {
 };
 }
 
+#endif

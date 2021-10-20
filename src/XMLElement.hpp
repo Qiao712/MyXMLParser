@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_ELEMENT__
+#define __XML_ELEMENT__
 #include "XMLNonterminalNode.hpp"
 #include "StringUtility.hpp"
 
@@ -101,3 +102,5 @@ namespace QSimpleXMLParser{
         std::map<std::string, std::string> _attributes;
     };
 }
+
+#endif

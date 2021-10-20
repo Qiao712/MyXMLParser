@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_NODE__
+#define __XML_NODE__
 #include <string>
 namespace QSimpleXMLParser{
     /// code of parsing error
@@ -6,14 +7,14 @@ namespace QSimpleXMLParser{
         XML_PARSE_SUCCESS = 0,
         XML_PARSE_ERROR_DECLARATION,
 
-        XML_PARSE_ERROR_UNPAIRED_TAG,      //Unpaired tag Î´Åä¶ÔµÄ±êÇ©
-        XML_PARSE_ERROR_WRONG_END_TAG,     //wrong end tag ´íÎóµÄ½áÊø±êÇ©
-        XML_PARSE_ERROR_UNCLOSED_PARENTHESE,  //Unclosed parenthese Î´·â±ÕµÄÀ¨ºÅ <....
-        XML_PARSE_ERROR_INVALID_TAG_NAME,      //Invalid tag name ÎÞÐ§µÄ±êÇ©Ãû
+        XML_PARSE_ERROR_UNPAIRED_TAG,      //Unpaired tag Î´ï¿½ï¿½ÔµÄ±ï¿½Ç©
+        XML_PARSE_ERROR_WRONG_END_TAG,     //wrong end tag ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½Ç©
+        XML_PARSE_ERROR_UNCLOSED_PARENTHESE,  //Unclosed parenthese Î´ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ <....
+        XML_PARSE_ERROR_INVALID_TAG_NAME,      //Invalid tag name ï¿½ï¿½Ð§ï¿½Ä±ï¿½Ç©ï¿½ï¿½
 
         XML_PARSE_ERROR_ATTR,
-        XML_PARSE_ERROR_DUPLICATE_ATTR_NAME,   //ÖØ¸´µÄÊôÐÔÃû
-        XML_PARSE_ERROR_INVALID_ATTR_NAME,      //ÎÞÐ§µÄÊôÐÔÃû
+        XML_PARSE_ERROR_DUPLICATE_ATTR_NAME,   //ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        XML_PARSE_ERROR_INVALID_ATTR_NAME,      //ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         XML_PARSE_ERROR_UNCLOSED_CDATA
     };
@@ -159,3 +160,5 @@ namespace QSimpleXMLParser{
         XMLNode(const XMLNode&) = delete;
     };
 }
+
+#endif

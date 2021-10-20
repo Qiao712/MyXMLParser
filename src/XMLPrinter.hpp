@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_PRINTER__
+#define __XML_PRINTER__
 #include "XMLVisitor.hpp"
 #include "XMLText.hpp"
 
@@ -36,3 +37,4 @@ namespace QSimpleXMLParser {
 	};
 }
 
+#endif

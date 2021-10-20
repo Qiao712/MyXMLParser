@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_NONTERMINALNODE__
+#define __XML_NONTERMINALNODE__
 #include "XMLNode.hpp"
 #include "XMLVisitor.hpp"
 
@@ -50,3 +51,4 @@ namespace QSimpleXMLParser {
     };
 }
 
+#endif

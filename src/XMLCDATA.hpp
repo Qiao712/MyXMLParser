@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XML_CDATA__
+#define __XML_CDATA__
 #include "XMLText.hpp"
 #include "XMLVisitor.hpp"
 
@@ -18,3 +19,5 @@ namespace QSimpleXMLParser{
 		const char* parse(const char* beg, const char* end, XMLNonterminalNode* parent, ParseError& parsing_error) override;
 	};
 }
+
+#endif
