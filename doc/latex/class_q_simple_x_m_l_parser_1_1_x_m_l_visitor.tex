@@ -1,0 +1,47 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{}\doxysection{QSimple\+XMLParser\+::XMLVisitor Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}\index{QSimpleXMLParser::XMLVisitor@{QSimpleXMLParser::XMLVisitor}}
+
+
+{\ttfamily \#include $<$XMLVisitor.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLVisitor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a6e0de50b22299d6334418894d822a388}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a6e0de50b22299d6334418894d822a388}} 
+virtual bool {\bfseries visit\+Entry} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a document. Will be called before traverse its children recursively. Return false to stop traverse its children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_afed90e1cf916b6aab2ba82fce109998c}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_afed90e1cf916b6aab2ba82fce109998c}} 
+virtual bool {\bfseries visit\+Exit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a document. Will be called after traverse its children recursively. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a2425f637b0214e538f5741bbfe90ccee}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a2425f637b0214e538f5741bbfe90ccee}} 
+virtual bool {\bfseries visit\+Entry} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a element. Will be called before traverse its children recursively. Return false to stop traverse its children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a5a79ebc19d1741642f73b5da4aa396dc}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a5a79ebc19d1741642f73b5da4aa396dc}} 
+virtual bool {\bfseries visit\+Exit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a document. Will be called after traverse its children recursively. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a7c121f1e9120b9aebae71b91526e5be6}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a7c121f1e9120b9aebae71b91526e5be6}} 
+virtual bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a text node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a296d38c3a1c0a570c02fe68ff78f7fe2}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a296d38c3a1c0a570c02fe68ff78f7fe2}} 
+virtual bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a CDATA node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a81c06a90164d347c63f54688f356ca77}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a81c06a90164d347c63f54688f356ca77}} 
+virtual bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a Comment node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a733cd8b21ee30007499a416ca1b32ba5}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a733cd8b21ee30007499a416ca1b32ba5}} 
+virtual bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}} \&node)
+\begin{DoxyCompactList}\small\item\em Visit a declaration node. Return false to stop traverse its siblings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface to a visitor(\+Visitor Pattern). Call a node\textquotesingle{}s accept(\+XMLVisitor\&) with a \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} object, then the visitor will traverses its every descentant in preorder traversal and call corresponding visit function with the node based on its type. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+XMLVisitor.\+hpp\end{DoxyCompactItemize}

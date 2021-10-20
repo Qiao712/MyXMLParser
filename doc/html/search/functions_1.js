@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['clear_0',['clear',['../class_q_simple_x_m_l_parser_1_1_x_m_l_document.html#a2b943f14ba17d1928c632363586b800b',1,'QSimpleXMLParser::XMLDocument']]],
+  ['clearerror_1',['clearError',['../class_q_simple_x_m_l_parser_1_1_x_m_l_document.html#acde0097fb48aaaa9f78e64edb8c4559e',1,'QSimpleXMLParser::XMLDocument']]],
+  ['clone_2',['clone',['../class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a.html#a6ba4d6835ee79eb56bedd482edd5c187',1,'QSimpleXMLParser::XMLCDATA::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_comment.html#a8be8dce1cf7a05c0d02a47a36c0bf787',1,'QSimpleXMLParser::XMLComment::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_declaration.html#a3183767c4bba343ce6e7f0a4e0ea5067',1,'QSimpleXMLParser::XMLDeclaration::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_document.html#a8ed51b7e7cc404c1d9f112bf0e986a5f',1,'QSimpleXMLParser::XMLDocument::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_element.html#ae110bda0375c78f95972c8c2525ca8db',1,'QSimpleXMLParser::XMLElement::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_node.html#ac345cc65f19b97506fd10f54bf56991f',1,'QSimpleXMLParser::XMLNode::clone()'],['../class_q_simple_x_m_l_parser_1_1_x_m_l_text.html#a1f33164b49c908a38e48613af4f76683',1,'QSimpleXMLParser::XMLText::clone()']]],
+  ['containattribute_3',['containAttribute',['../class_q_simple_x_m_l_parser_1_1_x_m_l_element.html#a01723ba52b5d095f22d0665c45f6bb47',1,'QSimpleXMLParser::XMLElement']]]
+];

@@ -1,0 +1,36 @@
+\hypertarget{_x_m_l_printer_8hpp_source}{}\doxysection{XMLPrinter.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}XMLVisitor.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}XMLText.hpp"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }QSimpleXMLParser \{}
+\DoxyCodeLine{11     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer}{XMLPrinter}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}}}
+\DoxyCodeLine{12     \{}
+\DoxyCodeLine{13     \textcolor{keyword}{public}:}
+\DoxyCodeLine{18         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a873698c3cc278649b08014792c42f523}{XMLPrinter}}(std::ostream\& out, \textcolor{keyword}{const} std::string\& indent = \textcolor{stringliteral}{"{}  "{}}) : \_out(out), \_indent(indent) \{ \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_ad21885a4f2f9ac94ac4bcd5d22c8f7f0}{visitEntry}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{21         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a6b9724933714598f75511791a4e4177d}{visitExit}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{22         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}{visit}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{23         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}{visit}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{24         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}{visit}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{25         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}{visit}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}\& node) \textcolor{keyword}{override};}
+\DoxyCodeLine{26     \textcolor{keyword}{private}:}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} print(\textcolor{keyword}{const} std::string\& str) \{ \_out << str; \}}
+\DoxyCodeLine{28         \textcolor{keywordtype}{void} print(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str) \{ \_out << str; \}}
+\DoxyCodeLine{29         \textcolor{keywordtype}{void} print(\textcolor{keywordtype}{char} chr) \{ \_out.put(chr); \}}
+\DoxyCodeLine{30         \textcolor{keywordtype}{void} controlIndent() \{ \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \_deep; i++) print(\_indent); \}}
+\DoxyCodeLine{31         \textcolor{keywordtype}{bool} isText(XMLNode* node) \{ \textcolor{keywordflow}{return} node != \textcolor{keyword}{nullptr} \&\& \textcolor{keyword}{typeid}(*node) == \textcolor{keyword}{typeid}(XMLText); \}}
+\DoxyCodeLine{32         }
+\DoxyCodeLine{33         \textcolor{keywordtype}{size\_t} \_deep = 0;}
+\DoxyCodeLine{34         std::string \_indent;}
+\DoxyCodeLine{35         std::ostream\& \_out;}
+\DoxyCodeLine{36     \};}
+\DoxyCodeLine{37 \}}
+\DoxyCodeLine{38 }
+
+\end{DoxyCode}

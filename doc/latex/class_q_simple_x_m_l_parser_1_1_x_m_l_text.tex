@@ -1,0 +1,63 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{}\doxysection{QSimple\+XMLParser\+::XMLText Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text}\index{QSimpleXMLParser::XMLText@{QSimpleXMLParser::XMLText}}
+
+
+{\ttfamily \#include $<$XMLText.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLText\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_text}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a4963a4d99796f14fe9f7140d3df4b8ef}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a4963a4d99796f14fe9f7140d3df4b8ef}} 
+const std\+::string \& {\bfseries get\+Value} () const override
+\begin{DoxyCompactList}\small\item\em Get text std\+::string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_adafa32ed75d345e9b3eddb7848263fed}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_adafa32ed75d345e9b3eddb7848263fed}} 
+virtual void {\bfseries set\+Value} (const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Set text std\+::string.(Entity translation and other operations are not performed here.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a4e5b0a8027a234a8021bb21af68f3f43}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a4e5b0a8027a234a8021bb21af68f3f43}} 
+virtual void {\bfseries set\+Value} (std\+::string \&\&value)
+\begin{DoxyCompactList}\small\item\em Set text std\+::string.(Entity translation and other operations are not performed here.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a1f33164b49c908a38e48613af4f76683}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a1f33164b49c908a38e48613af4f76683}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}} $\ast$ {\bfseries clone} () override
+\begin{DoxyCompactList}\small\item\em Shallow clone.(Clone this node, but not its children. The new node has no child or parent.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a48e275f7971396f10b08e3309ff1db65}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a48e275f7971396f10b08e3309ff1db65}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}} $\ast$ {\bfseries deep\+Clone} () override
+\begin{DoxyCompactList}\small\item\em Clone the node and all its descents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text_ae2fd705d3c861190a4d782b17a1f481e}{accept}} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&visitor) override
+\begin{DoxyCompactList}\small\item\em Accept a visitor to traverse the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+XML Text node class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_text_ae2fd705d3c861190a4d782b17a1f481e}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_text_ae2fd705d3c861190a4d782b17a1f481e}} 
+\index{QSimpleXMLParser::XMLText@{QSimpleXMLParser::XMLText}!accept@{accept}}
+\index{accept@{accept}!QSimpleXMLParser::XMLText@{QSimpleXMLParser::XMLText}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLText\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Accept a visitor to traverse the tree. 
+
+Accept a visitor to visit this node and all its descentants in preorder traversal. When visit a node, it will call corresponding \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} interface.
+
+\begin{DoxyNote}{Note}
+see Visitor Pattern 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{QSimple\+XMLParser\+::\+XMLNode}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLText.\+hpp\item 
+XMLText.\+cpp\end{DoxyCompactItemize}

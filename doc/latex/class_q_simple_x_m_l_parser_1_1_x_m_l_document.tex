@@ -1,0 +1,134 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{}\doxysection{QSimple\+XMLParser\+::XMLDocument Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document}\index{QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}}
+
+
+{\ttfamily \#include $<$XMLDocument.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLDocument\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_document}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a4a5964f84de2abe5be2856ac7eed7486}{parse}} (const char $\ast$xml)
+\begin{DoxyCompactList}\small\item\em Parse an XML from C-\/style std\+::string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_afb0f20cae0965848a186c0cba38f91f2}{parse}} (const std\+::string \&xml)
+\begin{DoxyCompactList}\small\item\em Parse an XML from std\+::string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ab6d92afc82151b90d0fefffe17b20cfa}{load\+File}} (const std\+::string path)
+\begin{DoxyCompactList}\small\item\em Parse an XML from xml file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2b943f14ba17d1928c632363586b800b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2b943f14ba17d1928c632363586b800b}} 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Delete all its descentants and clear parse erorr record. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_acde0097fb48aaaa9f78e64edb8c4559e}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_acde0097fb48aaaa9f78e64edb8c4559e}} 
+void {\bfseries clear\+Error} ()
+\begin{DoxyCompactList}\small\item\em Clear parse error record. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a53ad7ca731c0e24297f23079c345a81b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a53ad7ca731c0e24297f23079c345a81b}} 
+bool {\bfseries good} () const
+\begin{DoxyCompactList}\small\item\em Check Whether errors occur during parsing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a3e0c109dab5de113bd10b99e75d94ff4}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a3e0c109dab5de113bd10b99e75d94ff4}} 
+std\+::string {\bfseries get\+Error\+Detail} () const
+\begin{DoxyCompactList}\small\item\em Get detail parse error description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_acdf1a41e0ed7e000f45504171c273f1d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_acdf1a41e0ed7e000f45504171c273f1d}} 
+XMLParse\+Error {\bfseries get\+Error} () const
+\begin{DoxyCompactList}\small\item\em Get parse error code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a28941145224c3b3ea971eb887b0f9919}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a28941145224c3b3ea971eb887b0f9919}} 
+size\+\_\+t {\bfseries get\+Error\+Line} () const
+\begin{DoxyCompactList}\small\item\em Number of line parse error occur in. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a085612e9ed7627e3c276dcfefd53f038}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a085612e9ed7627e3c276dcfefd53f038}} 
+const std\+::string \& {\bfseries get\+Value} () const override
+\begin{DoxyCompactList}\small\item\em Always return empty std\+::string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ab39bbd5a136fa9a04e491b3103c7af66}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ab39bbd5a136fa9a04e491b3103c7af66}} 
+void {\bfseries set\+Value} (const std\+::string \&value) override
+\begin{DoxyCompactList}\small\item\em Do nothing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a539cd126fa3abead865f96480e12117c}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a539cd126fa3abead865f96480e12117c}} 
+void {\bfseries set\+Value} (std\+::string \&\&value) override
+\begin{DoxyCompactList}\small\item\em Do nothing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a8ed51b7e7cc404c1d9f112bf0e986a5f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a8ed51b7e7cc404c1d9f112bf0e986a5f}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}} $\ast$ {\bfseries clone} () override
+\begin{DoxyCompactList}\small\item\em Shallow clone.(Clone this node, but not its children. The new node has no child or parent.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ae10fd7efb34bf93399d1c50a46ae74cc}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ae10fd7efb34bf93399d1c50a46ae74cc}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}} $\ast$ {\bfseries deep\+Clone} () override
+\begin{DoxyCompactList}\small\item\em Clone the node and all its descents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2df5c525ec7691b23e229a2ad3fa651c}{accept}} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&visitor) override
+\begin{DoxyCompactList}\small\item\em Accept a visitor to traverse the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+XML Document node class.
+
+Represent the entire document. It is always a root and can be a child of other node. It can parse a xml document from std\+::string. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2df5c525ec7691b23e229a2ad3fa651c}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2df5c525ec7691b23e229a2ad3fa651c}} 
+\index{QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}!accept@{accept}}
+\index{accept@{accept}!QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLDocument\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Accept a visitor to traverse the tree. 
+
+Accept a visitor to visit this node and all its descentants in preorder traversal. When visit a node, it will call corresponding \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} interface.
+
+\begin{DoxyNote}{Note}
+see Visitor Pattern 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{QSimple\+XMLParser\+::\+XMLNode}}.
+
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ab6d92afc82151b90d0fefffe17b20cfa}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_ab6d92afc82151b90d0fefffe17b20cfa}} 
+\index{QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}!loadFile@{loadFile}}
+\index{loadFile@{loadFile}!QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{loadFile()}{loadFile()}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLDocument\+::load\+File (\begin{DoxyParamCaption}\item[{const std\+::string}]{path }\end{DoxyParamCaption})}
+
+
+
+Parse an XML from xml file. 
+
+Generate DOM tree whoes root node is this document node. Warning\+: All its provious descentants will be deleted.
+
+\begin{DoxyReturn}{Returns}
+Return true on success, or false. You can use \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a3e0c109dab5de113bd10b99e75d94ff4}{get\+Error\+Detail()}}, get\+Error and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a28941145224c3b3ea971eb887b0f9919}{get\+Error\+Line()}} to get detailed error information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a4a5964f84de2abe5be2856ac7eed7486}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a4a5964f84de2abe5be2856ac7eed7486}} 
+\index{QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}!parse@{parse}}
+\index{parse@{parse}!QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLDocument\+::parse (\begin{DoxyParamCaption}\item[{const char $\ast$}]{xml }\end{DoxyParamCaption})}
+
+
+
+Parse an XML from C-\/style std\+::string. 
+
+Generate DOM tree whoes root node is this document node. Warning\+: All its provious descentants will be deleted.
+
+\begin{DoxyReturn}{Returns}
+Return true on success, or false. You can use \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a3e0c109dab5de113bd10b99e75d94ff4}{get\+Error\+Detail()}}, get\+Error and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a28941145224c3b3ea971eb887b0f9919}{get\+Error\+Line()}} to get detailed error information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_document_afb0f20cae0965848a186c0cba38f91f2}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_document_afb0f20cae0965848a186c0cba38f91f2}} 
+\index{QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}!parse@{parse}}
+\index{parse@{parse}!QSimpleXMLParser::XMLDocument@{QSimpleXMLParser::XMLDocument}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLDocument\+::parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{xml }\end{DoxyParamCaption})}
+
+
+
+Parse an XML from std\+::string. 
+
+Generate DOM tree whoes root node is this document node. Warning\+: All its provious descentants will be deleted.
+
+\begin{DoxyReturn}{Returns}
+Return true on success, or false. You can use \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a3e0c109dab5de113bd10b99e75d94ff4}{get\+Error\+Detail()}}, get\+Error and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a28941145224c3b3ea971eb887b0f9919}{get\+Error\+Line()}} to get detailed error information. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLDocument.\+hpp\item 
+XMLDocument.\+cpp\end{DoxyCompactItemize}

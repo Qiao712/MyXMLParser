@@ -1,0 +1,153 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{}\doxysection{QSimple\+XMLParser\+::XMLElement Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element}\index{QSimpleXMLParser::XMLElement@{QSimpleXMLParser::XMLElement}}
+
+
+{\ttfamily \#include $<$XMLElement.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLElement\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_element}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a01723ba52b5d095f22d0665c45f6bb47}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a01723ba52b5d095f22d0665c45f6bb47}} 
+bool {\bfseries contain\+Attribute} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Query whether the attribute exists. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2f8f2ee85e0c0b43020fbc7c73caafa6}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2f8f2ee85e0c0b43020fbc7c73caafa6}} 
+bool {\bfseries delete\+Attribute} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Delete the attribute. If not exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_abec993baea8a8ac53e7593120f1fbb7f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_abec993baea8a8ac53e7593120f1fbb7f}} 
+const std\+::string \& {\bfseries get\+Attribute} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Return the attribute\textquotesingle{}s std\+::string value. If not exist, return empty std\+::string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ae4d22f5e538a5c5c60a64313fadd8dc8}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ae4d22f5e538a5c5c60a64313fadd8dc8}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, std\+::string \&value) const
+\begin{DoxyCompactList}\small\item\em Copy the attribute\textquotesingle{}s value to \textquotesingle{}value\textquotesingle{}. If not exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_abc6f462ef35833aa6f6c24a72ff590aa}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_abc6f462ef35833aa6f6c24a72ff590aa}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, double \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as double. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a3620d06a717ea770fbe197f080352389}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a3620d06a717ea770fbe197f080352389}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, long double \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as long double. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_adac8663838b77707e9886f788f9bdf2d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_adac8663838b77707e9886f788f9bdf2d}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, float \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as float. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a099f5957353def92083b09f50a8ba12a}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a099f5957353def92083b09f50a8ba12a}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, int \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as int. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a17301b55c697db7b0e72387e0ccaa4ca}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a17301b55c697db7b0e72387e0ccaa4ca}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, long \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as long. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac7f0b75b6f02f33e218d2ff9d92fa99c}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac7f0b75b6f02f33e218d2ff9d92fa99c}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, long long \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as long long. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2b17bfe8b59db7ddd080f55dd62ba49f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2b17bfe8b59db7ddd080f55dd62ba49f}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, unsigned int \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as unsigned int. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2d543eb2858f408a3fa9a0ca3e5b9acd}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2d543eb2858f408a3fa9a0ca3e5b9acd}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, unsigned long \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as unsigned long. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2dab802798ea945d4b657399d4fa3cf5}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a2dab802798ea945d4b657399d4fa3cf5}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, unsigned long long \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as unsigned long long. If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a1488fde167dfa1050efe3f847c99b30a}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a1488fde167dfa1050efe3f847c99b30a}} 
+bool {\bfseries get\+Attribute} (const std\+::string \&name, bool \&value) const
+\begin{DoxyCompactList}\small\item\em Put the attribute\textquotesingle{}s value in \textquotesingle{}value\textquotesingle{} as bool. Only \char`\"{}true\char`\"{} and \char`\"{}false\char`\"{} are legal(\+Case insensitive).If the conversion fails or the attribute doesn\textquotesingle{}t exist, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a4087fabb1322f3a7de52c072d127653b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a4087fabb1322f3a7de52c072d127653b}} 
+const std\+::map$<$ std\+::string, std\+::string $>$ {\bfseries get\+All\+Attributes} ()
+\begin{DoxyCompactList}\small\item\em Return the std\+::map contains all attributes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a6a7b4dba272220da700f9f6b0f480e41}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a6a7b4dba272220da700f9f6b0f480e41}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac586f3b8b77f1dcd9469c35010a7aeb8}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac586f3b8b77f1dcd9469c35010a7aeb8}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, std\+::string \&\&value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac8eed02a085dbab66dac6a2253949599}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ac8eed02a085dbab66dac6a2253949599}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, double value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a6b193ad0543a0a52bb13471327a2e930}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a6b193ad0543a0a52bb13471327a2e930}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, long double value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a586fd3d004b4185b2196124826fb7dbf}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a586fd3d004b4185b2196124826fb7dbf}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, float value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_aa704c09da9501d3862b28430fd8fc47b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_aa704c09da9501d3862b28430fd8fc47b}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, int value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_aa7bba04b3e69246049ebbaa07db47c56}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_aa7bba04b3e69246049ebbaa07db47c56}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, long value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a4234404f03b35cb7be2493ab9ae5990b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a4234404f03b35cb7be2493ab9ae5990b}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, long long value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a8d3d5cb89700ebc1082d51e5bb3777e2}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a8d3d5cb89700ebc1082d51e5bb3777e2}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, unsigned int value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a8cc75b53c2235a932d8b126dbaa4176b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a8cc75b53c2235a932d8b126dbaa4176b}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, unsigned long value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a190b7e3b39407c75bcef1c7b9f8b10ee}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a190b7e3b39407c75bcef1c7b9f8b10ee}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, unsigned long long value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a029844405d5f332ff4eb017f61d1640f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a029844405d5f332ff4eb017f61d1640f}} 
+void {\bfseries set\+Attribute} (const std\+::string \&name, bool value)
+\begin{DoxyCompactList}\small\item\em Set the attribute\textquotesingle{}s value. (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}) If not exist, add it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_affea6f3ed70662ff01e319c01c9a7ecd}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_affea6f3ed70662ff01e319c01c9a7ecd}} 
+const std\+::string \& {\bfseries get\+Tag\+Name} () const
+\begin{DoxyCompactList}\small\item\em Get tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_af70ffed3c319399163a5309f4f68c881}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_af70ffed3c319399163a5309f4f68c881}} 
+void {\bfseries set\+Tag\+Name} (const std\+::string \&tag\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Set tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a46accc374c10aac5a5e2063e07559f9d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a46accc374c10aac5a5e2063e07559f9d}} 
+void {\bfseries set\+Tag\+Name} (std\+::string \&\&tag\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Set tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a3061cb26786caa96fc49bd0e163e9165}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a3061cb26786caa96fc49bd0e163e9165}} 
+const std\+::string \& {\bfseries get\+Value} () const override
+\begin{DoxyCompactList}\small\item\em Get tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a900eeb555e4370bef380497f96c0883d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a900eeb555e4370bef380497f96c0883d}} 
+void {\bfseries set\+Value} (const std\+::string \&value) override
+\begin{DoxyCompactList}\small\item\em Set tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a66cbd500242369bc998998984f553636}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a66cbd500242369bc998998984f553636}} 
+void {\bfseries set\+Value} (std\+::string \&\&value) override
+\begin{DoxyCompactList}\small\item\em Set tag name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ae110bda0375c78f95972c8c2525ca8db}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_ae110bda0375c78f95972c8c2525ca8db}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ {\bfseries clone} () override
+\begin{DoxyCompactList}\small\item\em Shallow clone.(Clone this node, but not its children. The new node has no child or parent.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a5d32ad48e004665a5531aa89073fa1a0}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a5d32ad48e004665a5531aa89073fa1a0}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ {\bfseries deep\+Clone} () override
+\begin{DoxyCompactList}\small\item\em Clone the node and all its descents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a722cebcd31535fb14862ad12607bcc30}{accept}} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&visitor) override
+\begin{DoxyCompactList}\small\item\em Accept a visitor to traverse the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+XML Element node class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a722cebcd31535fb14862ad12607bcc30}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a722cebcd31535fb14862ad12607bcc30}} 
+\index{QSimpleXMLParser::XMLElement@{QSimpleXMLParser::XMLElement}!accept@{accept}}
+\index{accept@{accept}!QSimpleXMLParser::XMLElement@{QSimpleXMLParser::XMLElement}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLElement\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Accept a visitor to traverse the tree. 
+
+Accept a visitor to visit this node and all its descentants in preorder traversal. When visit a node, it will call corresponding \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} interface.
+
+\begin{DoxyNote}{Note}
+see Visitor Pattern 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{QSimple\+XMLParser\+::\+XMLNode}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLElement.\+hpp\item 
+XMLElement.\+cpp\end{DoxyCompactItemize}

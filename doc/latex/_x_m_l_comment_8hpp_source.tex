@@ -1,0 +1,33 @@
+\hypertarget{_x_m_l_comment_8hpp_source}{}\doxysection{XMLComment.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}XMLTerminalNode.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}StringUtility.hpp"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}XMLVisitor.hpp"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }QSimpleXMLParser \{}
+\DoxyCodeLine{12     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_terminal_node}{XMLTerminalNode}} \{}
+\DoxyCodeLine{13     \textcolor{keyword}{public}:}
+\DoxyCodeLine{14         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{15         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}(\textcolor{keyword}{const} std::string\& content) : \_content(content)\{\}}
+\DoxyCodeLine{16         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}(std::string\&\& content) : \_content(content) \{\}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19         \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a6b8a5478383c26c86c8333fce21af6c3}{getValue}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} \_content; \}}
+\DoxyCodeLine{20     }
+\DoxyCodeLine{22         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_ae8be597177c07ee4392701aa6a758bd0}{setValue}}(\textcolor{keyword}{const} std::string\& value) \{ \_content.assign(value); \}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_aed5e2512ce52a7bd5fc52679544c547d}{setValue}}(std::string\&\& value) \{ \_content.assign(value); \}}
+\DoxyCodeLine{25     }
+\DoxyCodeLine{26         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a8be8dce1cf7a05c0d02a47a36c0bf787}{clone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}(\_content); \}}
+\DoxyCodeLine{27         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a564a8f49a191adef0f60e8d0490e1202}{deepClone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a8be8dce1cf7a05c0d02a47a36c0bf787}{clone}}(); \}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a4b6ee35dddc4e8e571658b8d86665ea9}{accept}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}}\& visitor)\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} visitor.\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a7c121f1e9120b9aebae71b91526e5be6}{visit}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{30     \textcolor{keyword}{private}:}
+\DoxyCodeLine{31         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* parse(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}}* parent, ParseError\& parsing\_error) \textcolor{keyword}{override};}
+\DoxyCodeLine{32         std::string \_content;}
+\DoxyCodeLine{33     \};}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}

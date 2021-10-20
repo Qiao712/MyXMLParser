@@ -1,0 +1,33 @@
+\hypertarget{_x_m_l_declaration_8hpp_source}{}\doxysection{XMLDeclaration.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}XMLTerminalNode.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}XMLVisitor.hpp"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }QSimpleXMLParser \{}
+\DoxyCodeLine{13     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_terminal_node}{XMLTerminalNode}}\{}
+\DoxyCodeLine{14     \textcolor{keyword}{public}:}
+\DoxyCodeLine{15         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{16         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}(\textcolor{keyword}{const} std::string\& content) : \_content(content)\{ \}}
+\DoxyCodeLine{17         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}(std::string\&\& content) : \_content(content)\{ \}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{20         \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_abfa502e861a86f5d4cc4ba0260002fb4}{getValue}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} \_content; \}}
+\DoxyCodeLine{21     }
+\DoxyCodeLine{23         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_ac949dfe8aa0263bf4be69fd8a9b53685}{setValue}}(\textcolor{keyword}{const} std::string\& value) \{ \_content.assign(value); \}}
+\DoxyCodeLine{24     }
+\DoxyCodeLine{26         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a2c06917ae1c48d9fbb4e72dbf386ac74}{setValue}}(std::string\&\& value) \{ \_content.assign(value); \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a3183767c4bba343ce6e7f0a4e0ea5067}{clone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}(\_content); \}}
+\DoxyCodeLine{29         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a66761d3c3371ddc59fb2826d44af5d1c}{deepClone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a3183767c4bba343ce6e7f0a4e0ea5067}{clone}}(); \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a49b39916662cc29ec3fd15e1016b55db}{accept}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}}\& visitor)\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} visitor.\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a7c121f1e9120b9aebae71b91526e5be6}{visit}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{32     \textcolor{keyword}{private}:}
+\DoxyCodeLine{33         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* parse(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}}* parent, ParseError\& parsing\_error) \textcolor{keyword}{override};}
+\DoxyCodeLine{34         std::string \_content;}
+\DoxyCodeLine{35     \};}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}

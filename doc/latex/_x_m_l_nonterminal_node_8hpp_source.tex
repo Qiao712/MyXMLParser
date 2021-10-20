@@ -1,0 +1,53 @@
+\hypertarget{_x_m_l_nonterminal_node_8hpp_source}{}\doxysection{XMLNonterminal\+Node.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}XMLNode.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}XMLVisitor.hpp"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }QSimpleXMLParser \{}
+\DoxyCodeLine{9     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}}
+\DoxyCodeLine{10     \{}
+\DoxyCodeLine{11         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}};   \textcolor{comment}{//use to cancel link in XMLNode's destruction}}
+\DoxyCodeLine{12     \textcolor{keyword}{public}:}
+\DoxyCodeLine{13         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a25cb5a9b5263339b643979084d71cb2c}{firstChild}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \_first\_child; \}}
+\DoxyCodeLine{14         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a17a6a8afdeccf4b2a84cdfe108e12cef}{lastChild}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \_last\_child; \}}
+\DoxyCodeLine{15         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a82469cade0eb894372d7694da23f1798}{fisrtElementChild}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{16         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a770441708c15c93a6a3870362e543357}{lastElementChild}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{17         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a93abc0508f9946c541b1c7503b3c7726}{findElementByTagName}}(\textcolor{keyword}{const} std::string\& tag\_name, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* start = \textcolor{keyword}{nullptr}) \textcolor{keyword}{override};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_ac722419d9db16264ad91f16d57a8f19b}{addFirstChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) \textcolor{keyword}{override};}
+\DoxyCodeLine{20         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_add92692c92fe8a086dd52a965f19313e}{addLastChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) \textcolor{keyword}{override};}
+\DoxyCodeLine{21         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a3bfff2a99a2df30b7d24224686ff1b2b}{insertChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* after\_this = \textcolor{keyword}{nullptr}) \textcolor{keyword}{override};}
+\DoxyCodeLine{22         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a224292c8b78019d32f5486e063524cfc}{removeFirstChild}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{23         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_ac1d23b43658acb57b69e1310c65daa58}{removeLastChild}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{24         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a385d2e8e41c6de76f2b346db129b6489}{removeChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) \textcolor{keyword}{override};}
+\DoxyCodeLine{25         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a50616c7fc821b9514b43670319b22501}{removeAllChildren}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{26         }
+\DoxyCodeLine{28         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a777799e00b9b8151e814d90c409432c7}{\string~XMLNonterminalNode}}();}
+\DoxyCodeLine{29     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{30         \textcolor{keyword}{enum class} Token \{}
+\DoxyCodeLine{31             ELEMENT\_BEG,}
+\DoxyCodeLine{32             ELEMENT\_END,}
+\DoxyCodeLine{33             DECLARATION, TEXT, COMMENT, CDATA, UNKNOWN}
+\DoxyCodeLine{34         \};}
+\DoxyCodeLine{35         \textcolor{comment}{//parsing recurively from beg to end until encounter a corresponding closing tag, product nodes as children of this node.}}
+\DoxyCodeLine{36         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* parseChildren(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, XMLNonterminalNode* parent, ParseError\& parsing\_error);}
+\DoxyCodeLine{37         Token checkStart(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end); }
+\DoxyCodeLine{38         XMLNode* createNode(Token type);}
+\DoxyCodeLine{39         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* matchTag(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keyword}{const} std::string\& parent\_tag\_name, ParseError\& parsing\_error);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \textcolor{comment}{//<a>....</a> closing; <a>.... unclosing.}}
+\DoxyCodeLine{42         \textcolor{keywordtype}{bool} \_is\_closing = \textcolor{keyword}{false};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         XMLNode* doDeepClone();}
+\DoxyCodeLine{45     }
+\DoxyCodeLine{46         \textcolor{keywordtype}{void} visitChildern(XMLVisitor\& visitor);}
+\DoxyCodeLine{47     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{48         XMLNode* \_first\_child = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{49         XMLNode* \_last\_child = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{50     \};}
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+
+\end{DoxyCode}

@@ -1,0 +1,22 @@
+\hypertarget{_x_m_l_c_d_a_t_a_8hpp_source}{}\doxysection{XMLCDATA.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}XMLText.hpp"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}XMLVisitor.hpp"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }QSimpleXMLParser\{}
+\DoxyCodeLine{9     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}}}
+\DoxyCodeLine{10     \{}
+\DoxyCodeLine{11     \textcolor{keyword}{public}:}
+\DoxyCodeLine{12         \textcolor{keyword}{using} XMLText::XMLText;}
+\DoxyCodeLine{13         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a6ba4d6835ee79eb56bedd482edd5c187}{clone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}}(\_content); \}}
+\DoxyCodeLine{14         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a2b62e41e6aaa1459bc193fc3ee494a4f}{deepClone}}()\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a6ba4d6835ee79eb56bedd482edd5c187}{clone}}(); \}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_aec62a15cce0f1388a6f36a6419709e31}{accept}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}}\& visitor)\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} visitor.\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor_a7c121f1e9120b9aebae71b91526e5be6}{visit}}(*\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{17     \textcolor{keyword}{private}:}
+\DoxyCodeLine{18         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* parse(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}}* parent, ParseError\& parsing\_error) \textcolor{keyword}{override};}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 \}}
+
+\end{DoxyCode}

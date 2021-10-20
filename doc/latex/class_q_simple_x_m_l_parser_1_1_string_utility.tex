@@ -1,0 +1,64 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility}{}\doxysection{QSimple\+XMLParser\+::String\+Utility Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_string_utility}\index{QSimpleXMLParser::StringUtility@{QSimpleXMLParser::StringUtility}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a92ddb4d0826d986f461a972513146e5c}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a92ddb4d0826d986f461a972513146e5c}} 
+enum {\bfseries TEXT\+\_\+\+PROCESS} \{ {\bfseries TRANSLATE\+\_\+\+ENTITY} = 1
+, {\bfseries NORMALIZE\+\_\+\+NEWLINE} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_ab25a3836c3c60136fb6fe5b78022d0ce}\label{class_q_simple_x_m_l_parser_1_1_string_utility_ab25a3836c3c60136fb6fe5b78022d0ce}} 
+static bool {\bfseries is\+Whitespace} (char x)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_afb64cc0875d4ad78f11ee0e64e593e52}\label{class_q_simple_x_m_l_parser_1_1_string_utility_afb64cc0875d4ad78f11ee0e64e593e52}} 
+static bool {\bfseries is\+All\+Whitespace} (const std\+::string \&str)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a00ec256587ceb0b2f0dc8f4a46378b9a}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a00ec256587ceb0b2f0dc8f4a46378b9a}} 
+static const char $\ast$ {\bfseries skip\+Whitespace} (const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a6dbe55f7a55a18bd2a1425abac98189e}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a6dbe55f7a55a18bd2a1425abac98189e}} 
+static const char $\ast$ {\bfseries skip\+Back\+Whitespace} (const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_ab56207c6e355700fa7185fb6700eb06e}\label{class_q_simple_x_m_l_parser_1_1_string_utility_ab56207c6e355700fa7185fb6700eb06e}} 
+static const char $\ast$ {\bfseries find\+Whitespace} (const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a5b832a7e25022233de6c7a0a38fbc3a8}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a5b832a7e25022233de6c7a0a38fbc3a8}} 
+static const char $\ast$ {\bfseries find\+Char} (const char chr, const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a2f5645c9e87c563f33aa1db00ff573bf}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a2f5645c9e87c563f33aa1db00ff573bf}} 
+static const char $\ast$ {\bfseries find\+Cha\+Or\+Whitespace} (const char chr, const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_aa5e03ff643aef089604041eee9d3171c}\label{class_q_simple_x_m_l_parser_1_1_string_utility_aa5e03ff643aef089604041eee9d3171c}} 
+static const char $\ast$ {\bfseries find\+Newline} (const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a2e48db6a8782d98e1369ffb0a153069e}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a2e48db6a8782d98e1369ffb0a153069e}} 
+static const char $\ast$ {\bfseries find\+Substr} (const char $\ast$beg, const char $\ast$end, const char $\ast$substr)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a2a01f83b3073272d9312e96942143691}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a2a01f83b3073272d9312e96942143691}} 
+static size\+\_\+t {\bfseries count\+Char} (const char chr, const char $\ast$beg, const char $\ast$end)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_abf9b2016d75ff7d93fb10d1ad5dac031}\label{class_q_simple_x_m_l_parser_1_1_string_utility_abf9b2016d75ff7d93fb10d1ad5dac031}} 
+static size\+\_\+t {\bfseries count\+Char} (const char chr, const std\+::string \&str)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_aba18e8dc7e81fb3aa88804a45390c46c}\label{class_q_simple_x_m_l_parser_1_1_string_utility_aba18e8dc7e81fb3aa88804a45390c46c}} 
+static bool {\bfseries compare\+Str} (const char $\ast$beg, const char $\ast$end, const char $\ast$c\+\_\+str)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a098469858a9f6beda8d9333f2a0e4a52}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a098469858a9f6beda8d9333f2a0e4a52}} 
+static const char $\ast$ {\bfseries count\+Newline} (const char $\ast$beg, const char $\ast$end, size\+\_\+t \&num\+\_\+new\+\_\+line)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_aa3e59bef30e9ccfd7045709614d14bad}\label{class_q_simple_x_m_l_parser_1_1_string_utility_aa3e59bef30e9ccfd7045709614d14bad}} 
+static std\+::string {\bfseries process\+Text} (const char $\ast$beg, const char $\ast$end, unsigned int process)
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_string_utility_a75ef9c1f54cf69f62d1650f7d15a1f2b}\label{class_q_simple_x_m_l_parser_1_1_string_utility_a75ef9c1f54cf69f62d1650f7d15a1f2b}} 
+static std\+::string {\bfseries translate\+Char\+To\+Entity} (const std\+::string \&str)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+String\+Utility.\+hpp\item 
+String\+Utility.\+cpp\end{DoxyCompactItemize}

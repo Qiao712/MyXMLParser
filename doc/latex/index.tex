@@ -1,0 +1,80 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+一个简单的、小的、并不高效、可能也不易用的\+XML解析器。大量借鉴了\href{https://github.com/leethomason/tinyxml2}{\texttt{ Tiny\+XML-\/2}}。 ~\newline
+\hypertarget{index_autotoc_md1}{}\doxysection{特点与坑}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item 仅支持\+ASCII和\+UTF-\/8。
+\item 递归地进行解析。
+\item 没有很好的组织内存，每个节点独自被new，比较松散。未来可以加入\+Tiny\+XML-\/2那样的内存池。
+\item 元素的属性没有当作节点处理。
+\item 不处理\+Declaration，单纯读入其内容。
+\item 子节点以链表组织，不支持子节点的随机访问。
+\item 接口不是很合理。
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{使用示例}\label{index_autotoc_md2}
+从文件中读取\+XML，并解析 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLDocument doc;}
+\DoxyCodeLine{doc.loadFile("{}test.xml"{});}
+
+\end{DoxyCode}
+ 访问\+DOM树 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLNode* node1 = doc.firstChild();}
+\DoxyCodeLine{for(XMLNode* p = node1; p != nullptr; p = p-\/>nextSibling())\{}
+\DoxyCodeLine{    cout<<node1.getValue()<<endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{node1.addLastChild(new XMLText("{}Test"{}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{delete node1.firstChild();}
+\DoxyCodeLine{}
+\DoxyCodeLine{node1.removeFirstChild();}
+
+\end{DoxyCode}
+ 将\+DOM打印为\+XML文档 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLPrinter printer(std::cout);}
+\DoxyCodeLine{doc.accept(printer);}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md3}{}\doxysection{QSimple\+XMLParser}\label{index_autotoc_md3}
+A simply, small, inefficient, and probably unusable XML parser. Borrowed many things from \href{https://github.com/leethomason/tinyxml2}{\texttt{ Tiny\+XML-\/2}}. ~\newline
+\hypertarget{index_autotoc_md4}{}\doxysubsection{Feature and Flaws}\label{index_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Only support ASCII and UTF-\/8.
+\item Parse xml recusively.
+\item Memory management is not well. Every node object is newed standalone. Maybe implement memory pool like Tiny\+XML-\/2.
+\item Attributes of elements are not treaded treated as nodes.
+\item Declaration will not be process. Only store its content.
+\item Children of a node are originzed by a link list.
+\item The interfaces may be not desirable.
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysubsection{Example Usages}\label{index_autotoc_md5}
+Read XML from file and parse it. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLDocument doc;}
+\DoxyCodeLine{doc.loadFile("{}test.xml"{});}
+
+\end{DoxyCode}
+ Visit the DOM tree. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLNode* node1 = doc.firstChild();}
+\DoxyCodeLine{for(XMLNode* p = node1; p != nullptr; p = p-\/>nextSibling())\{}
+\DoxyCodeLine{    cout<<node1.getValue()<<endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{node1.addLastChild(new XMLText("{}Test"{}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{delete node1.firstChild();}
+\DoxyCodeLine{}
+\DoxyCodeLine{node1.removeFirstChild();}
+
+\end{DoxyCode}
+ Print DOM as XML document. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{XMLPrinter printer(std::cout);}
+\DoxyCodeLine{doc.accept(printer);}
+
+\end{DoxyCode}
+ 

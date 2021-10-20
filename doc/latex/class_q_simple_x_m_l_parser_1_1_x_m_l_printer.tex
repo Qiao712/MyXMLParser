@@ -1,0 +1,60 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer}{}\doxysection{QSimple\+XMLParser\+::XMLPrinter Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer}\index{QSimpleXMLParser::XMLPrinter@{QSimpleXMLParser::XMLPrinter}}
+
+
+{\ttfamily \#include $<$XMLPrinter.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLPrinter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_printer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a873698c3cc278649b08014792c42f523}{XMLPrinter}} (std\+::ostream \&out, const std\+::string \&indent=\char`\"{}  \char`\"{})
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_ad21885a4f2f9ac94ac4bcd5d22c8f7f0}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_ad21885a4f2f9ac94ac4bcd5d22c8f7f0}} 
+bool {\bfseries visit\+Entry} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a element. Will be called before traverse its children recursively. Return false to stop traverse its children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a6b9724933714598f75511791a4e4177d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a6b9724933714598f75511791a4e4177d}} 
+bool {\bfseries visit\+Exit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a document. Will be called after traverse its children recursively. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_acf1a6090e4bfa637a91b9dd86bdabc52}} 
+bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a text node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a8490b354862ccf7a8bd127347fe8296d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a8490b354862ccf7a8bd127347fe8296d}} 
+bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a CDATA node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a2873e010409e0e58488b8c1fe99ab1e6}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a2873e010409e0e58488b8c1fe99ab1e6}} 
+bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a Comment node. Return false to stop traverse its siblings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_abd7ce6b2413b25a655acd17d418ec9f7}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_abd7ce6b2413b25a655acd17d418ec9f7}} 
+bool {\bfseries visit} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}} \&node) override
+\begin{DoxyCompactList}\small\item\em Visit a declaration node. Return false to stop traverse its siblings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A visitor that print a XML DOM to a XML document. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a873698c3cc278649b08014792c42f523}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_printer_a873698c3cc278649b08014792c42f523}} 
+\index{QSimpleXMLParser::XMLPrinter@{QSimpleXMLParser::XMLPrinter}!XMLPrinter@{XMLPrinter}}
+\index{XMLPrinter@{XMLPrinter}!QSimpleXMLParser::XMLPrinter@{QSimpleXMLParser::XMLPrinter}}
+\doxysubsubsection{\texorpdfstring{XMLPrinter()}{XMLPrinter()}}
+{\footnotesize\ttfamily QSimple\+XMLParser\+::\+XMLPrinter\+::\+XMLPrinter (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const std\+::string \&}]{indent = {\ttfamily \char`\"{}~~\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & where output. \\
+\hline
+{\em indent} & the characters that controls indentation. Default is two space. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLPrinter.\+hpp\item 
+XMLPrinter.\+cpp\end{DoxyCompactItemize}

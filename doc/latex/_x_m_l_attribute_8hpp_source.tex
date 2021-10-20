@@ -1,0 +1,53 @@
+\hypertarget{_x_m_l_attribute_8hpp_source}{}\doxysection{XMLAttribute.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{4 \textcolor{keyword}{namespace }QSimpleXMLParser\{}
+\DoxyCodeLine{5 \textcolor{keyword}{using} std::string;}
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{XMLAttribute}}\{}
+\DoxyCodeLine{7     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}};}
+\DoxyCodeLine{8 \textcolor{keyword}{public}:}
+\DoxyCodeLine{9     \textcolor{keyword}{const} \textcolor{keywordtype}{string}\& getValueString()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} *\_value; \}}
+\DoxyCodeLine{10     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{string}\& value)\textcolor{keyword}{ const }\{ value = *\_value; \}}
+\DoxyCodeLine{11     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{double}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{12     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{float}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{13     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{long} \textcolor{keywordtype}{double}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{14     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{int}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{15     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{long}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{16     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{long} \textcolor{keywordtype}{long}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{17     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{18     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{19     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{20     \textcolor{keywordtype}{bool} getValue(\textcolor{keywordtype}{bool}\& value) \textcolor{keyword}{const};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} setValue(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& value)\textcolor{keyword}{ const }\{ \_value-\/>assign(value); \}}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{string}\&\& value)\textcolor{keyword}{ const }\{ \_value-\/>assign(value); \}}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{double} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{float} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{long} \textcolor{keywordtype}{double}\& value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{int} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{long} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{long} \textcolor{keywordtype}{long} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} value)\textcolor{keyword}{ const }\{ \_value-\/>assign(std::to\_string(value)); \}}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} setValue(\textcolor{keywordtype}{bool} value)\textcolor{keyword}{ const }\{ value ? \_value-\/>assign(\textcolor{stringliteral}{"{}true"{}}) : \_value-\/>assign(\textcolor{stringliteral}{"{}false"{}}); \}}
+\DoxyCodeLine{34     }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} operator<(\textcolor{keyword}{const} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{XMLAttribute}}\& rhs)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} *\_name < *(rhs.\_name); \}}
+\DoxyCodeLine{37     \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{\string~XMLAttribute}}();}
+\DoxyCodeLine{38 \textcolor{keyword}{private}:}
+\DoxyCodeLine{39     \textcolor{comment}{//use to search in set}}
+\DoxyCodeLine{40     \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{XMLAttribute}}(\textcolor{keywordtype}{string}* name) : \_name(name), \_value(\textcolor{keyword}{nullptr})\{ \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{XMLAttribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& name, \textcolor{keyword}{const} \textcolor{keywordtype}{string}\& value) : \_name(\textcolor{keyword}{new} \textcolor{keywordtype}{string}(name)), \_value(\textcolor{keyword}{new} \textcolor{keywordtype}{string}(value))\{ \}}
+\DoxyCodeLine{43     \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_attribute}{XMLAttribute}}(\textcolor{keywordtype}{string}\&\& name, \textcolor{keywordtype}{string}\&\& value) : \_name(\textcolor{keyword}{new} \textcolor{keywordtype}{string}(name)), \_value(\textcolor{keyword}{new} \textcolor{keywordtype}{string}(value))\{ \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{keywordtype}{string}* \_name;}
+\DoxyCodeLine{46     \textcolor{keywordtype}{string}* \_value;}
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,207 @@
+\hypertarget{_string_utility_8hpp_source}{}\doxysection{String\+Utility.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <cctype>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }QSimpleXMLParser \{}
+\DoxyCodeLine{6     \textcolor{keyword}{class }StringUtility}
+\DoxyCodeLine{7     \{}
+\DoxyCodeLine{8     \textcolor{keyword}{public}:}
+\DoxyCodeLine{9         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} isWhitespace(\textcolor{keywordtype}{char} x);}
+\DoxyCodeLine{10         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} isAllWhitespace(\textcolor{keyword}{const} std::string\& str);                     \textcolor{comment}{//is all char is whitespace}}
+\DoxyCodeLine{11         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* skipWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{12         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* skipBackWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{13         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* findWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{14         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* findChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{15         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* findChaOrWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{16         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* findNewline(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{17         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* findSubstr(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* substr);}
+\DoxyCodeLine{18         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} countChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{19         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} countChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} std::string\& str);}
+\DoxyCodeLine{20         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} compareStr(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* c\_str);}
+\DoxyCodeLine{21         \textcolor{comment}{//count num of new line and return the last line's head}}
+\DoxyCodeLine{22         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* countNewline(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keywordtype}{size\_t}\& num\_new\_line);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24         \textcolor{comment}{//translate entity and normalize newline, then store in \_str in constructor}}
+\DoxyCodeLine{25         \textcolor{comment}{//newline normalization: "{}\(\backslash\)r\(\backslash\)n"{}, "{}\(\backslash\)r"{} and "{}\(\backslash\)n\(\backslash\)r"{} -\/> "{}\(\backslash\)n"{}}}
+\DoxyCodeLine{26         \textcolor{keyword}{enum} TEXT\_PROCESS\{ TRANSLATE\_ENTITY = 1, NORMALIZE\_NEWLINE = 2 \};}
+\DoxyCodeLine{27         \textcolor{keyword}{static} std::string processText(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} process);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keyword}{static} std::string translateCharToEntity(\textcolor{keyword}{const} std::string\& str);}
+\DoxyCodeLine{30     \textcolor{keyword}{private}:}
+\DoxyCodeLine{31         \textcolor{comment}{//serve for processText}}
+\DoxyCodeLine{32         \textcolor{keyword}{static} \textcolor{keywordtype}{bool} parseReference(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, std::string\& substitute);}
+\DoxyCodeLine{33         \textcolor{keyword}{inline} \textcolor{keyword}{static} uint32\_t strToIntHex(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{34         \textcolor{keyword}{inline} \textcolor{keyword}{static} uint32\_t strToIntDec(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end);}
+\DoxyCodeLine{35         \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} unicodeToUtf8(uint32\_t unicode, std::string\& utf8);}
+\DoxyCodeLine{36     \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} QSimpleXMLParser::StringUtility::isWhitespace(\textcolor{keywordtype}{char} x)}
+\DoxyCodeLine{39     \{}
+\DoxyCodeLine{40         \textcolor{comment}{//Characters outside the ASCII range are not considered}}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} !(x \& 0x80) \&\& isspace(x);}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} StringUtility::isAllWhitespace(\textcolor{keyword}{const} std::string\& str)}
+\DoxyCodeLine{44     \{}
+\DoxyCodeLine{45         \textcolor{keywordflow}{if} (str.empty()) \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{46         \textcolor{keywordtype}{size\_t} holder;}
+\DoxyCodeLine{47         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = skipWhitespace(\&str.front(), \&str.back() + 1);}
+\DoxyCodeLine{48         \textcolor{keywordflow}{return} p == \&str.back() + 1;}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::skipWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{52     \{}
+\DoxyCodeLine{53         \textcolor{keywordflow}{for} (; beg < end \&\& isWhitespace(*beg); beg++);}
+\DoxyCodeLine{54         \textcolor{keywordflow}{return} beg;}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::skipBackWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{57     \{}
+\DoxyCodeLine{58         \textcolor{keywordflow}{for} (end-\/-\/; end >= beg \&\& isWhitespace(*end); end-\/-\/);}
+\DoxyCodeLine{59         \textcolor{keywordflow}{return} end + 1;}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::findWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{62     \{}
+\DoxyCodeLine{63         \textcolor{keywordflow}{for} (; beg < end \&\& !isWhitespace(*beg); beg++);}
+\DoxyCodeLine{64         \textcolor{keywordflow}{return} beg;}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::findChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{67     \{}
+\DoxyCodeLine{68         \textcolor{keywordflow}{while} (beg < end \&\& *beg != chr) beg++;}
+\DoxyCodeLine{69         \textcolor{keywordflow}{return} beg;}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{71     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::findChaOrWhitespace(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{72     \{}
+\DoxyCodeLine{73         \textcolor{keywordflow}{while} (beg < end \&\& *beg != chr \&\& !isWhitespace(*beg)) beg++;}
+\DoxyCodeLine{74         \textcolor{keywordflow}{return} beg;}
+\DoxyCodeLine{75     \}}
+\DoxyCodeLine{76     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::findNewline(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{77     \{}
+\DoxyCodeLine{78         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p1 = findChar(\textcolor{charliteral}{'\(\backslash\)n'}, beg, end);}
+\DoxyCodeLine{79         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p2 = findChar(\textcolor{charliteral}{'\(\backslash\)r'}, beg, end);}
+\DoxyCodeLine{80         \textcolor{keywordflow}{return} p1 < p2 ? p1 : p2;}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::findSubstr(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* c\_str)}
+\DoxyCodeLine{83     \{}
+\DoxyCodeLine{84         \textcolor{comment}{//TODO: unsafe (end will be writen)}}
+\DoxyCodeLine{85         \textcolor{keywordflow}{if} (beg == end) \textcolor{keywordflow}{return} end;}
+\DoxyCodeLine{86         \textcolor{keywordtype}{char} t = *end;}
+\DoxyCodeLine{87         *\textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(end) = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{88         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = strstr(beg, c\_str);}
+\DoxyCodeLine{89         *\textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(end) = t;}
+\DoxyCodeLine{90         \textcolor{keywordflow}{return} p != \textcolor{keyword}{nullptr} ? p : end;}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keyword}{inline} uint32\_t StringUtility::strToIntHex(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{94     \{}
+\DoxyCodeLine{95         \textcolor{keywordflow}{if} (beg >= end) \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{96         uint32\_t result = 0;}
+\DoxyCodeLine{97         uint32\_t x;}
+\DoxyCodeLine{98         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = beg; p < end; p++) \{}
+\DoxyCodeLine{99             \textcolor{keywordflow}{if} (*p >= \textcolor{charliteral}{'a'} \&\& *p <= \textcolor{charliteral}{'f'}) x = *p -\/ \textcolor{charliteral}{'a'} + 10;}
+\DoxyCodeLine{100             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*p >= \textcolor{charliteral}{'A'} \&\& *p <= \textcolor{charliteral}{'F'}) x = *p -\/ \textcolor{charliteral}{'A'} + 10;}
+\DoxyCodeLine{101             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*p >= \textcolor{charliteral}{'0'} \&\& *p <= \textcolor{charliteral}{'9'}) x = *p -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{102             \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{103             result = result * 16 + x;}
+\DoxyCodeLine{104         \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106         \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{107     \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{keyword}{inline} uint32\_t StringUtility::strToIntDec(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{110     \{}
+\DoxyCodeLine{111         \textcolor{keywordflow}{if} (beg >= end) \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{112         uint32\_t result = 0;}
+\DoxyCodeLine{113         uint32\_t x;}
+\DoxyCodeLine{114         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = beg; p < end; p++) \{}
+\DoxyCodeLine{115             \textcolor{keywordflow}{if} (*p >= \textcolor{charliteral}{'0'} \&\& *p <= \textcolor{charliteral}{'9'}) x = *p -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{116             \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{117             result = result * 10 + x;}
+\DoxyCodeLine{118         \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120         \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} StringUtility::unicodeToUtf8(uint32\_t unicode, std::string\& utf8)}
+\DoxyCodeLine{124     \{}
+\DoxyCodeLine{125         \textcolor{keyword}{constexpr} uint32\_t MARKS[6] = \{}
+\DoxyCodeLine{126             \string~static\_cast<uint32\_t>(0x007F),}
+\DoxyCodeLine{127             \string~static\_cast<uint32\_t>(0x07FF),}
+\DoxyCodeLine{128             \string~static\_cast<uint32\_t>(0xFFFF),}
+\DoxyCodeLine{129             \string~static\_cast<uint32\_t>(0x1FFFFF),}
+\DoxyCodeLine{130             \string~static\_cast<uint32\_t>(0x3FFFFFF),}
+\DoxyCodeLine{131             \string~static\_cast<uint32\_t>(0x7FFFFFFF)}
+\DoxyCodeLine{132         \};}
+\DoxyCodeLine{133         \textcolor{keyword}{constexpr} uint32\_t FIRST\_BYTE[] = \{}
+\DoxyCodeLine{134             0x00,}
+\DoxyCodeLine{135             0xC0,}
+\DoxyCodeLine{136             0xE0,}
+\DoxyCodeLine{137             0xF0,}
+\DoxyCodeLine{138             0xF8,}
+\DoxyCodeLine{139             0xFC}
+\DoxyCodeLine{140         \};}
+\DoxyCodeLine{141         \textcolor{keyword}{constexpr} uint32\_t LOWER\_BYTE = 0x80;   \textcolor{comment}{//1000 0000}}
+\DoxyCodeLine{142         \textcolor{keyword}{constexpr} uint32\_t LOWER\_6BITS = 0x3F;  \textcolor{comment}{//0011 1111}}
+\DoxyCodeLine{143         \textcolor{keyword}{constexpr} uint32\_t MAX\_UNICODE = 0x10FFFF;}
+\DoxyCodeLine{144         \textcolor{keyword}{static} \textcolor{keywordtype}{char} buf[6];}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146         \textcolor{keywordflow}{if} (unicode > MAX\_UNICODE) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \textcolor{keywordtype}{int} n = 0;}
+\DoxyCodeLine{149         \textcolor{keywordflow}{while} (unicode \& MARKS[n]) n++;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = n; i > 0; i-\/-\/) \{}
+\DoxyCodeLine{152             \textcolor{comment}{//10xxxxxx}}
+\DoxyCodeLine{153             buf[i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\textcolor{keyword}{>}(LOWER\_BYTE | (unicode \& LOWER\_6BITS));}
+\DoxyCodeLine{154             unicode >>= 6;}
+\DoxyCodeLine{155         \}}
+\DoxyCodeLine{156         buf[0] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\textcolor{keyword}{>}(FIRST\_BYTE[n] | unicode);}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158         utf8.assign(buf, buf + n + 1);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{161     \}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keyword}{inline} \textcolor{keywordtype}{size\_t} StringUtility::countChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end)}
+\DoxyCodeLine{164     \{}
+\DoxyCodeLine{165         \textcolor{keywordtype}{size\_t} count = 0;}
+\DoxyCodeLine{166         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = beg; p < end; p++) count += (*p == chr);}
+\DoxyCodeLine{167         \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{168     \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{keyword}{inline} \textcolor{keywordtype}{size\_t} StringUtility::countChar(\textcolor{keyword}{const} \textcolor{keywordtype}{char} chr, \textcolor{keyword}{const} std::string\& str)}
+\DoxyCodeLine{171     \{}
+\DoxyCodeLine{172         \textcolor{keywordflow}{return} countChar(chr, \&str.front(), \&str.back() + 1);}
+\DoxyCodeLine{173     \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} StringUtility::compareStr(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* c\_str)}
+\DoxyCodeLine{176     \{}
+\DoxyCodeLine{177         \textcolor{keywordflow}{for} (; beg < end \&\& *c\_str != 0; beg++, c\_str++) \{}
+\DoxyCodeLine{178             \textcolor{keywordflow}{if} (*beg != *c\_str) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{179         \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181         \textcolor{keywordflow}{return} beg == end \&\& *c\_str == 0;}
+\DoxyCodeLine{182     \}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* StringUtility::countNewline(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \textcolor{keywordtype}{size\_t}\& num\_new\_line)}
+\DoxyCodeLine{185     \{}
+\DoxyCodeLine{186         \textcolor{keywordtype}{char} pre = 0;}
+\DoxyCodeLine{187         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* last\_line = beg;}
+\DoxyCodeLine{188         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* p = beg; p < end; p++) \{}
+\DoxyCodeLine{189             \textcolor{keywordflow}{if} (*p == \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{190                 \textcolor{keywordflow}{if} (pre != \textcolor{charliteral}{'\(\backslash\)r'}) num\_new\_line++;}
+\DoxyCodeLine{191                 last\_line = p + 1;}
+\DoxyCodeLine{192             \}}
+\DoxyCodeLine{193             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*p == \textcolor{charliteral}{'\(\backslash\)r'}) \{}
+\DoxyCodeLine{194                 \textcolor{keywordflow}{if} (pre != \textcolor{charliteral}{'\(\backslash\)n'}) num\_new\_line++;}
+\DoxyCodeLine{195                 last\_line = p + 1;}
+\DoxyCodeLine{196             \}}
+\DoxyCodeLine{197         \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199         \textcolor{keywordflow}{return} last\_line;}
+\DoxyCodeLine{200     \}}
+\DoxyCodeLine{201 \}}
+\DoxyCodeLine{202 }
+
+\end{DoxyCode}

@@ -1,0 +1,156 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{}\doxysection{QSimple\+XMLParser\+::XMLNode Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node}\index{QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}}
+
+
+{\ttfamily \#include $<$XMLNode.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLNode\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.709924cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_node}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a468bae714457e2bc721f40bff16ff7b8}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a468bae714457e2bc721f40bff16ff7b8}} 
+virtual {\bfseries $\sim$\+XMLNode} ()
+\begin{DoxyCompactList}\small\item\em Delete all its descentants in recursively. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac972c60b2808bd0091ef2a76c7a300a5}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac972c60b2808bd0091ef2a76c7a300a5}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries first\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Get the first child node. If no child, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a3695f4b0d22f92c810eccbb10035afff}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a3695f4b0d22f92c810eccbb10035afff}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries last\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Get the last child node. If no child, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a78afe5867612eb58d5a018147b23c5a5}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a78afe5867612eb58d5a018147b23c5a5}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ {\bfseries fisrt\+Element\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Get the first child element node. If no element child, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a1e5517f8f5503038509d3382be1ab25b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a1e5517f8f5503038509d3382be1ab25b}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ {\bfseries last\+Element\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Get the last child element node. If no element child, return nullptr. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a46c8bf3c0589bfc7148ca70f572683bc}{find\+Element\+By\+Tag\+Name}} (const std\+::string \&tag\+\_\+name, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$start=nullptr)=0
+\begin{DoxyCompactList}\small\item\em Get the first child element node with concrete. If none exists, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_af4e1c33ecdd99117f491565b0fdf55f3}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_af4e1c33ecdd99117f491565b0fdf55f3}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries next\+Sibling} ()
+\begin{DoxyCompactList}\small\item\em Get next sibling node. If no next sibling, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6ab16e59312f5c083f03aa8509b61f25}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6ab16e59312f5c083f03aa8509b61f25}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries previous\+Sibling} ()
+\begin{DoxyCompactList}\small\item\em Get the previous node. If no previous sibling, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2c4721eed8ae59dba92fdd324150c280}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2c4721eed8ae59dba92fdd324150c280}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries get\+Parent} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. If the node is a root, return nullptr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aca07706ed569b2f8dac6e9dbf530d27b}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aca07706ed569b2f8dac6e9dbf530d27b}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries get\+Root} ()
+\begin{DoxyCompactList}\small\item\em Get root node of the tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2f6aac887a37e890616fdd644379c7d3}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2f6aac887a37e890616fdd644379c7d3}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}} $\ast$ {\bfseries get\+Document} ()
+\begin{DoxyCompactList}\small\item\em Get the document which is the root node of the tree. If the root node isn\textquotesingle{}t document node,return nullptr. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{accept}} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&visitor)=0
+\begin{DoxyCompactList}\small\item\em Accept a visitor to traverse the tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4b63d452b55bbbd9b0f0bad7c39680b1}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4b63d452b55bbbd9b0f0bad7c39680b1}} 
+virtual bool {\bfseries add\+First\+Child} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$node)=0
+\begin{DoxyCompactList}\small\item\em Add a child at front. If the node already has a parent, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a83025356608bcac7c0906dc360cb8c88}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a83025356608bcac7c0906dc360cb8c88}} 
+virtual bool {\bfseries add\+Last\+Child} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$node)=0
+\begin{DoxyCompactList}\small\item\em Add a child at back. If the node already has a parent, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ae49c455d1abc8ad1a3135e67e6965f18}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ae49c455d1abc8ad1a3135e67e6965f18}} 
+virtual bool {\bfseries insert\+Child} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$node, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$after\+\_\+this)=0
+\begin{DoxyCompactList}\small\item\em Add a child after a concrete child . If the node already has a parent, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4fbea42dd1921c23d580479c42fd4242}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4fbea42dd1921c23d580479c42fd4242}} 
+virtual bool {\bfseries remove\+First\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Remove(delete) the head child. If no child, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2b83ad5ae16bade46f53be3ea635bbf6}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2b83ad5ae16bade46f53be3ea635bbf6}} 
+virtual bool {\bfseries remove\+Last\+Child} ()=0
+\begin{DoxyCompactList}\small\item\em Remove(delete) the tail child. If no child, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a7b54d685b56562a155f96cda245088d8}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a7b54d685b56562a155f96cda245088d8}} 
+virtual bool {\bfseries remove\+Child} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$node)=0
+\begin{DoxyCompactList}\small\item\em Remove(delete) a child. If the given node isn\textquotesingle{}t the child of the node, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6f1756d2afb12a5bf807573b5ce6a122}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6f1756d2afb12a5bf807573b5ce6a122}} 
+virtual bool {\bfseries remove\+All\+Children} ()=0
+\begin{DoxyCompactList}\small\item\em Remove(delete) all its children. If no child, return false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aad410e31b3edd92c2837bb46573b666d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aad410e31b3edd92c2837bb46573b666d}} 
+void {\bfseries unlink} ()
+\begin{DoxyCompactList}\small\item\em Unlink the node from its parents and sibling.(Detach the node from the tree. \end{DoxyCompactList}\item 
+virtual const std\+::string \& \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aefcccac379658fa2122fb93f8f860a11}{get\+Value}} () const =0
+\begin{DoxyCompactList}\small\item\em Get value of the node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a45926cf0ceee9330e5b3675126999c16}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a45926cf0ceee9330e5b3675126999c16}} 
+virtual void {\bfseries set\+Value} (const std\+::string \&value)=0
+\begin{DoxyCompactList}\small\item\em Set value of the node. Do nothing with document node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a07bff5419386e2a4a551b13523451012}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a07bff5419386e2a4a551b13523451012}} 
+virtual void {\bfseries set\+Value} (std\+::string \&\&value)=0
+\begin{DoxyCompactList}\small\item\em Set value of the node. Do nothing with document node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac345cc65f19b97506fd10f54bf56991f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac345cc65f19b97506fd10f54bf56991f}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries clone} ()=0
+\begin{DoxyCompactList}\small\item\em Shallow clone.(Clone this node, but not its children. The new node has no child or parent.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ab0daa0f8ec670af72dec215324136e8f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ab0daa0f8ec670af72dec215324136e8f}} 
+virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$ {\bfseries deep\+Clone} ()=0
+\begin{DoxyCompactList}\small\item\em Clone the node and all its descents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} is the base class of all other types of nodes.
+
+\begin{DoxyNote}{Note}
+Attibutes of elements are not treaded as node. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}} 
+\index{QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}!accept@{accept}}
+\index{accept@{accept}!QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily virtual bool QSimple\+XMLParser\+::\+XMLNode\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Accept a visitor to traverse the tree. 
+
+Accept a visitor to visit this node and all its descentants in preorder traversal. When visit a node, it will call corresponding \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} interface.
+
+\begin{DoxyNote}{Note}
+see Visitor Pattern 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_aec62a15cce0f1388a6f36a6419709e31}{QSimple\+XMLParser\+::\+XMLCDATA}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a4b6ee35dddc4e8e571658b8d86665ea9}{QSimple\+XMLParser\+::\+XMLComment}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_a49b39916662cc29ec3fd15e1016b55db}{QSimple\+XMLParser\+::\+XMLDeclaration}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a2df5c525ec7691b23e229a2ad3fa651c}{QSimple\+XMLParser\+::\+XMLDocument}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a722cebcd31535fb14862ad12607bcc30}{QSimple\+XMLParser\+::\+XMLElement}}, and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text_ae2fd705d3c861190a4d782b17a1f481e}{QSimple\+XMLParser\+::\+XMLText}}.
+
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a46c8bf3c0589bfc7148ca70f572683bc}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a46c8bf3c0589bfc7148ca70f572683bc}} 
+\index{QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}!findElementByTagName@{findElementByTagName}}
+\index{findElementByTagName@{findElementByTagName}!QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}}
+\doxysubsubsection{\texorpdfstring{findElementByTagName()}{findElementByTagName()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}} $\ast$ QSimple\+XMLParser\+::\+XMLNode\+::find\+Element\+By\+Tag\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag\+\_\+name,  }\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}} $\ast$}]{start = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the first child element node with concrete. If none exists, return nullptr. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & A pointer to a child indicate where to start looking. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node_a93abc0508f9946c541b1c7503b3c7726}{QSimple\+XMLParser\+::\+XMLNonterminal\+Node}}, and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_terminal_node_a941c25f5e23101a364f5353092e2b06d}{QSimple\+XMLParser\+::\+XMLTerminal\+Node}}.
+
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aefcccac379658fa2122fb93f8f860a11}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aefcccac379658fa2122fb93f8f860a11}} 
+\index{QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}!getValue@{getValue}}
+\index{getValue@{getValue}!QSimpleXMLParser::XMLNode@{QSimpleXMLParser::XMLNode}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily virtual const std\+::string \& QSimple\+XMLParser\+::\+XMLNode\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get value of the node. 
+
+The meaning of \textquotesingle{}value\textquotesingle{} changes for the specific type. Docment\+: always empty std\+::string Element\+: tag name Text\+: text CDATA\+: text Declaration\+: declaration text Comment\+: comment text 
+
+Implemented in \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment_a6b8a5478383c26c86c8333fce21af6c3}{QSimple\+XMLParser\+::\+XMLComment}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration_abfa502e861a86f5d4cc4ba0260002fb4}{QSimple\+XMLParser\+::\+XMLDeclaration}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document_a085612e9ed7627e3c276dcfefd53f038}{QSimple\+XMLParser\+::\+XMLDocument}}, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element_a3061cb26786caa96fc49bd0e163e9165}{QSimple\+XMLParser\+::\+XMLElement}}, and \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text_a4963a4d99796f14fe9f7140d3df4b8ef}{QSimple\+XMLParser\+::\+XMLText}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLNode.\+hpp\item 
+XMLNode.\+cpp\end{DoxyCompactItemize}

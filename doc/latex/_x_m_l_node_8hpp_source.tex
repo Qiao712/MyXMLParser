@@ -1,0 +1,114 @@
+\hypertarget{_x_m_l_node_8hpp_source}{}\doxysection{XMLNode.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{3 \textcolor{keyword}{namespace }QSimpleXMLParser\{}
+\DoxyCodeLine{5     \textcolor{keyword}{enum} XMLParseError \{}
+\DoxyCodeLine{6         XML\_PARSE\_SUCCESS = 0,}
+\DoxyCodeLine{7         XML\_PARSE\_ERROR\_DECLARATION,}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9         XML\_PARSE\_ERROR\_UNPAIRED\_TAG,      \textcolor{comment}{//Unpaired tag 未配对的标签}}
+\DoxyCodeLine{10         XML\_PARSE\_ERROR\_WRONG\_END\_TAG,     \textcolor{comment}{//wrong end tag 错误的结束标签}}
+\DoxyCodeLine{11         XML\_PARSE\_ERROR\_UNCLOSED\_PARENTHESE,  \textcolor{comment}{//Unclosed parenthese 未封闭的括号 <....}}
+\DoxyCodeLine{12         XML\_PARSE\_ERROR\_INVALID\_TAG\_NAME,      \textcolor{comment}{//Invalid tag name 无效的标签名}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14         XML\_PARSE\_ERROR\_ATTR,}
+\DoxyCodeLine{15         XML\_PARSE\_ERROR\_DUPLICATE\_ATTR\_NAME,   \textcolor{comment}{//重复的属性名}}
+\DoxyCodeLine{16         XML\_PARSE\_ERROR\_INVALID\_ATTR\_NAME,      \textcolor{comment}{//无效的属性名}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18         XML\_PARSE\_ERROR\_UNCLOSED\_CDATA}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{struct }ParseError \{}
+\DoxyCodeLine{22         \textcolor{keywordtype}{void} setParseError(XMLParseError error, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* where\_error);}
+\DoxyCodeLine{23         \textcolor{keywordtype}{void} clear();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         XMLParseError error = XML\_PARSE\_SUCCESS;}
+\DoxyCodeLine{26         \textcolor{keywordtype}{size\_t}   error\_line = 0;}
+\DoxyCodeLine{27         std::string   error\_detail;}
+\DoxyCodeLine{28         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* raw\_xml\_beg = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{29         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* raw\_xml\_end = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{30     \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keyword}{class }XMLElement;}
+\DoxyCodeLine{33     \textcolor{keyword}{class }XMLDocument;}
+\DoxyCodeLine{34     \textcolor{keyword}{class }XMLNonterminalNode;}
+\DoxyCodeLine{35     \textcolor{keyword}{class }XMLVisitor;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42     \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}\{}
+\DoxyCodeLine{43         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}};}
+\DoxyCodeLine{44         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_terminal_node}{XMLTerminalNode}};}
+\DoxyCodeLine{45         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}};}
+\DoxyCodeLine{46         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}};}
+\DoxyCodeLine{47         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_comment}{XMLComment}};}
+\DoxyCodeLine{48         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_declaration}{XMLDeclaration}};}
+\DoxyCodeLine{49         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}};}
+\DoxyCodeLine{50         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_text}{XMLText}};}
+\DoxyCodeLine{51     \textcolor{keyword}{public}:}
+\DoxyCodeLine{52         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{55         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a468bae714457e2bc721f40bff16ff7b8}{\string~XMLNode}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{58         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac972c60b2808bd0091ef2a76c7a300a5}{firstChild}}() = 0;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{61         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a3695f4b0d22f92c810eccbb10035afff}{lastChild}}() = 0;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{64         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a78afe5867612eb58d5a018147b23c5a5}{fisrtElementChild}}() = 0;}
+\DoxyCodeLine{65     }
+\DoxyCodeLine{67         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a1e5517f8f5503038509d3382be1ab25b}{lastElementChild}}() = 0;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{74         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_element}{XMLElement}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a46c8bf3c0589bfc7148ca70f572683bc}{findElementByTagName}}(\textcolor{keyword}{const} std::string\& tag\_name, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* start = \textcolor{keyword}{nullptr}) = 0;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{77         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_af4e1c33ecdd99117f491565b0fdf55f3}{nextSibling}}() \{ \textcolor{keywordflow}{return} \_next\_sibling; \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6ab16e59312f5c083f03aa8509b61f25}{previousSibling}}() \{ \textcolor{keywordflow}{return} \_previous\_sibling; \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{83         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2c4721eed8ae59dba92fdd324150c280}{getParent}}() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}*\textcolor{keyword}{>}(\_parent); \}}
+\DoxyCodeLine{84     }
+\DoxyCodeLine{86         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aca07706ed569b2f8dac6e9dbf530d27b}{getRoot}}();}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_document}{XMLDocument}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2f6aac887a37e890616fdd644379c7d3}{getDocument}}();}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{99         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{accept}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}}\& visitor) = 0;}
+\DoxyCodeLine{100     }
+\DoxyCodeLine{102         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4b63d452b55bbbd9b0f0bad7c39680b1}{addFirstChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) = 0;}
+\DoxyCodeLine{103     }
+\DoxyCodeLine{105         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a83025356608bcac7c0906dc360cb8c88}{addLastChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) = 0;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{108         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ae49c455d1abc8ad1a3135e67e6965f18}{insertChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* after\_this) = 0;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{111         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a4fbea42dd1921c23d580479c42fd4242}{removeFirstChild}}() = 0;}
+\DoxyCodeLine{112     }
+\DoxyCodeLine{114         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a2b83ad5ae16bade46f53be3ea635bbf6}{removeLastChild}}() = 0;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{117         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a7b54d685b56562a155f96cda245088d8}{removeChild}}(\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* node) = 0;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{120         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a6f1756d2afb12a5bf807573b5ce6a122}{removeAllChildren}}() = 0;}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{123         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aad410e31b3edd92c2837bb46573b666d}{unlink}}();}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{136         \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_aefcccac379658fa2122fb93f8f860a11}{getValue}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     }
+\DoxyCodeLine{140         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a45926cf0ceee9330e5b3675126999c16}{setValue}}(\textcolor{keyword}{const} std::string\& value) = 0;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{143         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a07bff5419386e2a4a551b13523451012}{setValue}}(std::string\&\& value) = 0;}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{146         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ac345cc65f19b97506fd10f54bf56991f}{clone}}() = 0;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{149         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_ab0daa0f8ec670af72dec215324136e8f}{deepClone}}() = 0;}
+\DoxyCodeLine{150     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{151         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* parse(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* beg, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* end, \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}}* parent, ParseError\& parsing\_error) = 0;}
+\DoxyCodeLine{152     \textcolor{keyword}{private}:}
+\DoxyCodeLine{153         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_nonterminal_node}{XMLNonterminalNode}}* \_parent = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{154         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \_next\_sibling = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{155         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}* \_previous\_sibling = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157         \textcolor{comment}{//delete copy operator}}
+\DoxyCodeLine{158         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{159         \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node}{XMLNode}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{160     \};}
+\DoxyCodeLine{161 \}}
+
+\end{DoxyCode}

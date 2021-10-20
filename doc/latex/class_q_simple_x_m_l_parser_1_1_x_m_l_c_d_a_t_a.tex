@@ -1,0 +1,54 @@
+\hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{}\doxysection{QSimple\+XMLParser\+::XMLCDATA Class Reference}
+\label{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}\index{QSimpleXMLParser::XMLCDATA@{QSimpleXMLParser::XMLCDATA}}
+
+
+{\ttfamily \#include $<$XMLCDATA.\+hpp$>$}
+
+Inheritance diagram for QSimple\+XMLParser\+::XMLCDATA\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a6ba4d6835ee79eb56bedd482edd5c187}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a6ba4d6835ee79eb56bedd482edd5c187}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}} $\ast$ {\bfseries clone} () override
+\begin{DoxyCompactList}\small\item\em Shallow clone.(Clone this node, but not its children. The new node has no child or parent.) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a2b62e41e6aaa1459bc193fc3ee494a4f}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_a2b62e41e6aaa1459bc193fc3ee494a4f}} 
+\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a}{XMLCDATA}} $\ast$ {\bfseries deep\+Clone} () override
+\begin{DoxyCompactList}\small\item\em Clone the node and all its descents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_aec62a15cce0f1388a6f36a6419709e31}{accept}} (\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&visitor) override
+\begin{DoxyCompactList}\small\item\em Accept a visitor to traverse the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+XML CDATA node class 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_aec62a15cce0f1388a6f36a6419709e31}\label{class_q_simple_x_m_l_parser_1_1_x_m_l_c_d_a_t_a_aec62a15cce0f1388a6f36a6419709e31}} 
+\index{QSimpleXMLParser::XMLCDATA@{QSimpleXMLParser::XMLCDATA}!accept@{accept}}
+\index{accept@{accept}!QSimpleXMLParser::XMLCDATA@{QSimpleXMLParser::XMLCDATA}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily bool QSimple\+XMLParser\+::\+XMLCDATA\+::accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Accept a visitor to traverse the tree. 
+
+Accept a visitor to visit this node and all its descentants in preorder traversal. When visit a node, it will call corresponding \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_visitor}{XMLVisitor}} interface.
+
+\begin{DoxyNote}{Note}
+see Visitor Pattern 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{class_q_simple_x_m_l_parser_1_1_x_m_l_node_a95991b41541a6d74a25c80daeb53633d}{QSimple\+XMLParser\+::\+XMLNode}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+XMLCDATA.\+hpp\item 
+XMLCDATA.\+cpp\end{DoxyCompactItemize}
